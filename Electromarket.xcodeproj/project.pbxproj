@@ -3,27 +3,41 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8434D24025B3C93300D5085B /* ProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434D23F25B3C93300D5085B /* ProductModel.swift */; };
+		8434D24325B3C94400D5085B /* RegistrationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434D24225B3C94400D5085B /* RegistrationPresenter.swift */; };
+		84A81BF625D2C5AD0085A1FD /* RelayTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A81BF525D2C5AD0085A1FD /* RelayTestVC.swift */; };
 		84AF0F8725B1E483007DE6CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AF0F8625B1E483007DE6CC /* AppDelegate.swift */; };
 		84AF0F8925B1E483007DE6CC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AF0F8825B1E483007DE6CC /* SceneDelegate.swift */; };
-		84AF0F8B25B1E483007DE6CC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AF0F8A25B1E483007DE6CC /* ViewController.swift */; };
+		84AF0F8B25B1E483007DE6CC /* RegistrationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AF0F8A25B1E483007DE6CC /* RegistrationVC.swift */; };
 		84AF0F8E25B1E483007DE6CC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84AF0F8C25B1E483007DE6CC /* Main.storyboard */; };
 		84AF0F9025B1E483007DE6CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84AF0F8F25B1E483007DE6CC /* Assets.xcassets */; };
 		84AF0F9325B1E483007DE6CC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84AF0F9125B1E483007DE6CC /* LaunchScreen.storyboard */; };
+		84DB8A9525D2B91800B220C4 /* SelectTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DB8A9425D2B91800B220C4 /* SelectTestVC.swift */; };
+		84DB8A9D25D2C06800B220C4 /* Test.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84DB8A9C25D2C06800B220C4 /* Test.storyboard */; };
+		A9E6B4C165AE54E85017394F /* Pods_Electromarket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6826778323594839E8AE3CE /* Pods_Electromarket.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3E2366C746A1856F5F00A56A /* Pods-Electromarket.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Electromarket.debug.xcconfig"; path = "Target Support Files/Pods-Electromarket/Pods-Electromarket.debug.xcconfig"; sourceTree = "<group>"; };
+		7D5C7F0E30C3547AE5779C27 /* Pods-Electromarket.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Electromarket.release.xcconfig"; path = "Target Support Files/Pods-Electromarket/Pods-Electromarket.release.xcconfig"; sourceTree = "<group>"; };
+		8434D23F25B3C93300D5085B /* ProductModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductModel.swift; sourceTree = "<group>"; };
+		8434D24225B3C94400D5085B /* RegistrationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationPresenter.swift; sourceTree = "<group>"; };
+		84A81BF525D2C5AD0085A1FD /* RelayTestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelayTestVC.swift; sourceTree = "<group>"; };
 		84AF0F8325B1E483007DE6CC /* Electromarket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Electromarket.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84AF0F8625B1E483007DE6CC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84AF0F8825B1E483007DE6CC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		84AF0F8A25B1E483007DE6CC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		84AF0F8A25B1E483007DE6CC /* RegistrationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationVC.swift; sourceTree = "<group>"; };
 		84AF0F8D25B1E483007DE6CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		84AF0F8F25B1E483007DE6CC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		84AF0F9225B1E483007DE6CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		84AF0F9425B1E483007DE6CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		84DB8A9425D2B91800B220C4 /* SelectTestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTestVC.swift; sourceTree = "<group>"; };
+		84DB8A9C25D2C06800B220C4 /* Test.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Test.storyboard; sourceTree = "<group>"; };
+		F6826778323594839E8AE3CE /* Pods_Electromarket.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Electromarket.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +45,72 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A9E6B4C165AE54E85017394F /* Pods_Electromarket.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		16127F9D67FC5DBDBF937B83 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3E2366C746A1856F5F00A56A /* Pods-Electromarket.debug.xcconfig */,
+				7D5C7F0E30C3547AE5779C27 /* Pods-Electromarket.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		4ECED3158655D6E12A55B719 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F6826778323594839E8AE3CE /* Pods_Electromarket.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		84A81BF025D2C4E90085A1FD /* RegustrationAndLoginModule */ = {
+			isa = PBXGroup;
+			children = (
+				84AF0F8A25B1E483007DE6CC /* RegistrationVC.swift */,
+				8434D24225B3C94400D5085B /* RegistrationPresenter.swift */,
+			);
+			path = RegustrationAndLoginModule;
+			sourceTree = "<group>";
+		};
+		84A81BF225D2C4FD0085A1FD /* TestModule */ = {
+			isa = PBXGroup;
+			children = (
+				84DB8A9425D2B91800B220C4 /* SelectTestVC.swift */,
+				84A81BF425D2C5760085A1FD /* Tests */,
+				84A81BF925D2C5B10085A1FD /* Model */,
+			);
+			path = TestModule;
+			sourceTree = "<group>";
+		};
+		84A81BF425D2C5760085A1FD /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				84A81BF525D2C5AD0085A1FD /* RelayTestVC.swift */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		84A81BF925D2C5B10085A1FD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8434D23F25B3C93300D5085B /* ProductModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		84AF0F7A25B1E483007DE6CC = {
 			isa = PBXGroup;
 			children = (
 				84AF0F8525B1E483007DE6CC /* Electromarket */,
 				84AF0F8425B1E483007DE6CC /* Products */,
+				16127F9D67FC5DBDBF937B83 /* Pods */,
+				4ECED3158655D6E12A55B719 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,7 +127,9 @@
 			children = (
 				84AF0F8625B1E483007DE6CC /* AppDelegate.swift */,
 				84AF0F8825B1E483007DE6CC /* SceneDelegate.swift */,
-				84AF0F8A25B1E483007DE6CC /* ViewController.swift */,
+				84A81BF025D2C4E90085A1FD /* RegustrationAndLoginModule */,
+				84A81BF225D2C4FD0085A1FD /* TestModule */,
+				84DB8A9C25D2C06800B220C4 /* Test.storyboard */,
 				84AF0F8C25B1E483007DE6CC /* Main.storyboard */,
 				84AF0F8F25B1E483007DE6CC /* Assets.xcassets */,
 				84AF0F9125B1E483007DE6CC /* LaunchScreen.storyboard */,
@@ -74,9 +145,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 84AF0F9725B1E483007DE6CC /* Build configuration list for PBXNativeTarget "Electromarket" */;
 			buildPhases = (
+				A62F4626E42E63368118C2FC /* [CP] Check Pods Manifest.lock */,
 				84AF0F7F25B1E483007DE6CC /* Sources */,
 				84AF0F8025B1E483007DE6CC /* Frameworks */,
 				84AF0F8125B1E483007DE6CC /* Resources */,
+				1451BDF071C3E9BC456C4FFB /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -126,20 +199,67 @@
 			files = (
 				84AF0F9325B1E483007DE6CC /* LaunchScreen.storyboard in Resources */,
 				84AF0F9025B1E483007DE6CC /* Assets.xcassets in Resources */,
+				84DB8A9D25D2C06800B220C4 /* Test.storyboard in Resources */,
 				84AF0F8E25B1E483007DE6CC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1451BDF071C3E9BC456C4FFB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Electromarket/Pods-Electromarket-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Electromarket/Pods-Electromarket-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Electromarket/Pods-Electromarket-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A62F4626E42E63368118C2FC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Electromarket-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		84AF0F7F25B1E483007DE6CC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84AF0F8B25B1E483007DE6CC /* ViewController.swift in Sources */,
+				84DB8A9525D2B91800B220C4 /* SelectTestVC.swift in Sources */,
+				84AF0F8B25B1E483007DE6CC /* RegistrationVC.swift in Sources */,
 				84AF0F8725B1E483007DE6CC /* AppDelegate.swift in Sources */,
+				8434D24325B3C94400D5085B /* RegistrationPresenter.swift in Sources */,
 				84AF0F8925B1E483007DE6CC /* SceneDelegate.swift in Sources */,
+				84A81BF625D2C5AD0085A1FD /* RelayTestVC.swift in Sources */,
+				8434D24025B3C93300D5085B /* ProductModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,12 +403,14 @@
 		};
 		84AF0F9825B1E483007DE6CC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3E2366C746A1856F5F00A56A /* Pods-Electromarket.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XK4D24WZ52;
 				INFOPLIST_FILE = Electromarket/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -302,12 +424,14 @@
 		};
 		84AF0F9925B1E483007DE6CC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7D5C7F0E30C3547AE5779C27 /* Pods-Electromarket.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XK4D24WZ52;
 				INFOPLIST_FILE = Electromarket/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
