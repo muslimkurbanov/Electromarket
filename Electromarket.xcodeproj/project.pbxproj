@@ -9,7 +9,10 @@
 /* Begin PBXBuildFile section */
 		8434D24025B3C93300D5085B /* ProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434D23F25B3C93300D5085B /* ProductModel.swift */; };
 		8434D24325B3C94400D5085B /* RegistrationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434D24225B3C94400D5085B /* RegistrationPresenter.swift */; };
+		84989FFE25D447830037F96C /* RelayVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84989FFD25D447830037F96C /* RelayVideo.swift */; };
+		8498A00225D44F9B0037F96C /* RelayTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8498A00125D44F9B0037F96C /* RelayTest.swift */; };
 		84A81BF625D2C5AD0085A1FD /* RelayTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A81BF525D2C5AD0085A1FD /* RelayTestVC.swift */; };
+		84A81BFC25D3095C0085A1FD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84A81BFB25D3095C0085A1FD /* GoogleService-Info.plist */; };
 		84AF0F8725B1E483007DE6CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AF0F8625B1E483007DE6CC /* AppDelegate.swift */; };
 		84AF0F8925B1E483007DE6CC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AF0F8825B1E483007DE6CC /* SceneDelegate.swift */; };
 		84AF0F8B25B1E483007DE6CC /* RegistrationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AF0F8A25B1E483007DE6CC /* RegistrationVC.swift */; };
@@ -26,7 +29,10 @@
 		7D5C7F0E30C3547AE5779C27 /* Pods-Electromarket.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Electromarket.release.xcconfig"; path = "Target Support Files/Pods-Electromarket/Pods-Electromarket.release.xcconfig"; sourceTree = "<group>"; };
 		8434D23F25B3C93300D5085B /* ProductModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductModel.swift; sourceTree = "<group>"; };
 		8434D24225B3C94400D5085B /* RegistrationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationPresenter.swift; sourceTree = "<group>"; };
+		84989FFD25D447830037F96C /* RelayVideo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelayVideo.swift; sourceTree = "<group>"; };
+		8498A00125D44F9B0037F96C /* RelayTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelayTest.swift; sourceTree = "<group>"; };
 		84A81BF525D2C5AD0085A1FD /* RelayTestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelayTestVC.swift; sourceTree = "<group>"; };
+		84A81BFB25D3095C0085A1FD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		84AF0F8325B1E483007DE6CC /* Electromarket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Electromarket.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84AF0F8625B1E483007DE6CC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84AF0F8825B1E483007DE6CC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -69,13 +75,13 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		84A81BF025D2C4E90085A1FD /* RegustrationAndLoginModule */ = {
+		84A81BF025D2C4E90085A1FD /* RegistrationAndLoginModule */ = {
 			isa = PBXGroup;
 			children = (
 				84AF0F8A25B1E483007DE6CC /* RegistrationVC.swift */,
 				8434D24225B3C94400D5085B /* RegistrationPresenter.swift */,
 			);
-			path = RegustrationAndLoginModule;
+			path = RegistrationAndLoginModule;
 			sourceTree = "<group>";
 		};
 		84A81BF225D2C4FD0085A1FD /* TestModule */ = {
@@ -92,6 +98,8 @@
 			isa = PBXGroup;
 			children = (
 				84A81BF525D2C5AD0085A1FD /* RelayTestVC.swift */,
+				84989FFD25D447830037F96C /* RelayVideo.swift */,
+				8498A00125D44F9B0037F96C /* RelayTest.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -127,13 +135,14 @@
 			children = (
 				84AF0F8625B1E483007DE6CC /* AppDelegate.swift */,
 				84AF0F8825B1E483007DE6CC /* SceneDelegate.swift */,
-				84A81BF025D2C4E90085A1FD /* RegustrationAndLoginModule */,
+				84A81BF025D2C4E90085A1FD /* RegistrationAndLoginModule */,
 				84A81BF225D2C4FD0085A1FD /* TestModule */,
 				84DB8A9C25D2C06800B220C4 /* Test.storyboard */,
 				84AF0F8C25B1E483007DE6CC /* Main.storyboard */,
 				84AF0F8F25B1E483007DE6CC /* Assets.xcassets */,
 				84AF0F9125B1E483007DE6CC /* LaunchScreen.storyboard */,
 				84AF0F9425B1E483007DE6CC /* Info.plist */,
+				84A81BFB25D3095C0085A1FD /* GoogleService-Info.plist */,
 			);
 			path = Electromarket;
 			sourceTree = "<group>";
@@ -199,6 +208,7 @@
 			files = (
 				84AF0F9325B1E483007DE6CC /* LaunchScreen.storyboard in Resources */,
 				84AF0F9025B1E483007DE6CC /* Assets.xcassets in Resources */,
+				84A81BFC25D3095C0085A1FD /* GoogleService-Info.plist in Resources */,
 				84DB8A9D25D2C06800B220C4 /* Test.storyboard in Resources */,
 				84AF0F8E25B1E483007DE6CC /* Main.storyboard in Resources */,
 			);
@@ -260,6 +270,8 @@
 				84AF0F8925B1E483007DE6CC /* SceneDelegate.swift in Sources */,
 				84A81BF625D2C5AD0085A1FD /* RelayTestVC.swift in Sources */,
 				8434D24025B3C93300D5085B /* ProductModel.swift in Sources */,
+				84989FFE25D447830037F96C /* RelayVideo.swift in Sources */,
+				8498A00225D44F9B0037F96C /* RelayTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

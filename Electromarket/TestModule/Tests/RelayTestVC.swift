@@ -6,18 +6,18 @@
 //
 
 import UIKit
+import AVKit
 
 class RelayTestVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // Do any additional setup after loading the view.
     }
     
 
     @IBAction func gotToTest(_ sender: Any) {
-        let vc = UIStoryboard(name: "Test", bundle: nil).instantiateViewController(identifier: "relayTest")
+        let vc = UIStoryboard(name: "Test", bundle: nil).instantiateViewController(identifier: "relayVideo")
         navigationController?.pushViewController(vc, animated: true)
     }
     /*
