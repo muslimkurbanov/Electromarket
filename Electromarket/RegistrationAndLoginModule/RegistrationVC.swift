@@ -23,6 +23,12 @@ class RegistrationVC: UIViewController {
         presenter = RegistrationPresenter(view: self)
         addItemCenter()
         
+        loginTF.keyboardType = .emailAddress
+        
+        passwordTF.autocorrectionType = .no
+        passwordTF.isSecureTextEntry = true
+
+        
         let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
 
@@ -32,9 +38,36 @@ class RegistrationVC: UIViewController {
         view.endEditing(true)
     }
     
-    @IBAction func goToSelectQuizVC(_ sender: Any) {
-        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "SelectQuiz")
+    @IBAction func goToLoginAcion(_ sender: Any) {
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "loginVC")
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    
+    @IBAction func registration(_ sender: Any) {
+        let signUpManager = FirebaseAuthManager()
+        if let email = loginTF.text, let password = passwordTF.text {
+            signUpManager.createUser(email: email, password: password) {[weak self] (success) in
+                guard let `self` = self else { return }
+                var message: String = ""
+                if (success) {
+                    message = "Профиль успешно создан"
+                } else {
+                    message = "Неверный формат"
+                }
+                let alertController = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (action) in
+                    if message == "Профиль успешно создан" {
+                        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "mainTabBar")
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    } else {
+                        return
+                    }
+                }))
+                self.present(alertController, animated: true, completion: nil)
+                
+            }
+        }
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -55,28 +88,7 @@ class RegistrationVC: UIViewController {
         imageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         imageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         
-//                if #available(iOS 13.0, *) {
-//                    let app = UIApplication.shared
-//                    let statusBarHeight: CGFloat = app.statusBarFrame.size.height
-//
-//                    let statusbarView = UIView()
-//                                statusbarView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-//                    view.addSubview(statusbarView)
-//
-//                    statusbarView.translatesAutoresizingMaskIntoConstraints = false
-//                    statusbarView.heightAnchor
-//                        .constraint(equalToConstant: statusBarHeight).isActive = true
-//                    statusbarView.widthAnchor
-//                        .constraint(equalTo: view.widthAnchor, multiplier: 1.0).isActive = true
-//                    statusbarView.topAnchor
-//                        .constraint(equalTo: view.topAnchor).isActive = true
-//                    statusbarView.centerXAnchor
-//                        .constraint(equalTo: view.centerXAnchor).isActive = true
-//
-//                } else {
-//                    let statusBar = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView
-//                    //            statusBar?.backgroundColor = #colorLiteral(red: 0.9220808148, green: 0.2068383396, blue: 0.628426671, alpha: 1)
-//                }
+
     }
 }
 

@@ -1,16 +1,15 @@
 //
-//  RelayTest.swift
+//  StabilizerVideo.swift
 //  Electromarket
 //
-//  Created by Муслим Курбанов on 10.02.2021.
+//  Created by Муслим Курбанов on 11.02.2021.
 //
 
 import UIKit
-import AVKit
 import WebKit
 
-class RelayVideo: UIViewController {
-    
+class StabilizerVideo: UIViewController {
+
     
     @IBOutlet weak var webView: WKWebView!
     @IBOutlet weak var videoIsWatched: UILabel!
@@ -23,36 +22,31 @@ class RelayVideo: UIViewController {
         super.viewDidLoad()
 
         webView.load(URLRequest(url: URL(string: url)!))
-        
-        if webView.isOpaque {
-
-            videoIsWatched.isHidden = false
-        } else {
-            videoIsWatched.isHidden = true
-        }
         if webView.isLoading {
-//            webView.isHidden = true
-//            videoIsWatched.isHidden = false
+            webView.isHidden = true
+            videoIsWatched.isHidden = false
         } else {
             print("stop")
         }
+        
     }
     
     @IBAction func watchAgain(_ sender: Any) {
         webView.load(URLRequest(url: URL(string: url)!))
     }
     @IBAction func watchVideo(_ sender: Any) {
-        let player = AVPlayer(url: URL(string: url)!)
-        let playerController = AVPlayerViewController()
-        playerController.player = player
-        present(playerController, animated: true) {
-            player.play()
-        }
+//        let player = AVPlayer(url: URL(string: url)!)
+//        let playerController = AVPlayerViewController()
+//        playerController.player = player
+//        present(playerController, animated: true) {
+//            player.play()
+//        }
     }
     
 
     @IBAction func goToTest(_ sender: Any) {
-        let vc = UIStoryboard(name: "Test", bundle: nil).instantiateViewController(identifier: "relayTest")
+        let vc = UIStoryboard(name: "Test", bundle: nil).instantiateViewController(identifier: "stabilizerTest")
         navigationController?.pushViewController(vc, animated: true)
     }
+
 }

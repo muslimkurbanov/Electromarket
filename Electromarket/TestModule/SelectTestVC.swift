@@ -19,10 +19,10 @@ class SelectTestVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationItem.hidesBackButton = true
+
         selectTestTableView.delegate = self
         selectTestTableView.dataSource = self
-        
-
     }
 }
 
@@ -32,9 +32,11 @@ extension SelectTestVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = arrayOfNames[indexPath.row]
-        cell.imageView?.image = arrayOfImages[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! SelectTestCell
+//        cell.textLabel?.text = arrayOfNames[indexPath.row]
+//        cell.imageView?.image = arrayOfImages[indexPath.row]
+        cell.testName.text = arrayOfNames[indexPath.row]
+        cell.testImage.image = arrayOfImages[indexPath.row]
         return cell
     }
     
