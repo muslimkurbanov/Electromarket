@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>1053386483360-d7h096kbtos6k1p5e4jna6qalgj0lbnh.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.1053386483360-d7h096kbtos6k1p5e4jna6qalgj0lbnh</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDmVeDdo6VoIACGO_XcbQsEkCpsgGkqD88</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1053386483360</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.muslim.Electromarket</string>
+	<key>PROJECT_ID</key>
+	<string>electromarket-e46b4</string>
+	<key>STORAGE_BUCKET</key>
+	<string>electromarket-e46b4.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1053386483360:ios:2df29a7a6a97b53677cbc5</string>
+	<key>DATABASE_URL</key>
+	<string>https://electromarket-e46b4-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>

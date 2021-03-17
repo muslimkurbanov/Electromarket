@@ -12,6 +12,6 @@ pod 'SDWebImage', '~> 5.0'
 pod 'IQKeyboardManagerSwift'
 pod 'Firebase/Core'
 pod 'Firebase/Auth'
-
+pod 'Firebase/Database'
 
 end

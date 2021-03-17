@@ -11,12 +11,14 @@ import Firebase
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    var window: UIWindow?
+    let storyboard = UIStoryboard(name: "Main", bundle: nil)
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         UIApplication.shared.statusBarStyle = .lightContent
         FirebaseApp.configure()
-        // Override point for customization after application launch.
+//        self.window = UIWindow(frame: UIScreen.main.bounds)
         return true
     }
 
