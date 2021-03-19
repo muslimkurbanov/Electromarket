@@ -6,14 +6,18 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class RelayTest: UIViewController {
 
     @IBOutlet weak var finishTest: UIButton!
     @IBOutlet weak var questionLabel: UILabel!
-    
     @IBOutlet var buttons: [UIButton]!
-    var index = 0
+    
+    private let ref = Database.database().reference(withPath: "TestResults")
+
+    private var rellayScore = 0
+    private var index = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,13 +29,29 @@ class RelayTest: UIViewController {
     }
     
     @IBAction func finishTestAction(_ sender: Any) {
-        navigationController?.popToRootViewController(animated: true)
+        
+        let searchRef = Database.database().reference()
+        searchRef.child(UserSettings.firstName).setValue([
+                    "Результат по релле": index
+                    
+                ])
+        
+        let userRef = ref.child("Muslim")
+        
+        print(userRef)
+        print(ref)
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(identifier: "mainTabBar")
+        
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     
     @IBAction func buttons(_ sender: UIButton) {
         if sender.title(for: .normal) == RellayQuestions.shared.rightAnswers[index] {
             index += 1
+            rellayScore += 1
             questionLabel.text = RellayQuestions.shared.questionsArray[index]
             print("right")
         } else if index <= 3 {

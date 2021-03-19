@@ -14,7 +14,6 @@ class StabilizerVideo: UIViewController {
     @IBOutlet weak var webView: WKWebView!
     @IBOutlet weak var videoIsWatched: UILabel!
     
-    //    let url = "https://youtu.be/eLhbMwn0E7Y"
     let url = "https://youtu.be/bwDCAFJQCuQ"
 
 

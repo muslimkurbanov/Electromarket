@@ -28,10 +28,12 @@ class ProfileVC: UIViewController {
     @IBAction func logoutAction(_ sender: Any) {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(identifier: "welcomeVC")
-        
+        let vc = storyboard.instantiateViewController(identifier: "registrationVC")
+        UserSettings.firstName = ""
+        UserSettings.lastName = ""
+        UserSettings.phoneNumber = ""
         navigationController?.pushViewController(vc, animated: true)
-        RootViewController.rootViewController = "welcomeVC"
+        RootViewController.rootViewController = "registrationVC"
 //        navigationController?.popToViewController(vc, animated: true)
     }
     

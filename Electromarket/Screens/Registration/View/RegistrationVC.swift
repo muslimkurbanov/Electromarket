@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 protocol ProductViewProtocol: class {
     
@@ -13,66 +14,112 @@ protocol ProductViewProtocol: class {
 
 class RegistrationVC: UIViewController {
     
-    var presenter: RegistrationPresenterProtocol!
+    private let mainStroyboard = UIStoryboard(name: "Main", bundle: nil)
+    
+    private var presenter: RegistrationPresenterProtocol!
+    private var ref: DatabaseReference!
     
     @IBOutlet weak var loginTF: UITextField!
     @IBOutlet weak var passwordTF: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        ref = Database.database().reference(withPath: "users")
         presenter = RegistrationPresenter(view: self)
         addItemCenter()
         
-        loginTF.keyboardType = .emailAddress
         
-        passwordTF.autocorrectionType = .no
-        passwordTF.isSecureTextEntry = true
-
-        
-        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
-        view.addGestureRecognizer(tap)
+        Auth.auth().addStateDidChangeListener({ (auth, user) in
+            if user != nil {
+                
+            }
+        })
+    
 
     }
-    @objc func dismissKeyboard() {
-        //Causes the view (or one of its embedded text fields) to resign the first responder status.
-        view.endEditing(true)
-    }
+ 
     
     @IBAction func goToLoginAcion(_ sender: Any) {
-        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "loginVC")
-        navigationController?.pushViewController(vc, animated: true)
+        
+        guard let email = loginTF.text, let password = passwordTF.text, email != "", password != "" else {
+            let alertController = UIAlertController(title: nil, message: "Введите почту и пароль", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+            self.present(alertController, animated: true, completion: nil)
+            return
+        }
+        
+        Auth.auth().signIn(withEmail: email, password: password, completion: { (user, error) in
+            if error != nil {
+                let alertController = UIAlertController(title: nil, message: "Неверный логин или пароль", preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                self.present(alertController, animated: true, completion: nil)
+                return
+            }
+            
+            if user != nil {
+                let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "mainTabBar")
+                self.navigationController?.pushViewController(vc, animated: true)
+                RootViewController.rootViewController = "mainTabBar"
+            }
+            
+
+        })
     }
     
     
     @IBAction func registration(_ sender: Any) {
-        let signUpManager = FirebaseAuthManager()
-        if let email = loginTF.text, let password = passwordTF.text {
-            signUpManager.createUser(email: email, password: password) {[weak self] (success) in
-                guard let `self` = self else { return }
-                var message: String = ""
-                if (success) {
-                    message = "Профиль успешно создан"
-                } else {
-                    message = "Неверный формат"
-                }
-                let alertController = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-                alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (action) in
-                    if message == "Профиль успешно создан" {
-                        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "mainTabBar")
-                        self.navigationController?.pushViewController(vc, animated: true)
-                        
-                    } else {
-                        return
-                    }
-                }))
+    
+        guard let email = loginTF.text, let password = passwordTF.text, email != "", password != "" else {
+            let alertController = UIAlertController(title: nil, message: "Введите почту и пароль", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+            self.present(alertController, animated: true, completion: nil)
+            return
+        }
+        
+        Auth.auth().createUser(withEmail: email, password: password, completion: { (user, error) in
+            
+            if user != nil {
+                let vc = self.mainStroyboard.instantiateViewController(identifier: "fullRegistration")
+                self.navigationController?.pushViewController(vc, animated: true)
+                RootViewController.rootViewController = "mainTabBar"
+            } else {
+                
+                let alertController = UIAlertController(title: nil, message: "Неправильный формат или аккаун уже создан", preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
                 self.present(alertController, animated: true, completion: nil)
                 
             }
-        }
+
+            guard error == nil, user != nil else {
+                
+                print(error!.localizedDescription)
+                return
+            }
+            
+            let userRef = self.ref.child((user?.user.uid)!)
+            userRef.setValue(["email": user?.user.email])
+        })
+        
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         .lightContent
+    }
+    
+    func textFieldsSettings() {
+        
+        loginTF.keyboardType = .emailAddress
+        loginTF.autocorrectionType = .no
+        
+        passwordTF.autocorrectionType = .no
+        passwordTF.isSecureTextEntry = true
+
+        loginTF.delegate = self
+        passwordTF.delegate = self
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
     }
     
     func addItemCenter() {
@@ -91,6 +138,13 @@ class RegistrationVC: UIViewController {
         
 
     }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+}
+
+extension RegistrationVC: UITextFieldDelegate {
 }
 
 extension RegistrationVC: ProductViewProtocol {

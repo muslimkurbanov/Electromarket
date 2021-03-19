@@ -7,21 +7,50 @@
 
 import Foundation
 
-final class RootViewController {
+final class UserSettings {
     
     private enum SettingsKeys: String {
-        case rootViewController
-  
+        case firstName
+        case lastName
+        case phoneNumber
     }
     
-    static var rootViewController: String! {
+    static var firstName: String! {
         get {
-            return UserDefaults.standard.object(forKey: SettingsKeys.rootViewController.rawValue) as? String
+            return UserDefaults.standard.object(forKey: SettingsKeys.firstName.rawValue) as? String
         } set {
             let defaults = UserDefaults.standard
-            let key = SettingsKeys.rootViewController.rawValue
-            if let relay = newValue {
-                defaults.set(relay, forKey: key)
+            let key = SettingsKeys.firstName.rawValue
+            if let name = newValue {
+                defaults.set(name, forKey: key)
+            } else {
+                defaults.removeObject(forKey: key)
+            }
+        }
+    }
+    
+    static var lastName: String! {
+        get {
+            return UserDefaults.standard.object(forKey: SettingsKeys.lastName.rawValue) as? String
+        } set {
+            let defaults = UserDefaults.standard
+            let key = SettingsKeys.lastName.rawValue
+            if let last = newValue {
+                defaults.set(last, forKey: key)
+            } else {
+                defaults.removeObject(forKey: key)
+            }
+        }
+    }
+    
+    static var phoneNumber: String! {
+        get {
+            return UserDefaults.standard.object(forKey: SettingsKeys.phoneNumber.rawValue) as? String
+        } set {
+            let defaults = UserDefaults.standard
+            let key = SettingsKeys.phoneNumber.rawValue
+            if let number = newValue {
+                defaults.set(number, forKey: key)
             } else {
                 defaults.removeObject(forKey: key)
             }

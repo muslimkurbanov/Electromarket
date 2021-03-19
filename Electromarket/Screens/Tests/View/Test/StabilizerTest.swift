@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class StabilizerTest: UIViewController {
     @IBOutlet weak var finishTest: UIButton!
@@ -29,7 +30,19 @@ class StabilizerTest: UIViewController {
     }
     
     @IBAction func finishTestAction(_ sender: Any) {
-        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "mainTabBar")
+        
+        let searchRef = Database.database().reference()
+        searchRef.child("TestResults").setValue([
+            "Результат по стабилизаторам": stabilizerScore
+        ])
+//
+        searchRef.child("TestResults").updateChildValues(["stabilizerTest": stabilizerScore])
+        
+        
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(identifier: "mainTabBar")
+        
         navigationController?.pushViewController(vc, animated: true)
     }
     

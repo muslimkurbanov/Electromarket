@@ -26,7 +26,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             return
         } else {
             
-            let rootViewController = storyboard.instantiateViewController(identifier: RootViewController.rootViewController ?? "welcomeVC")
+            let rootViewController = storyboard.instantiateViewController(identifier: RootViewController.rootViewController ?? "registrationVC")
             
             navigationController = UINavigationController(rootViewController: rootViewController)
             navigationController.navigationBar.barTintColor = #colorLiteral(red: 1, green: 0.3893484473, blue: 0, alpha: 1)
