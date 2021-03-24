@@ -8,6 +8,7 @@
 import UIKit
 import Firebase
 
+
 protocol ProductViewProtocol: class {
     
 }
@@ -25,21 +26,13 @@ class RegistrationVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        ref = Database.database().reference(withPath: "users")
-        presenter = RegistrationPresenter(view: self)
+        textFieldsSettings()
         addItemCenter()
         
-        
-        Auth.auth().addStateDidChangeListener({ (auth, user) in
-            if user != nil {
-                
-            }
-        })
-    
-
+        ref = Database.database().reference(withPath: "users")
+        presenter = RegistrationPresenter(view: self)
     }
  
-    
     @IBAction func goToLoginAcion(_ sender: Any) {
         
         guard let email = loginTF.text, let password = passwordTF.text, email != "", password != "" else {
@@ -62,8 +55,6 @@ class RegistrationVC: UIViewController {
                 self.navigationController?.pushViewController(vc, animated: true)
                 RootViewController.rootViewController = "mainTabBar"
             }
-            
-
         })
     }
     
@@ -82,7 +73,7 @@ class RegistrationVC: UIViewController {
             if user != nil {
                 let vc = self.mainStroyboard.instantiateViewController(identifier: "fullRegistration")
                 self.navigationController?.pushViewController(vc, animated: true)
-                RootViewController.rootViewController = "mainTabBar"
+                RootViewController.rootViewController = "fullRegistration"
             } else {
                 
                 let alertController = UIAlertController(title: nil, message: "Неправильный формат или аккаун уже создан", preferredStyle: .alert)
@@ -109,6 +100,8 @@ class RegistrationVC: UIViewController {
     
     func textFieldsSettings() {
         
+        self.navigationItem.setHidesBackButton(true, animated: true)
+
         loginTF.keyboardType = .emailAddress
         loginTF.autocorrectionType = .no
         
@@ -145,6 +138,9 @@ class RegistrationVC: UIViewController {
 }
 
 extension RegistrationVC: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        view.endEditing(true)
+    }
 }
 
 extension RegistrationVC: ProductViewProtocol {

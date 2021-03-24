@@ -26,7 +26,6 @@ class StabilizerTest: UIViewController {
         for (index, button) in buttons.enumerated() {
             button.setTitle(StabilizerQuestions.shared.firstAnswers[index], for: .normal)
         }
-        // Do any additional setup after loading the view.
     }
     
     @IBAction func finishTestAction(_ sender: Any) {
@@ -35,10 +34,8 @@ class StabilizerTest: UIViewController {
         searchRef.child("TestResults").setValue([
             "Результат по стабилизаторам": stabilizerScore
         ])
-//
+        
         searchRef.child("TestResults").updateChildValues(["stabilizerTest": stabilizerScore])
-        
-        
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(identifier: "mainTabBar")

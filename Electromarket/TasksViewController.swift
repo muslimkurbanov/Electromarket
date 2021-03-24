@@ -12,9 +12,9 @@ class TasksViewController: UIViewController {
     
     @IBOutlet weak var tasksTableView: UITableView!
     
-    var user: UserProfile!
-    var ref: DatabaseReference!
-    var tasks = [Task]()
+    private var user: UserProfile!
+    private var ref: DatabaseReference!
+    private var tasks = [Task]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,9 +26,22 @@ class TasksViewController: UIViewController {
         
         tasksTableView.delegate = self
         tasksTableView.dataSource = self
-        // Do any additional setup after loading the view.
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        ref.observe(.value) { [weak self] (snapshot) in
+         
+            var _tasks = [Task]()
+            for item in snapshot.children {
+                let task = Task(snapshot: item as! DataSnapshot)
+                _tasks.append(task)
+            }
+            self?.tasks = _tasks
+            self?.tasksTableView.reloadData()
+        }
+    }
+    
     @IBAction func addTaskAction(_ sender: Any) {
         let alertController = UIAlertController(title: "New Task", message: "Add new task", preferredStyle: .alert)
         
@@ -49,12 +62,18 @@ class TasksViewController: UIViewController {
 
 extension TasksViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        10
+        tasks.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tasksCell", for: indexPath)
+        let taskTitle = tasks[indexPath.row].title
+        cell.textLabel?.text = taskTitle
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     

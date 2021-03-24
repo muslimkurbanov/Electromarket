@@ -13,7 +13,23 @@ final class UserSettings {
         case firstName
         case lastName
         case phoneNumber
+        case rellayTestNumber
     }
+    
+    static var rellayTestNumber: Int! {
+        get {
+            return UserDefaults.standard.object(forKey: SettingsKeys.rellayTestNumber.rawValue) as? Int
+        } set {
+            let defaults = UserDefaults.standard
+            let key = SettingsKeys.rellayTestNumber.rawValue
+            if let number = newValue {
+                defaults.set(number, forKey: key)
+            } else {
+                defaults.removeObject(forKey: key)
+            }
+        }
+    }
+    
     
     static var firstName: String! {
         get {

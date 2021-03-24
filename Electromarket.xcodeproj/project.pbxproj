@@ -15,7 +15,6 @@
 		841E0B5625D59AE50013A20E /* StabilizerTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841E0B5525D59AE50013A20E /* StabilizerTestVC.swift */; };
 		841E0B5A25D59C7F0013A20E /* StabilizerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841E0B5925D59C7F0013A20E /* StabilizerTest.swift */; };
 		841E0B6125D5A30C0013A20E /* FirebaseAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841E0B6025D5A30C0013A20E /* FirebaseAuthManager.swift */; };
-		841E0B8125D5AA600013A20E /* WelcomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841E0B8025D5AA600013A20E /* WelcomeVC.swift */; };
 		8434D24025B3C93300D5085B /* ProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434D23F25B3C93300D5085B /* ProductModel.swift */; };
 		8434D24325B3C94400D5085B /* RegistrationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434D24225B3C94400D5085B /* RegistrationPresenter.swift */; };
 		8436D74525EE8504004EAB9D /* ScoreUserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8436D74425EE8504004EAB9D /* ScoreUserSettings.swift */; };
@@ -49,14 +48,15 @@
 		841E0B5525D59AE50013A20E /* StabilizerTestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StabilizerTestVC.swift; sourceTree = "<group>"; };
 		841E0B5925D59C7F0013A20E /* StabilizerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StabilizerTest.swift; sourceTree = "<group>"; };
 		841E0B6025D5A30C0013A20E /* FirebaseAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthManager.swift; sourceTree = "<group>"; };
-		841E0B8025D5AA600013A20E /* WelcomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeVC.swift; sourceTree = "<group>"; };
 		8434D23F25B3C93300D5085B /* ProductModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductModel.swift; sourceTree = "<group>"; };
 		8434D24225B3C94400D5085B /* RegistrationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationPresenter.swift; sourceTree = "<group>"; };
 		8436D74425EE8504004EAB9D /* ScoreUserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreUserSettings.swift; sourceTree = "<group>"; };
+		845117B9260A202400D6849D /* Video2.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Video2.mp4; sourceTree = "<group>"; };
 		846477A9260486570078320A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		8480E1CD26039C5A00D57738 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		848ADAB72603A1E9000EC2C3 /* TasksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksViewController.swift; sourceTree = "<group>"; };
 		848B7A4B26008FCA005DE9D1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8491C30C260667CD00D86579 /* video1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = video1.mp4; sourceTree = "<group>"; };
 		84989FFD25D447830037F96C /* RelayVideo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelayVideo.swift; sourceTree = "<group>"; };
 		8498A00125D44F9B0037F96C /* RelayTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelayTest.swift; sourceTree = "<group>"; };
 		84A81BF525D2C5AD0085A1FD /* RelayTestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelayTestVC.swift; sourceTree = "<group>"; };
@@ -120,14 +120,6 @@
 			path = Firebase;
 			sourceTree = "<group>";
 		};
-		8480E1C32603999200D57738 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				841E0B8025D5AA600013A20E /* WelcomeVC.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		8480E1C7260399A100D57738 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -139,21 +131,11 @@
 		848B7A4E2600A3F9005DE9D1 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				848B7A502600A45A005DE9D1 /* Welcome */,
 				848B7A532600A486005DE9D1 /* Registration */,
-				848B7A612600A4E2005DE9D1 /* SelectTest */,
-				848B7A592600A4AB005DE9D1 /* Profile */,
+				848B7A612600A4E2005DE9D1 /* SelectTestAndProfile */,
 				84A81BF225D2C4FD0085A1FD /* Tests */,
 			);
 			path = Screens;
-			sourceTree = "<group>";
-		};
-		848B7A502600A45A005DE9D1 /* Welcome */ = {
-			isa = PBXGroup;
-			children = (
-				8480E1C32603999200D57738 /* View */,
-			);
-			path = Welcome;
 			sourceTree = "<group>";
 		};
 		848B7A532600A486005DE9D1 /* Registration */ = {
@@ -169,6 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				84AF0F8A25B1E483007DE6CC /* RegistrationVC.swift */,
+				8401D19726020B7100F6D079 /* FullRegistrationViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -189,13 +172,23 @@
 			path = Presenter;
 			sourceTree = "<group>";
 		};
-		848B7A612600A4E2005DE9D1 /* SelectTest */ = {
+		848B7A612600A4E2005DE9D1 /* SelectTestAndProfile */ = {
 			isa = PBXGroup;
 			children = (
+				848B7A592600A4AB005DE9D1 /* Profile */,
 				84DB8A9425D2B91800B220C4 /* SelectTestVC.swift */,
 				841E0B4E25D5934E0013A20E /* SelectTestCell.swift */,
 			);
-			path = SelectTest;
+			path = SelectTestAndProfile;
+			sourceTree = "<group>";
+		};
+		8491C30D260667D300D86579 /* Videos */ = {
+			isa = PBXGroup;
+			children = (
+				8491C30C260667CD00D86579 /* video1.mp4 */,
+				845117B9260A202400D6849D /* Video2.mp4 */,
+			);
+			path = Videos;
 			sourceTree = "<group>";
 		};
 		84A81BF225D2C4FD0085A1FD /* Tests */ = {
@@ -252,12 +245,12 @@
 				84AF0F8625B1E483007DE6CC /* AppDelegate.swift */,
 				84AF0F8825B1E483007DE6CC /* SceneDelegate.swift */,
 				848B7A4E2600A3F9005DE9D1 /* Screens */,
-				8401D19726020B7100F6D079 /* FullRegistrationViewController.swift */,
 				848ADAB72603A1E9000EC2C3 /* TasksViewController.swift */,
 				8480E1CD26039C5A00D57738 /* Tests.swift */,
 				846477A9260486570078320A /* User.swift */,
 				841E0B6425D5A3130013A20E /* Firebase */,
 				8401D1922601ECBF00F6D079 /* Settings */,
+				8491C30D260667D300D86579 /* Videos */,
 				84AF0F8C25B1E483007DE6CC /* Main.storyboard */,
 				84AF0F8F25B1E483007DE6CC /* Assets.xcassets */,
 				84AF0F9125B1E483007DE6CC /* LaunchScreen.storyboard */,
@@ -411,7 +404,6 @@
 				84AF0F8B25B1E483007DE6CC /* RegistrationVC.swift in Sources */,
 				84AF0F8725B1E483007DE6CC /* AppDelegate.swift in Sources */,
 				8434D24325B3C94400D5085B /* RegistrationPresenter.swift in Sources */,
-				841E0B8125D5AA600013A20E /* WelcomeVC.swift in Sources */,
 				84AF0F8925B1E483007DE6CC /* SceneDelegate.swift in Sources */,
 				8401D1902601ECBC00F6D079 /* RootControllerSettings.swift in Sources */,
 				841E0B5325D599D40013A20E /* StabilizerVideo.swift in Sources */,

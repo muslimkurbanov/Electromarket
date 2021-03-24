@@ -17,6 +17,8 @@ class RelayVideo: UIViewController {
     
     //    let url = "https://youtu.be/eLhbMwn0E7Y"
     let url = "https://youtu.be/bwDCAFJQCuQ"
+    
+    let ulr = ""
 
 
     override func viewDidLoad() {

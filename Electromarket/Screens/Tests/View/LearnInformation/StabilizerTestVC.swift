@@ -11,6 +11,8 @@ class StabilizerTestVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationController?.navigationBar.backItem?.title = "Назад"
 
         // Do any additional setup after loading the view.
     }

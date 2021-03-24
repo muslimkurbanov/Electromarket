@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import FirebaseDatabase
+import Firebase
 
 class RelayTest: UIViewController {
 
@@ -14,13 +14,23 @@ class RelayTest: UIViewController {
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet var buttons: [UIButton]!
     
-    private let ref = Database.database().reference(withPath: "TestResults")
+//    private let ref = Database.database().reference(withPath: "TestResults")
 
     private var rellayScore = 0
     private var index = 0
+    private var user: UserProfile!
+    private var ref: DatabaseReference!
+    private var testNumber: Int = 1
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        guard let currentUser = Auth.auth().currentUser else { return }
+
+        user = UserProfile(user: currentUser)
+
+        ref = Database.database().reference(withPath: "users").child(String(user.uid)).child("Тесты")
+        
         questionLabel.text = RellayQuestions.shared.questionsArray[index]
         for (index, button) in buttons.enumerated() {
             button.setTitle(RellayQuestions.shared.firstAnswers[index], for: .normal)
@@ -30,16 +40,10 @@ class RelayTest: UIViewController {
     
     @IBAction func finishTestAction(_ sender: Any) {
         
-        let searchRef = Database.database().reference()
-        searchRef.child(UserSettings.firstName).setValue([
-                    "Результат по релле": index
-                    
-                ])
+        UserSettings.rellayTestNumber += 1
         
-        let userRef = ref.child("Muslim")
+        self.ref.child("Тест по релле").setValue(["Тест \(UserSettings.rellayTestNumber ?? 1)":rellayScore])
         
-        print(userRef)
-        print(ref)
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(identifier: "mainTabBar")
@@ -53,11 +57,9 @@ class RelayTest: UIViewController {
             index += 1
             rellayScore += 1
             questionLabel.text = RellayQuestions.shared.questionsArray[index]
-            print("right")
-        } else if index <= 3 {
+         } else if index <= 3 {
             index += 1
             questionLabel.text = RellayQuestions.shared.questionsArray[index]
-            print("wrong")
         } else {
             return
         }
