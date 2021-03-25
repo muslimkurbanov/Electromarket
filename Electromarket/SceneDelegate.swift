@@ -32,6 +32,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             navigationController.navigationBar.barTintColor = #colorLiteral(red: 1, green: 0.3893484473, blue: 0, alpha: 1)
             navigationController.navigationBar.isTranslucent = false
             navigationController.navigationBar.tintColor = .white
+            navigationController.navigationItem.backButtonTitle = "Назад"
             navigationController.navigationBar.backItem?.title = "Назад"
             let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
             navigationController.navigationBar.titleTextAttributes = textAttributes

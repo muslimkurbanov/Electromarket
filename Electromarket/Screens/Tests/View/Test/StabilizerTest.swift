@@ -9,16 +9,14 @@ import UIKit
 import FirebaseDatabase
 
 class StabilizerTest: UIViewController {
-    @IBOutlet weak var finishTest: UIButton!
-    @IBOutlet weak var questionLabel: UILabel!
     
-    @IBOutlet var buttons: [UIButton]!
+    @IBOutlet private weak var finishTest: UIButton!
+    @IBOutlet private weak var questionLabel: UILabel!
+    @IBOutlet private weak var scoreLabel: UILabel!
+    @IBOutlet private var buttons: [UIButton]!
     
-    @IBOutlet weak var scoreLabel: UILabel!
-    
-    var index = 0
-    var stabilizerScore = 0
-    
+    private var index = 0
+    private var stabilizerScore = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,6 +77,4 @@ class StabilizerTest: UIViewController {
             ScoreSettings.stabilizerResults = stabilizerScore
         }
     }
-    
-
 }

@@ -11,25 +11,21 @@ import AVKit
 import Firebase
 
 class StabilizerVideo: UIViewController {
-
     
-    @IBOutlet weak var webView: WKWebView!
-    @IBOutlet weak var videoIsWatched: UILabel!
+    @IBOutlet private weak var loadingIndicator: UIActivityIndicatorView!
     
-    private let url = "https://youtu.be/bwDCAFJQCuQ"
     private var ref: DatabaseReference!
-
     private var video: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        ref = Database.database().reference(withPath: "TestsVideo")
+        ref = Database.database().reference(withPath: "Tests").child("RellayTest")
         
         ref.observe(.value) { [weak self] (snapshot) in
-         
+            
             if let video = snapshot.value as? [String: Any] {
-                self?.video = video["RellayTestVideo"] as! String
+                self?.video = video["TestsVideo"] as! String
                 
                 guard let urlString = self?.video else { return }
                 guard let url = URL(string: urlString) else { return }
@@ -38,6 +34,7 @@ class StabilizerVideo: UIViewController {
                 let playerController = AVPlayerViewController()
                 playerController.player = player
                 self?.present(playerController, animated: true) {
+                    self?.loadingIndicator.stopAnimating()
                     player.play()
                 }
                 
@@ -47,41 +44,32 @@ class StabilizerVideo: UIViewController {
                 self?.present(alertController, animated: true, completion: nil)
             }
         }
-        
-//        webView.load(URLRequest(url: URL(string: url)!))
-//        if webView.isLoading {
-//            webView.isHidden = true
-//            videoIsWatched.isHidden = false
-//        } else {
-//            print("stop")
-//        }
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
 //        tabBarController?.navigationItem.backBarButtonItem = UIBarButtonItem(
-//            title: "Назад", style: .plain, target: nil, action: nil)
+
         self.navigationController?.navigationItem.backButtonTitle = "Назад"
 
        
     }
-    
+ 
     @IBAction func watchAgain(_ sender: Any) {
-//        webView.load(URLRequest(url: URL(string: url)!))
+        guard let urlString = URL(string: video) else {
+            let alertController = UIAlertController(title: nil, message: "Ошибка загрузки видео", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+            self.present(alertController, animated: true, completion: nil)
+            return
+        }
         
-        let player = AVPlayer(url: URL(string: video)!)
+        let player = AVPlayer(url: urlString)
         let playerController = AVPlayerViewController()
         playerController.player = player
         present(playerController, animated: true) {
             player.play()
         }
     }
-    
-    @IBAction func watchVideo(_ sender: Any) {
-        
-    }
-    
 
     @IBAction func goToTest(_ sender: Any) {
         let vc = UIStoryboard(name: "Test", bundle: nil).instantiateViewController(identifier: "stabilizerTest")
