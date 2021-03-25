@@ -15,7 +15,7 @@
 		841E0B5625D59AE50013A20E /* StabilizerTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841E0B5525D59AE50013A20E /* StabilizerTestVC.swift */; };
 		841E0B5A25D59C7F0013A20E /* StabilizerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841E0B5925D59C7F0013A20E /* StabilizerTest.swift */; };
 		841E0B6125D5A30C0013A20E /* FirebaseAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841E0B6025D5A30C0013A20E /* FirebaseAuthManager.swift */; };
-		8434D24025B3C93300D5085B /* ProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434D23F25B3C93300D5085B /* ProductModel.swift */; };
+		8434D24025B3C93300D5085B /* TestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434D23F25B3C93300D5085B /* TestModel.swift */; };
 		8434D24325B3C94400D5085B /* RegistrationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434D24225B3C94400D5085B /* RegistrationPresenter.swift */; };
 		8436D74525EE8504004EAB9D /* ScoreUserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8436D74425EE8504004EAB9D /* ScoreUserSettings.swift */; };
 		846477AA260486570078320A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846477A9260486570078320A /* User.swift */; };
@@ -45,7 +45,7 @@
 		841E0B5525D59AE50013A20E /* StabilizerTestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StabilizerTestVC.swift; sourceTree = "<group>"; };
 		841E0B5925D59C7F0013A20E /* StabilizerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StabilizerTest.swift; sourceTree = "<group>"; };
 		841E0B6025D5A30C0013A20E /* FirebaseAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthManager.swift; sourceTree = "<group>"; };
-		8434D23F25B3C93300D5085B /* ProductModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductModel.swift; sourceTree = "<group>"; };
+		8434D23F25B3C93300D5085B /* TestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestModel.swift; sourceTree = "<group>"; };
 		8434D24225B3C94400D5085B /* RegistrationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationPresenter.swift; sourceTree = "<group>"; };
 		8436D74425EE8504004EAB9D /* ScoreUserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreUserSettings.swift; sourceTree = "<group>"; };
 		846477A9260486570078320A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -196,7 +196,7 @@
 		84A81BF925D2C5B10085A1FD /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				8434D23F25B3C93300D5085B /* ProductModel.swift */,
+				8434D23F25B3C93300D5085B /* TestModel.swift */,
 				8436D74425EE8504004EAB9D /* ScoreUserSettings.swift */,
 			);
 			path = Model;
@@ -388,7 +388,7 @@
 				841E0B5325D599D40013A20E /* StabilizerVideo.swift in Sources */,
 				841E0B6125D5A30C0013A20E /* FirebaseAuthManager.swift in Sources */,
 				8480E1CE26039C5A00D57738 /* Tests.swift in Sources */,
-				8434D24025B3C93300D5085B /* ProductModel.swift in Sources */,
+				8434D24025B3C93300D5085B /* TestModel.swift in Sources */,
 				84B002DD25EE69B800D4C82F /* ProfileVC.swift in Sources */,
 				846477AA260486570078320A /* User.swift in Sources */,
 				841E0B5625D59AE50013A20E /* StabilizerTestVC.swift in Sources */,

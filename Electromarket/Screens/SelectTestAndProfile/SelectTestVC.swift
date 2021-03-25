@@ -18,7 +18,6 @@ class SelectTestVC: UIViewController {
     private let arrayOfImages = [#imageLiteral(resourceName: "stable")]
     private var keys = ["stabilizerVideo"]
 
-    private var user: UserProfile!
     private var ref: DatabaseReference!
     private var tasks = [Task]()
     private var firebaseKeys = [String]()

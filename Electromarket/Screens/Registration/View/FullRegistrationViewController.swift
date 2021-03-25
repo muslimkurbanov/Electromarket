@@ -21,6 +21,8 @@ class FullRegistrationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationItem.setHidesBackButton(true, animated: true)
+        
         guard let currentUser = Auth.auth().currentUser else { return }
         
         user = UserProfile(user: currentUser)
