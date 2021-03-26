@@ -16,11 +16,12 @@ class StabilizerVideo: UIViewController {
     
     private var ref: DatabaseReference!
     private var video: String = ""
+    var childName: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        ref = Database.database().reference(withPath: "Tests").child("RellayTest")
+        ref = Database.database().reference(withPath: "Tests").child(childName ?? "")
         
         ref.observe(.value) { [weak self] (snapshot) in
             

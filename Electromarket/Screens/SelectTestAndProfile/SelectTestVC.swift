@@ -23,6 +23,7 @@ class SelectTestVC: UIViewController {
     private var firebaseKeys = [String]()
     private var firebaseNames = [String]()
     private var firebaseImages = [String]()
+    private var testChilds = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,6 +48,7 @@ class SelectTestVC: UIViewController {
 //                self?.firebaseImages.append(keys["TestImage"] as! String)
                 self?.firebaseImages = keys["TestsImage"] as! [String]
                 self?.firebaseNames = keys["TestsName"] as! [String]
+                self?.testChilds = keys["TestChilds"] as! [String]
                 
                 self?.loadingIndicator.stopAnimating()
                 self?.selectTestTableView.isHidden = false
@@ -95,11 +97,12 @@ extension SelectTestVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        pushToTest(key: firebaseKeys[indexPath.row])
-        let sb = UIStoryboard(name: "Test", bundle: nil)
-        let vc = sb.instantiateViewController(identifier: "stabilizerVideo")
-        navigationController?.pushViewController(vc, animated: true)
-        tableView.deselectRow(at: indexPath, animated: true)
+            //        pushToTest(key: firebaseKeys[indexPath.row])
+            let sb = UIStoryboard(name: "Test", bundle: nil)
+            let vc = sb.instantiateViewController(identifier: "stabilizerVideo") as! StabilizerVideo
+            vc.childName = testChilds[indexPath.row]
+            navigationController?.pushViewController(vc, animated: true)
+            tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
@@ -110,3 +113,4 @@ extension SelectTestVC {
         navigationController?.pushViewController(vc, animated: true)
     }
 }
+
