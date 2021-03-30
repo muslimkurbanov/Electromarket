@@ -13,14 +13,9 @@ class SelectTestVC: UIViewController {
     
     @IBOutlet weak var selectTestTableView: UITableView!
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
-    
-    private let arrayOfNames = ["Тест по стабилизаторыам"]
-    private let arrayOfImages = [#imageLiteral(resourceName: "stable")]
-    private var keys = ["stabilizerVideo"]
 
     private var ref: DatabaseReference!
     private var tasks = [Task]()
-    private var firebaseKeys = [String]()
     private var firebaseNames = [String]()
     private var firebaseImages = [String]()
     private var testChilds = [String]()
@@ -29,11 +24,11 @@ class SelectTestVC: UIViewController {
         super.viewDidLoad()
         
         tabBarControllerSettings()
+        addItemCenter()
         
         selectTestTableView.delegate = self
         selectTestTableView.dataSource = self
     }
-    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
@@ -65,27 +60,54 @@ class SelectTestVC: UIViewController {
         
         let helpItem = UIBarButtonItem(image: UIImage(systemName: "questionmark.circle"), style: .plain, target: self, action: #selector(showHelp))
         
+        let leaderboardItem = UIBarButtonItem(image: UIImage(systemName: "person.2"), style: .plain, target: self, action: #selector(showleaderboard))
+        
         self.tabBarController?.navigationItem.rightBarButtonItem = helpItem
-        self.tabBarController?.title = "Список тестов"
+        self.tabBarController?.navigationItem.leftBarButtonItem = leaderboardItem
+//        self.tabBarController?.title = "Список тестов"
         self.tabBarController?.navigationItem.hidesBackButton = true
     }
     
+    @objc func showleaderboard() {
+        let storyboard = UIStoryboard(name: "Leaderboard", bundle: nil)
+        let vc = storyboard.instantiateViewController(identifier: "leadNavBar")
+        present(vc, animated: true, completion: nil)
+    }
+    
     @objc func showHelp() {
-//        let sb = UIStoryboard(name: "Main", bundle: nil)
-//
-//        let vc = sb.instantiateViewController(identifier: "stable")
-//        navigationController?.present(vc, animated: true, completion: nil)
-        
         let alertController = UIAlertController(title: "Инструкция", message: "После нажатия кнопки 'Приступить к тесту' вы перейдете к просмотру видеоролика с материалом по тесту. После просмотра видеоролика нажмите на кнопку 'Начать тест' и приступайте к выполнению теста", preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
         alertController.addAction(action)
         present(alertController, animated: true, completion: nil)
     }
+    
+    func addItemCenter() {
+        let image = #imageLiteral(resourceName: "Name")
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        imageView.contentMode = .scaleAspectFit
+        imageView.image = image
+        
+        let contentView = UIView()
+        self.tabBarController?.navigationItem.titleView = contentView
+        self.tabBarController?.navigationItem.titleView?.addSubview(imageView)
+        imageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        imageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+    }
 }
 
 extension SelectTestVC: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         firebaseNames.count
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        1
+    }
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Список тестов"
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -97,7 +119,6 @@ extension SelectTestVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            //        pushToTest(key: firebaseKeys[indexPath.row])
             let sb = UIStoryboard(name: "Test", bundle: nil)
             let vc = sb.instantiateViewController(identifier: "stabilizerVideo") as! StabilizerVideo
             vc.childName = testChilds[indexPath.row]

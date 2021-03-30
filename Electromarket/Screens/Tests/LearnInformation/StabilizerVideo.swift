@@ -13,6 +13,7 @@ import Firebase
 class StabilizerVideo: UIViewController {
     
     @IBOutlet private weak var loadingIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var goToTestButton: UIButton!
     
     private var ref: DatabaseReference!
     private var video: String = ""
@@ -36,6 +37,7 @@ class StabilizerVideo: UIViewController {
                 playerController.player = player
                 self?.present(playerController, animated: true) {
                     self?.loadingIndicator.stopAnimating()
+                    self?.goToTestButton.isHidden = false
                     player.play()
                 }
                 
@@ -73,7 +75,8 @@ class StabilizerVideo: UIViewController {
     }
 
     @IBAction func goToTest(_ sender: Any) {
-        let vc = UIStoryboard(name: "Test", bundle: nil).instantiateViewController(identifier: "stabilizerTest")
+        let vc = UIStoryboard(name: "Test", bundle: nil).instantiateViewController(identifier: "stabilizerTest") as! StabilizerTest
+        vc.childName = childName
         navigationController?.pushViewController(vc, animated: true)
     }
 

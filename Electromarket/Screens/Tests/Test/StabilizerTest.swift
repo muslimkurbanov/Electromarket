@@ -15,7 +15,9 @@ class StabilizerTest: UIViewController {
     @IBOutlet private weak var scoreLabel: UILabel!
     @IBOutlet private var buttons: [UIButton]!
     
+    private var testsRef: DatabaseReference!
     private var ref: DatabaseReference!
+    private var user: UserProfile!
     
     private var index = 0
     private var stabilizerScore = 0
@@ -26,27 +28,44 @@ class StabilizerTest: UIViewController {
     private var secondAnswers = [String]()
     private var thirdAnswers = [String]()
     private var fourthAnswers = [String]()
+    private var testResults = [Int]()
     
+    var childName: String?
+
     override func viewDidLoad() {
         super.viewDidLoad()
-      
+        
+        guard let currentUser = Auth.auth().currentUser else { return }
+
+        user = UserProfile(user: currentUser)
+        ref = Database.database().reference(withPath: "users").child(String(user.uid)).child("tests")
+        
+        ref.observe(.value) { [weak self] (snapshot) in
+            if let keys = snapshot.value as? [String: Any] {
+                self?.testResults = keys["Результат по стабилизаторам"] as! [Int]
+                
+            } else {
+                return
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-        ref = Database.database().reference(withPath: "Tests").child("RellayTest")
+        testsRef = Database.database().reference(withPath: "Tests").child(childName ?? "")
         
-        ref.observe(.value) { [weak self] (snapshot) in
+        testsRef.observe(.value) { [weak self] (snapshot) in
             
             if let keys = snapshot.value as? [String: Any] {
-                
+
                 self?.firebaseQuestions = keys["Questions"] as! [String]
                 self?.firebaseRightAnswers = keys["RightAnswers"] as! [String]
                 self?.firstAnswers = keys["FirstAnswers"] as! [String]
                 self?.secondAnswers = keys["SecondAnswers"] as! [String]
                 self?.thirdAnswers = keys["ThirdAnswers"] as! [String]
                 self?.fourthAnswers = keys["FourthAnswers"] as! [String]
+                
 
                 self?.questionLabel.text = self?.firebaseQuestions[self?.index ?? 0]
                 for (index, button) in self!.buttons.enumerated() {
@@ -54,27 +73,43 @@ class StabilizerTest: UIViewController {
                 }
                 
             } else {
-                let alertController = UIAlertController(title: nil, message: "Ошибка загрузки Тестов", preferredStyle: .alert)
+                let alertController = UIAlertController(title: nil, message: "Ошибка загрузки тестов", preferredStyle: .alert)
                 alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
                 self?.present(alertController, animated: true, completion: nil)
             }
         }
-        
     }
+    
+    
+    
+    
+    
     
     @IBAction func finishTestAction(_ sender: Any) {
         
-        let searchRef = Database.database().reference()
-        searchRef.child("TestResults").setValue([
-            "Результат по стабилизаторам": stabilizerScore
-        ])
+            testResults.append(stabilizerScore)
+                
+                if testResults.isEmpty {
+                    ref.setValue([
+                        "Результат по стабилизаторам": [stabilizerScore]
+                    ])
+                } else {
+                    print(testResults)
+                    ref.updateChildValues([
+                        "Результат по стабилизаторам": testResults
+                    ])
+                }
+                
+            
         
-        searchRef.child("TestResults").updateChildValues(["stabilizerTest": stabilizerScore])
+        
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(identifier: "mainTabBar")
         
         navigationController?.pushViewController(vc, animated: true)
+        
+      
     }
     
     
@@ -110,7 +145,7 @@ class StabilizerTest: UIViewController {
             }
             scoreLabel.text = "Ваш результат: \(stabilizerScore)"
             finishTest.isHidden = false
-            ScoreSettings.stabilizerResults = stabilizerScore
+//            ScoreSettings.stabilizerResults = stabilizerScore
         }
     }
 }

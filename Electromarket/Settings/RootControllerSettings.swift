@@ -11,7 +11,6 @@ final class RootViewController {
     
     private enum SettingsKeys: String {
         case rootViewController
-  
     }
     
     static var rootViewController: String! {

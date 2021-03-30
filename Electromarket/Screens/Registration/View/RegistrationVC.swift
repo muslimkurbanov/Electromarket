@@ -15,13 +15,13 @@ protocol ProductViewProtocol: class {
 
 class RegistrationVC: UIViewController {
     
+    @IBOutlet weak var loginTF: UITextField!
+    @IBOutlet weak var passwordTF: UITextField!
+    
     private let mainStroyboard = UIStoryboard(name: "Main", bundle: nil)
     
     private var presenter: RegistrationPresenterProtocol!
     private var ref: DatabaseReference!
-    
-    @IBOutlet weak var loginTF: UITextField!
-    @IBOutlet weak var passwordTF: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +32,7 @@ class RegistrationVC: UIViewController {
         ref = Database.database().reference(withPath: "users")
         presenter = RegistrationPresenter(view: self)
     }
- 
+    
     @IBAction func goToLoginAcion(_ sender: Any) {
         
         guard let email = loginTF.text, let password = passwordTF.text, email != "", password != "" else {
@@ -128,8 +128,6 @@ class RegistrationVC: UIViewController {
         self.navigationItem.titleView?.addSubview(imageView)
         imageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         imageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
-        
-
     }
     
     @objc func dismissKeyboard() {

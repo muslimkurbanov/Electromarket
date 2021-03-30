@@ -42,10 +42,6 @@ class FullRegistrationViewController: UIViewController {
             
             ])
             
-            UserSettings.firstName = firstNameTF.text
-            UserSettings.lastName = lastNameTF.text
-            UserSettings.phoneNumber = phoneNumberTF.text
-            
             let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "mainTabBar")
             self.navigationController?.pushViewController(vc, animated: true)
             
@@ -57,7 +53,6 @@ class FullRegistrationViewController: UIViewController {
             alert.addAction(action)
             present(alert, animated: true, completion: nil)
         }
-        
     }
     
     func addItemCenter() {
