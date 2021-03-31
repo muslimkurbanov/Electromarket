@@ -46,7 +46,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //            let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
 //            navigationController.navigationBar.titleTextAttributes = textAttributes
         }
+
+        window?.isOpaque = false
+        window?.backgroundColor = .clear
         
+        window?.layer.cornerRadius = 10
         window = UIWindow(windowScene: windowScene)
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()

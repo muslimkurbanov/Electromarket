@@ -15,10 +15,13 @@ class ProfileVC: UIViewController {
     @IBOutlet weak var testResultsTV: UITableView!
     
     private var ref: DatabaseReference!
+    private var newRef: DatabaseReference!
     private var user: UserProfile!
 
     private var stabilizerScore: Int?
     private var testResultArray = [Int]()
+    
+    private var firKeys = [String]()
     private var test = [String: [Int]]()
     
     //MARK: - Lifecycle
@@ -29,18 +32,27 @@ class ProfileVC: UIViewController {
         
         user = UserProfile(user: currentUser)
         ref = Database.database().reference(withPath: "users").child(String(user.uid))
+        newRef = Database.database().reference(withPath: "Tests").child("TestsInformation")
+        
+        newRef.observe(.value) { [weak self] (snapshot) in
+            if let keys = snapshot.value as? [String: Any] {
+                
+                self?.firKeys = keys["TestsResultChild"] as! [String]
+                self?.testResultsTV.reloadData()
+            }
+        }
         
         ref.observe(.value) { [weak self] (snapshot) in
             if let keys = snapshot.value as? [String: Any] {
-//                self?.testResultArray = keys["Результат по стабилизаторам"] as! [Int]
+                
                 self?.test = keys["tests"] as! [String: [Int]]
+                print(self?.test["Результат по стабилизаторам"], "==========================================================================================")
                 self?.testResultsTV.reloadData()
-                print(self?.test)
+                
             } else {
                                 
                 let alertController = UIAlertController(title: nil, message: "Ошибка загрузки результатов", preferredStyle: .alert)
                 alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (action) in
-                    self?.viewWillAppear(true)
                 }))
                 self?.present(alertController, animated: true, completion: nil)
             }
@@ -52,7 +64,7 @@ class ProfileVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        
+     
     }
     
     @IBAction func logoutAction(_ sender: Any) {
@@ -81,15 +93,15 @@ class ProfileVC: UIViewController {
 extension ProfileVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        testResultArray.count
+        test[firKeys[section]]?.count ?? 0
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        1
+        firKeys.count
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Результат по"
+        return firKeys[section]
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -98,11 +110,9 @@ extension ProfileVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        
-        cell.textLabel?.text = "\(testResultArray[indexPath.row])"
-        
+//        cell.backgroundColor = .lightGray
+      
+        cell.textLabel?.text = "Тест \(indexPath.row + 1): \(test[firKeys[indexPath.section]]?[indexPath.row] ?? 0)"
         return cell
     }
-    
-    
 }
