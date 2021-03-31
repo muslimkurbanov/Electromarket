@@ -71,6 +71,9 @@
                             <constraint firstItem="LJL-u8-QQc" firstAttribute="centerX" secondItem="kNl-6U-cqR" secondAttribute="centerX" id="v5d-Ta-Ad9"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="TpW-KB-J7X">
+                        <barButtonItem key="backBarButtonItem" title="Назад" id="azf-uQ-NoT"/>
+                    </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="goToTestButton" destination="ELb-YG-xah" id="a4t-BN-we3"/>
@@ -79,7 +82,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dQ8-u7-2HO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-516" y="-90.404797601199405"/>
+            <point key="canvasLocation" x="423.19999999999999" y="-90.404797601199405"/>
         </scene>
         <!--Stabilizer Test-->
         <scene sceneID="cro-G8-gWH">
@@ -204,7 +207,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dKz-zM-RV2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="231" y="-90"/>
+            <point key="canvasLocation" x="1168.8" y="-90.404797601199405"/>
         </scene>
     </scenes>
     <resources>

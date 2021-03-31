@@ -19,10 +19,11 @@ class SelectTestVC: UIViewController {
     private var firebaseNames = [String]()
     private var firebaseImages = [String]()
     private var testChilds = [String]()
+    var testNames = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+            
         tabBarControllerSettings()
         addItemCenter()
         
@@ -34,16 +35,14 @@ class SelectTestVC: UIViewController {
         super.viewWillAppear(true)
         
         ref = Database.database().reference(withPath: "Tests").child("TestsInformation")
-        
         ref.observe(.value) { [weak self] (snapshot) in
             
             if let keys = snapshot.value as? [String: Any] {
-//                self?.firebaseKeys.append(keys["identifier"] as! String)
-//                self?.firebaseNames.append(keys["testName"] as! String)
-//                self?.firebaseImages.append(keys["TestImage"] as! String)
+                
                 self?.firebaseImages = keys["TestsImage"] as! [String]
                 self?.firebaseNames = keys["TestsName"] as! [String]
                 self?.testChilds = keys["TestChilds"] as! [String]
+                self?.testNames = keys["TestsResultChild"] as! [String]
                 
                 self?.loadingIndicator.stopAnimating()
                 self?.selectTestTableView.isHidden = false
@@ -64,7 +63,6 @@ class SelectTestVC: UIViewController {
         
         self.tabBarController?.navigationItem.rightBarButtonItem = helpItem
         self.tabBarController?.navigationItem.leftBarButtonItem = leaderboardItem
-//        self.tabBarController?.title = "Список тестов"
         self.tabBarController?.navigationItem.hidesBackButton = true
     }
     
@@ -119,11 +117,13 @@ extension SelectTestVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            let sb = UIStoryboard(name: "Test", bundle: nil)
-            let vc = sb.instantiateViewController(identifier: "stabilizerVideo") as! StabilizerVideo
-            vc.childName = testChilds[indexPath.row]
-            navigationController?.pushViewController(vc, animated: true)
-            tableView.deselectRow(at: indexPath, animated: true)
+        let sb = UIStoryboard(name: "Test", bundle: nil)
+        let vc = sb.instantiateViewController(identifier: "stabilizerVideo") as! StabilizerVideo
+        vc.childName = testChilds[indexPath.row]
+        vc.testName = testNames[indexPath.row]
+        
+        navigationController?.pushViewController(vc, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
@@ -134,4 +134,3 @@ extension SelectTestVC {
         navigationController?.pushViewController(vc, animated: true)
     }
 }
-

@@ -29,9 +29,11 @@ class StabilizerTest: UIViewController {
     private var thirdAnswers = [String]()
     private var fourthAnswers = [String]()
     private var testResults = [Int]()
+    private var testChild: String?
     
     var childName: String?
-
+    var testName: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -41,9 +43,15 @@ class StabilizerTest: UIViewController {
         ref = Database.database().reference(withPath: "users").child(String(user.uid)).child("tests")
         
         ref.observe(.value) { [weak self] (snapshot) in
+
             if let keys = snapshot.value as? [String: Any] {
-                self?.testResults = keys["Результат по стабилизаторам"] as! [Int]
                 
+                if keys[self?.testName ?? ""] as? [Int] != nil {
+                    
+                    self?.testResults = keys[(self?.testName)!] as! [Int]
+                } else {
+                    return
+                }
             } else {
                 return
             }
@@ -80,36 +88,17 @@ class StabilizerTest: UIViewController {
         }
     }
     
-    
-    
-    
-    
-    
     @IBAction func finishTestAction(_ sender: Any) {
         
-            testResults.append(stabilizerScore)
+        testResults.append(stabilizerScore)
+        
+        let testRef = Database.database().reference(withPath: "users").child(String(user.uid)).child("tests")
+        testRef.child(testName!).setValue(testResults)
                 
-                if testResults.isEmpty {
-                    ref.setValue([
-                        "Результат по стабилизаторам": [stabilizerScore]
-                    ])
-                } else {
-                    print(testResults)
-                    ref.updateChildValues([
-                        "Результат по стабилизаторам": testResults
-                    ])
-                }
-                
-            
-        
-        
-        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(identifier: "mainTabBar")
         
         navigationController?.pushViewController(vc, animated: true)
-        
-      
     }
     
     
@@ -145,7 +134,6 @@ class StabilizerTest: UIViewController {
             }
             scoreLabel.text = "Ваш результат: \(stabilizerScore)"
             finishTest.isHidden = false
-//            ScoreSettings.stabilizerResults = stabilizerScore
         }
     }
 }

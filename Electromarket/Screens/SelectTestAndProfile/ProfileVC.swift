@@ -12,32 +12,32 @@ class ProfileVC: UIViewController {
     
     @IBOutlet weak var stabilizerScoreLabel: UILabel!
     
+    @IBOutlet weak var testResultsTV: UITableView!
+    
     private var ref: DatabaseReference!
     private var user: UserProfile!
 
     private var stabilizerScore: Int?
+    private var testResultArray = [Int]()
+    private var test = [String: [Int]]()
     
+    //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        if ScoreSettings.stabilizerResults != nil {
-//            stabilizerScoreLabel.text = "Результат по стабилизаторам: \(ScoreSettings.stabilizerResults ?? 0)"
-//        } else {
-//            stabilizerScoreLabel.text = "Тест по стабилизаторам еще не пройден"
-//        }
         guard let currentUser = Auth.auth().currentUser else { return }
         
         user = UserProfile(user: currentUser)
-        ref = Database.database().reference(withPath: "users").child(String(user.uid)).child("tests")
+        ref = Database.database().reference(withPath: "users").child(String(user.uid))
         
         ref.observe(.value) { [weak self] (snapshot) in
             if let keys = snapshot.value as? [String: Any] {
-                self?.stabilizerScore = keys["Результат по стабилизаторам"] as? Int
-                self?.stabilizerScoreLabel.text = "Результат по стабилизаторам: \(self?.stabilizerScore ?? 0)"
-                
-                
+//                self?.testResultArray = keys["Результат по стабилизаторам"] as! [Int]
+                self?.test = keys["tests"] as! [String: [Int]]
+                self?.testResultsTV.reloadData()
+                print(self?.test)
             } else {
-                self?.stabilizerScoreLabel.text = "Тест по стабилизаторам еще не пройден"
+                                
                 let alertController = UIAlertController(title: nil, message: "Ошибка загрузки результатов", preferredStyle: .alert)
                 alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (action) in
                     self?.viewWillAppear(true)
@@ -45,14 +45,13 @@ class ProfileVC: UIViewController {
                 self?.present(alertController, animated: true, completion: nil)
             }
         }
+        
+        self.testResultsTV.delegate = self
+        self.testResultsTV.dataSource = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        
-    }
-    
-    @objc func showAllUsers() {
         
     }
     
@@ -65,11 +64,45 @@ class ProfileVC: UIViewController {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let vc = storyboard.instantiateViewController(identifier: "registrationVC")
             self.navigationController?.pushViewController(vc, animated: true)
+            do {
+                try Auth.auth().signOut()
+                
+            } catch {
+                print(error.localizedDescription)
+            }
             RootViewController.rootViewController = "registrationVC"
         }
         alertControllet.addAction(action)
         alertControllet.addAction(actionTwo)
         present(alertControllet, animated: true, completion: nil)
     }
+}
+
+extension ProfileVC: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        testResultArray.count
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        1
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Результат по"
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        
+        cell.textLabel?.text = "\(testResultArray[indexPath.row])"
+        
+        return cell
+    }
+    
     
 }

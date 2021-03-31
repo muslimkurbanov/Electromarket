@@ -13,7 +13,7 @@
             <objects>
                 <viewController storyboardIdentifier="registrationVC" id="BYZ-38-t0r" customClass="RegistrationVC" customModule="Electromarket" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Введите логин" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3vI-T1-rW5">
@@ -86,9 +86,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" title=" " id="dIQ-cH-MUd">
-                        <barButtonItem key="backBarButtonItem" title=" Назад" id="dC4-9d-si4"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title=" " id="dIQ-cH-MUd"/>
                     <connections>
                         <outlet property="loginTF" destination="3vI-T1-rW5" id="qTu-xR-iUR"/>
                         <outlet property="passwordTF" destination="ctq-tY-WXC" id="kiz-ve-TQP"/>
@@ -97,6 +95,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1831" y="36"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Ahh-Dx-gZj">
+            <objects>
+                <navigationController storyboardIdentifier="selectTestNavBar" id="cuG-BA-ari" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="98l-kM-qQq">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" red="0.99215686319999996" green="0.43670782339999997" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="S12-W9-9Ij"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="V72-Ax-i4r" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2590" y="-761"/>
         </scene>
         <!--Full Registration View Controller-->
         <scene sceneID="lzb-l4-kb3">
@@ -184,10 +200,10 @@
             </objects>
             <point key="canvasLocation" x="2590" y="36"/>
         </scene>
-        <!--Выбор теста-->
+        <!--Список тестов-->
         <scene sceneID="H65-Yy-vpS">
             <objects>
-                <viewController storyboardIdentifier="SelectQuiz" title="Выбор теста" id="GTn-Hq-wpY" customClass="SelectTestVC" customModule="Electromarket" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SelectQuiz" id="GTn-Hq-wpY" customClass="SelectTestVC" customModule="Electromarket" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aoK-at-0lA">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -232,22 +248,20 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="k9T-kg-Ej2" firstAttribute="top" secondItem="JvO-px-EhH" secondAttribute="top" id="G9x-cj-4LV"/>
-                            <constraint firstItem="JvO-px-EhH" firstAttribute="trailing" secondItem="k9T-kg-Ej2" secondAttribute="trailing" id="RGU-9U-Ul5"/>
-                            <constraint firstItem="JvO-px-EhH" firstAttribute="bottom" secondItem="k9T-kg-Ej2" secondAttribute="bottom" id="cvv-Tb-XNw"/>
-                            <constraint firstItem="y7O-0b-raX" firstAttribute="bottom" secondItem="k9T-kg-Ej2" secondAttribute="bottom" id="d7a-Eo-pIw"/>
-                            <constraint firstItem="y7O-0b-raX" firstAttribute="leading" secondItem="k9T-kg-Ej2" secondAttribute="leading" id="gC8-du-tow"/>
-                            <constraint firstItem="y7O-0b-raX" firstAttribute="top" secondItem="k9T-kg-Ej2" secondAttribute="top" id="qm4-jI-GYD"/>
-                            <constraint firstItem="y7O-0b-raX" firstAttribute="trailing" secondItem="k9T-kg-Ej2" secondAttribute="trailing" id="rQI-4p-GCM"/>
-                            <constraint firstItem="k9T-kg-Ej2" firstAttribute="leading" secondItem="JvO-px-EhH" secondAttribute="leading" id="sun-ck-Jy4"/>
+                            <constraint firstItem="k9T-kg-Ej2" firstAttribute="bottom" secondItem="JvO-px-EhH" secondAttribute="bottom" id="AGB-zw-PKq"/>
+                            <constraint firstItem="k9T-kg-Ej2" firstAttribute="leading" secondItem="JvO-px-EhH" secondAttribute="leading" id="PWI-kZ-lMo"/>
+                            <constraint firstItem="k9T-kg-Ej2" firstAttribute="trailing" secondItem="JvO-px-EhH" secondAttribute="trailing" id="Sv2-i6-aB3"/>
+                            <constraint firstItem="k9T-kg-Ej2" firstAttribute="top" secondItem="JvO-px-EhH" secondAttribute="top" id="wVa-RI-b0y"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Список тестов" image="square.and.pencil" catalog="system" id="hA5-7b-iPv"/>
                     <navigationItem key="navigationItem" id="Xv7-5r-uSJ">
+                        <barButtonItem key="backBarButtonItem" title="Назад" id="BY5-dT-1hO"/>
                         <barButtonItem key="rightBarButtonItem" image="questionmark.circle" catalog="system" id="ERh-RX-tpa">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </barButtonItem>
                     </navigationItem>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="loadingIndicator" destination="y7O-0b-raX" id="e6w-rM-hQU"/>
                         <outlet property="selectTestTableView" destination="k9T-kg-Ej2" id="sri-H2-LMS"/>
@@ -265,15 +279,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Профиль" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2t2-Jw-tI5">
-                                <rect key="frame" x="0.0" y="58" width="375" height="91"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="NotoSansMyanmar-Bold" family="Noto Sans Myanmar" pointSize="35"/>
-                                <color key="textColor" red="0.34029996400000001" green="0.35922563079999997" blue="0.4422008395" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="olc-2i-MvB">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="574"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="n9G-jF-URM">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="n9G-jF-URM" id="0Qg-yg-fl2">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cmc-WA-SbC">
-                                <rect key="frame" x="122" y="472" width="130" height="54"/>
+                                <rect key="frame" x="122" y="473" width="130" height="54"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.6125733256" green="0.76334154610000005" blue="0.091776661570000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="NotoSansMyanmar-Regular" family="Noto Sans Myanmar" pointSize="27"/>
@@ -289,33 +310,35 @@
                                     <action selector="logoutAction:" destination="gAJ-vZ-pMm" eventType="touchUpInside" id="ND1-a2-DxD"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Загрузка..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="m9Q-Mv-pIQ">
-                                <rect key="frame" x="16" y="157" width="343" height="38"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="20"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ewe-zm-R1h"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="olc-2i-MvB" firstAttribute="leading" secondItem="ewe-zm-R1h" secondAttribute="leading" id="VTU-vo-yk2"/>
+                            <constraint firstItem="olc-2i-MvB" firstAttribute="top" secondItem="ewe-zm-R1h" secondAttribute="top" id="YlW-OY-RcP"/>
+                            <constraint firstItem="olc-2i-MvB" firstAttribute="trailing" secondItem="ewe-zm-R1h" secondAttribute="trailing" id="bVD-OU-2qK"/>
+                            <constraint firstItem="olc-2i-MvB" firstAttribute="bottom" secondItem="ewe-zm-R1h" secondAttribute="bottom" id="ofJ-8Y-P5I"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Профиль" image="person.crop.circle" catalog="system" id="aXD-ty-jQ0"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
-                        <outlet property="stabilizerScoreLabel" destination="m9Q-Mv-pIQ" id="M2Q-BQ-1AI"/>
+                        <outlet property="testResultsTV" destination="olc-2i-MvB" id="OBX-FA-eFj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q87-Lb-px4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2590" y="806"/>
+            <point key="canvasLocation" x="2589.5999999999999" y="805.54722638680664"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="jwT-OK-cNX">
             <objects>
                 <tabBarController storyboardIdentifier="mainTabBar" automaticallyAdjustsScrollViewInsets="NO" id="kan-YH-n6r" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="LX8-w5-Ma8"/>
+                    <navigationItem key="navigationItem" id="LX8-w5-Ma8">
+                        <barButtonItem key="backBarButtonItem" title="Назад" id="eNE-Sy-A5A"/>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="1tw-80-lfJ">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -330,24 +353,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k6U-94-B1F" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3337" y="36"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="tKy-Dw-dym">
-            <objects>
-                <navigationController storyboardIdentifier="mainNavBar" automaticallyAdjustsScrollViewInsets="NO" id="bJD-Dn-UaV" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="KWv-T3-41z">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="vlc-kM-0MV"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bwp-OH-uir" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1070" y="36"/>
         </scene>
         <!--Инструкция-->
         <scene sceneID="nbD-E3-Dnn">

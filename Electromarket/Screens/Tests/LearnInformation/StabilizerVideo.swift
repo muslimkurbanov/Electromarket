@@ -17,7 +17,9 @@ class StabilizerVideo: UIViewController {
     
     private var ref: DatabaseReference!
     private var video: String = ""
+    
     var childName: String?
+    var testName: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,11 +53,7 @@ class StabilizerVideo: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-//        tabBarController?.navigationItem.backBarButtonItem = UIBarButtonItem(
-
-        self.navigationController?.navigationItem.backButtonTitle = "Назад"
-
-       
+        
     }
  
     @IBAction func watchAgain(_ sender: Any) {
@@ -77,6 +75,7 @@ class StabilizerVideo: UIViewController {
     @IBAction func goToTest(_ sender: Any) {
         let vc = UIStoryboard(name: "Test", bundle: nil).instantiateViewController(identifier: "stabilizerTest") as! StabilizerTest
         vc.childName = childName
+        vc.testName = testName
         navigationController?.pushViewController(vc, animated: true)
     }
 

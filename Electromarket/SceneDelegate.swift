@@ -7,12 +7,17 @@
 
 import UIKit
 import IQKeyboardManagerSwift
+import Firebase
+
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
     let storyboard = UIStoryboard(name: "Main", bundle: nil)
 
+    var testsRef: DatabaseReference!
+    var ref: DatabaseReference!
+    var user: UserProfile!
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
@@ -20,22 +25,26 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         IQKeyboardManager.shared.enable = true
         
-        var navigationController = storyboard.instantiateViewController(withIdentifier: "mainNavBar") as! UINavigationController
+        var navigationController = storyboard.instantiateViewController(withIdentifier: "selectTestNavBar") as! UINavigationController
         
         if RootViewController.rootViewController == "" {
             return
+
         } else {
             
             let rootViewController = storyboard.instantiateViewController(identifier: RootViewController.rootViewController ?? "registrationVC")
-            
-            navigationController = UINavigationController(rootViewController: rootViewController)
-            navigationController.navigationBar.barTintColor = #colorLiteral(red: 1, green: 0.3893484473, blue: 0, alpha: 1)
-            navigationController.navigationBar.isTranslucent = false
-            navigationController.navigationBar.tintColor = .white
-            navigationController.navigationItem.backButtonTitle = "Назад"
-            navigationController.navigationBar.backItem?.title = "Назад"
-            let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
-            navigationController.navigationBar.titleTextAttributes = textAttributes
+            navigationController.viewControllers = [rootViewController]
+//
+//            navigationController = UINavigationController(rootViewController: rootViewController)
+//            navigationController.navigationBar.barTintColor = #colorLiteral(red: 1, green: 0.3893484473, blue: 0, alpha: 1)
+//            navigationController.navigationBar.isTranslucent = false
+//            navigationController.navigationBar.tintColor = .white
+//            navigationController.navigationItem.backButtonTitle = "Назад"
+//            navigationController.navigationBar.backItem?.title = "Назад"
+//            navigationController.navigationItem.backBarButtonItem?.title = "Назад"
+//            navigationController.navigationItem.leftBarButtonItem?.title = "Назад"
+//            let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
+//            navigationController.navigationBar.titleTextAttributes = textAttributes
         }
         
         window = UIWindow(windowScene: windowScene)

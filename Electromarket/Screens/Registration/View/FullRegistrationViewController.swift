@@ -24,7 +24,6 @@ class FullRegistrationViewController: UIViewController {
         self.navigationItem.setHidesBackButton(true, animated: true)
         
         guard let currentUser = Auth.auth().currentUser else { return }
-        
         user = UserProfile(user: currentUser)
         ref = Database.database().reference(withPath: "users").child(String(user.uid))
         
@@ -39,7 +38,6 @@ class FullRegistrationViewController: UIViewController {
             ref.setValue(["Имя": firstNameTF.text,
                           "Фамилия": lastNameTF.text,
                           "Номер телефона": phoneNumberTF.text
-            
             ])
             
             let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "mainTabBar")

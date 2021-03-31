@@ -17,6 +17,7 @@ class LeaderboardVC: UIViewController {
     private var namesArray = [String]()
     private var user: UserProfile!
     private var ref: DatabaseReference!
+    private var arr = [String : [Int]]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +38,6 @@ class LeaderboardVC: UIViewController {
 
         ref = Database.database().reference(withPath: "users")
         
-        print(ref)
         ref.observe(.value) { [weak self] (snapshot) in
             
             if let keys = snapshot.value as? [String: Any] {
