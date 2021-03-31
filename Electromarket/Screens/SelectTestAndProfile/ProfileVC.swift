@@ -45,12 +45,15 @@ class ProfileVC: UIViewController {
         ref.observe(.value) { [weak self] (snapshot) in
             if let keys = snapshot.value as? [String: Any] {
                 
-                self?.test = keys["tests"] as! [String: [Int]]
-                print(self?.test["Результат по стабилизаторам"], "==========================================================================================")
-                self?.testResultsTV.reloadData()
+                if keys["tests"] as? [String: [Int]] != nil {
+                    self?.test = keys["tests"] as! [String: [Int]]
+                    self?.testResultsTV.reloadData()
+                } else {
+                    return
+                }
                 
             } else {
-                                
+                
                 let alertController = UIAlertController(title: nil, message: "Ошибка загрузки результатов", preferredStyle: .alert)
                 alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (action) in
                 }))
@@ -93,7 +96,7 @@ class ProfileVC: UIViewController {
 extension ProfileVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        test[firKeys[section]]?.count ?? 0
+        test[firKeys[section]]?.count ?? 1
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -112,7 +115,17 @@ extension ProfileVC: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
 //        cell.backgroundColor = .lightGray
       
-        cell.textLabel?.text = "Тест \(indexPath.row + 1): \(test[firKeys[indexPath.section]]?[indexPath.row] ?? 0)"
+        if test.isEmpty {
+            cell.textLabel?.text = "Тест ещё не пройден"
+        } else {
+            guard let tests = test[firKeys[indexPath.section]]?[indexPath.row] else {
+                cell.textLabel?.text = "Тест ещё не пройден"
+                return cell
+            }
+//            cell.textLabel?.text = "Тест \(indexPath.row + 1): \(test[firKeys[indexPath.section]]?[indexPath.row] ?? 0)"
+            cell.textLabel?.text = "Тест \(indexPath.row + 1): \(tests)"
+
+        }
         return cell
     }
 }
