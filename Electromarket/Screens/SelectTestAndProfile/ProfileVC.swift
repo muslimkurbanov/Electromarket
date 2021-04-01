@@ -32,13 +32,19 @@ class ProfileVC: UIViewController {
         
         user = UserProfile(user: currentUser)
         ref = Database.database().reference(withPath: "users").child(String(user.uid))
-        newRef = Database.database().reference(withPath: "Tests").child("TestsInformation")
+        newRef = Database.database().reference(withPath: "users").child(String(user.uid)).child("Tests").child("TestsInformation")
         
         newRef.observe(.value) { [weak self] (snapshot) in
             if let keys = snapshot.value as? [String: Any] {
                 
                 self?.firKeys = keys["TestsResultChild"] as! [String]
                 self?.testResultsTV.reloadData()
+            } else {
+                
+                let alertController = UIAlertController(title: nil, message: "Ошибка загрузки результатов", preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (action) in
+                }))
+                self?.present(alertController, animated: true, completion: nil)
             }
         }
         

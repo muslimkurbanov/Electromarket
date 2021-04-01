@@ -24,10 +24,8 @@ class StabilizerTest: UIViewController {
     
     private var firebaseQuestions = [String]()
     private var firebaseRightAnswers = [String]()
-    private var firstAnswers = [String]()
-    private var secondAnswers = [String]()
-    private var thirdAnswers = [String]()
-    private var fourthAnswers = [String]()
+    private var firebaseAnswers = [[String]]()
+    
     private var testResults = [Int]()
     private var testChild: String?
     
@@ -61,7 +59,7 @@ class StabilizerTest: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-        testsRef = Database.database().reference(withPath: "Tests").child(childName ?? "")
+        testsRef = Database.database().reference(withPath: "users").child(String(user.uid)).child("Tests").child(childName ?? "")
         
         testsRef.observe(.value) { [weak self] (snapshot) in
             
@@ -69,17 +67,15 @@ class StabilizerTest: UIViewController {
 
                 self?.firebaseQuestions = keys["Questions"] as! [String]
                 self?.firebaseRightAnswers = keys["RightAnswers"] as! [String]
-                self?.firstAnswers = keys["FirstAnswers"] as! [String]
-                self?.secondAnswers = keys["SecondAnswers"] as! [String]
-                self?.thirdAnswers = keys["ThirdAnswers"] as! [String]
-                self?.fourthAnswers = keys["FourthAnswers"] as! [String]
+                self?.firebaseAnswers = keys["Answers"] as! [[String]]
                 
-
                 self?.questionLabel.text = self?.firebaseQuestions[self?.index ?? 0]
-                for (index, button) in self!.buttons.enumerated() {
-                    button.setTitle(self?.firstAnswers[index], for: .normal)
-                }
                 
+                
+                for (index, button) in self!.buttons.enumerated() {
+                    button.setTitle(self?.firebaseAnswers[index][index], for: .normal)
+                }
+//
             } else {
                 let alertController = UIAlertController(title: nil, message: "Ошибка загрузки тестов", preferredStyle: .alert)
                 alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
@@ -108,7 +104,7 @@ class StabilizerTest: UIViewController {
             stabilizerScore += 1
             questionLabel.text = firebaseQuestions[index]
             print("right")
-        } else if index <= 3 {
+        } else if index <= firebaseQuestions.count {
             index += 1
             questionLabel.text = firebaseQuestions[index]
             print("wrong")
@@ -116,24 +112,30 @@ class StabilizerTest: UIViewController {
             return
         }
         
-        if index == 1 {
-            for (index, button) in buttons.enumerated() {
-                button.setTitle(secondAnswers[index], for: .normal)
-            }
-        } else if index == 2 {
-            for (index, button) in buttons.enumerated() {
-                button.setTitle(thirdAnswers[index], for: .normal)
-            }
-        } else if index == 3 {
-            for (index, button) in buttons.enumerated() {
-                button.setTitle(fourthAnswers[index], for: .normal)
-            }
-        } else {
+//        if index == 1 {
+        if index == firebaseQuestions.count - 1 {
             for i in buttons {
                 i.isHidden = true
-            }
             scoreLabel.text = "Ваш результат: \(stabilizerScore)"
             finishTest.isHidden = false
+            }
+        } else {
+            for (index, button) in buttons.enumerated() {
+                button.setTitle(firebaseAnswers[self.index][index], for: .normal)
+            }
+
         }
+//        } else if index == 2 {
+//            for (index, button) in buttons.enumerated() {
+//                button.setTitle(thirdAnswers[index], for: .normal)
+//            }
+//        } else if index == 3 {
+//            for (index, button) in buttons.enumerated() {
+//                button.setTitle(fourthAnswers[index], for: .normal)
+//            }
+//        } else {
+        //}
+            
     }
 }
+ 

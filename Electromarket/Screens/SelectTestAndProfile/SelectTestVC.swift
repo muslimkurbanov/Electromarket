@@ -19,6 +19,8 @@ class SelectTestVC: UIViewController {
     private var firebaseNames = [String]()
     private var firebaseImages = [String]()
     private var testChilds = [String]()
+    private var user: UserProfile!
+    
     var testNames = [String]()
     
     override func viewDidLoad() {
@@ -34,7 +36,10 @@ class SelectTestVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-        ref = Database.database().reference(withPath: "Tests").child("TestsInformation")
+        guard let currentUser = Auth.auth().currentUser else { return }
+        user = UserProfile(user: currentUser)
+        
+        ref = Database.database().reference(withPath: "users").child(String(user.uid)).child("Tests").child("TestsInformation")
         ref.observe(.value) { [weak self] (snapshot) in
             
             if let keys = snapshot.value as? [String: Any] {

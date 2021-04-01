@@ -17,14 +17,19 @@ class StabilizerVideo: UIViewController {
     
     private var ref: DatabaseReference!
     private var video: String = ""
-    
+    private var user: UserProfile!
+
     var childName: String?
     var testName: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        ref = Database.database().reference(withPath: "Tests").child(childName ?? "")
+        guard let currentUser = Auth.auth().currentUser else { return }
+
+        user = UserProfile(user: currentUser)
+        
+        ref = Database.database().reference(withPath: "users").child(String(user.uid)).child("Tests").child(childName ?? "")
         
         ref.observe(.value) { [weak self] (snapshot) in
             
