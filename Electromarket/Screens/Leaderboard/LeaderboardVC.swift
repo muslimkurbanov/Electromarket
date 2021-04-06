@@ -13,7 +13,7 @@ class LeaderboardVC: UIViewController {
     @IBOutlet weak var leaderboardTV: UITableView!
     
     private let array = [["Тест по релле: 4", "Тест по проводам: 3"], ["Тест по релле: 2", "Тест по проводам: 1"], ["Тест по релле: 4", "Тест по проводам: 3", "Тест по стабилизаторам: 4"], ["Тест по релле: 4", "Тест по проводам: 4"], ["Тест по релле: 4", "Тест по проводам: 1"]]
-    private var headderTitles = ["Камиль Хаметов", "Муслим Курбанов", "Максим Алмазов", "Алексей Степанов", "Вадим Эвелон"]
+    private var headderTitles = ["Пользователь 1", "Пользователь 2", "Пользователь 3", "Пользователь 4", "Пользователь 5"]
     private var namesArray = [String]()
     private var user: UserProfile!
     private var ref: DatabaseReference!

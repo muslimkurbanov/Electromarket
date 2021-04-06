@@ -73,10 +73,16 @@ class ProfileVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-     
+        
+        let logoutItem = UIBarButtonItem(title: "Выйти", style: .plain, target: self, action: #selector(logout))
+        
+        let showLeaderboardItem = UIBarButtonItem(image: UIImage(systemName: "person.2"), style: .plain, target: self, action: #selector(showleaderboard))
+        
+        self.tabBarController?.navigationItem.rightBarButtonItem = logoutItem
+        self.tabBarController?.navigationItem.leftBarButtonItem = showLeaderboardItem
     }
     
-    @IBAction func logoutAction(_ sender: Any) {
+    @objc func logout() {
         
         let alertControllet = UIAlertController(title: "Вы действительно хотите выйти из профиля?", message: nil, preferredStyle: .actionSheet)
         let action = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
@@ -93,9 +99,16 @@ class ProfileVC: UIViewController {
             }
             RootViewController.rootViewController = "registrationVC"
         }
+        
         alertControllet.addAction(action)
         alertControllet.addAction(actionTwo)
         present(alertControllet, animated: true, completion: nil)
+    }
+    
+    @objc func showleaderboard() {
+        let storyboard = UIStoryboard(name: "Leaderboard", bundle: nil)
+        let vc = storyboard.instantiateViewController(identifier: "leadNavBar")
+        present(vc, animated: true, completion: nil)
     }
 }
 
@@ -119,8 +132,7 @@ extension ProfileVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-//        cell.backgroundColor = .lightGray
-      
+        
         if test.isEmpty {
             cell.textLabel?.text = "Тест ещё не пройден"
         } else {
@@ -128,9 +140,7 @@ extension ProfileVC: UITableViewDelegate, UITableViewDataSource {
                 cell.textLabel?.text = "Тест ещё не пройден"
                 return cell
             }
-//            cell.textLabel?.text = "Тест \(indexPath.row + 1): \(test[firKeys[indexPath.section]]?[indexPath.row] ?? 0)"
             cell.textLabel?.text = "Тест \(indexPath.row + 1): \(tests)"
-
         }
         return cell
     }

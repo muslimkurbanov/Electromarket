@@ -17,10 +17,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ELb-YG-xah">
-                                <rect key="frame" x="162.5" y="287" width="50" height="49"/>
+                                <rect key="frame" x="152.5" y="277" width="70" height="69"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="dzF-y3-Ngz"/>
-                                    <constraint firstAttribute="height" constant="50" id="hiz-us-dtM"/>
+                                    <constraint firstAttribute="width" constant="70" id="dzF-y3-Ngz"/>
+                                    <constraint firstAttribute="height" constant="70" id="hiz-us-dtM"/>
                                 </constraints>
                                 <color key="tintColor" systemColor="labelColor"/>
                                 <state key="normal" backgroundImage="play.circle" catalog="system">
@@ -54,7 +54,7 @@
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="7"/>
+                                        <integer key="value" value="8"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
@@ -89,11 +89,11 @@
             <objects>
                 <viewController storyboardIdentifier="stabilizerTest" id="Baj-1c-hsA" customClass="StabilizerTest" customModule="Electromarket" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7uS-Ws-ryi">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Тест завершен" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="25" translatesAutoresizingMaskIntoConstraints="NO" id="PWk-XP-krd">
-                                <rect key="frame" x="54" y="56" width="267" height="142"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Тест завершен" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="PWk-XP-krd">
+                                <rect key="frame" x="54" y="0.0" width="267" height="198"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="35"/>
                                 <nil key="textColor"/>
@@ -195,6 +195,7 @@
                         <viewLayoutGuide key="safeArea" id="FfD-xR-eTx"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="finishTest" destination="hmR-OG-BtP" id="VWd-Sf-Amf"/>
                         <outlet property="questionLabel" destination="PWk-XP-krd" id="ZKz-Fs-eOs"/>

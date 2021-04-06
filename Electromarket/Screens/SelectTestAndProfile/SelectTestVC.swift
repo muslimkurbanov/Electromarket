@@ -26,7 +26,6 @@ class SelectTestVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
             
-        tabBarControllerSettings()
         addItemCenter()
         
         selectTestTableView.delegate = self
@@ -36,6 +35,8 @@ class SelectTestVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
+        tabBarControllerSettings()
+
         guard let currentUser = Auth.auth().currentUser else { return }
         user = UserProfile(user: currentUser)
         

@@ -94,7 +94,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1831" y="36"/>
+            <point key="canvasLocation" x="1905" y="36"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Ahh-Dx-gZj">
@@ -112,7 +112,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V72-Ax-i4r" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2590" y="-761"/>
+            <point key="canvasLocation" x="1905" y="806"/>
         </scene>
         <!--Full Registration View Controller-->
         <scene sceneID="lzb-l4-kb3">
@@ -293,23 +293,6 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cmc-WA-SbC">
-                                <rect key="frame" x="122" y="473" width="130" height="54"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.6125733256" green="0.76334154610000005" blue="0.091776661570000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" name="NotoSansMyanmar-Regular" family="Noto Sans Myanmar" pointSize="27"/>
-                                <state key="normal" title="Выйти">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="7"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="logoutAction:" destination="gAJ-vZ-pMm" eventType="touchUpInside" id="ND1-a2-DxD"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ewe-zm-R1h"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
