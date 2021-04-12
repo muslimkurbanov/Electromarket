@@ -81,6 +81,7 @@ PODS:
   - SDWebImage (5.10.0):
     - SDWebImage/Core (= 5.10.0)
   - SDWebImage/Core (5.10.0)
+  - SkeletonView (1.13.0)
 
 DEPENDENCIES:
   - Alamofire (~> 5.2)
@@ -89,6 +90,7 @@ DEPENDENCIES:
   - Firebase/Database
   - IQKeyboardManagerSwift
   - SDWebImage (~> 5.0)
+  - SkeletonView
 
 SPEC REPOS:
   trunk:
@@ -109,6 +111,7 @@ SPEC REPOS:
     - nanopb
     - PromisesObjC
     - SDWebImage
+    - SkeletonView
 
 SPEC CHECKSUMS:
   Alamofire: 2291f7d21ca607c491dd17642e5d40fdcda0e65c
@@ -128,7 +131,8 @@ SPEC CHECKSUMS:
   nanopb: 59221d7f958fb711001e6a449489542d92ae113e
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   SDWebImage: 9169792e9eec3e45bba2a0c02f74bf8bd922d1ee
+  SkeletonView: 2b14cb767a7da384d17d5d7e1db0d55a6cf9566a
 
-PODFILE CHECKSUM: 481ffc38fdd44428dee77a09d621b5c2f9583b27
+PODFILE CHECKSUM: 0dcb0001b47380464cfe04e9ce4bd913c585d51b
 
-COCOAPODS: 1.10.0
+COCOAPODS: 1.10.1

@@ -8,7 +8,7 @@
 import Foundation
 import Firebase
 
-protocol RegistrationPresenterProtocol : class{
+protocol RegistrationPresenterProtocol: class {
     init(view: ProductViewProtocol)
 }
 

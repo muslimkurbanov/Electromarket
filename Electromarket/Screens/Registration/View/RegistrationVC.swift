@@ -8,10 +8,7 @@
 import UIKit
 import Firebase
 
-
-protocol ProductViewProtocol: class {
-    
-}
+protocol ProductViewProtocol: class {}
 
 class RegistrationVC: UIViewController {
     
@@ -22,12 +19,13 @@ class RegistrationVC: UIViewController {
     
     private var presenter: RegistrationPresenterProtocol!
     private var ref: DatabaseReference!
+        
+    private var firebaseAuthManager = FirebaseAuthManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         textFieldsSettings()
-        addItemCenter()
         
         ref = Database.database().reference(withPath: "users")
         presenter = RegistrationPresenter(view: self)
@@ -42,20 +40,7 @@ class RegistrationVC: UIViewController {
             return
         }
         
-        Auth.auth().signIn(withEmail: email, password: password, completion: { (user, error) in
-            if error != nil {
-                let alertController = UIAlertController(title: nil, message: "Неверный логин или пароль", preferredStyle: .alert)
-                alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-                self.present(alertController, animated: true, completion: nil)
-                return
-            }
-            
-            if user != nil {
-                let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "mainTabBar")
-                self.navigationController?.pushViewController(vc, animated: true)
-                RootViewController.rootViewController = "mainTabBar"
-            }
-        })
+        firebaseAuthManager.signIn(email: email, password: password, navigationController: navigationController!, view: self)
     }
     
     
@@ -68,30 +53,7 @@ class RegistrationVC: UIViewController {
             return
         }
         
-        Auth.auth().createUser(withEmail: email, password: password, completion: { (user, error) in
-            
-            if user != nil {
-                let vc = self.mainStroyboard.instantiateViewController(identifier: "fullRegistration")
-                self.navigationController?.pushViewController(vc, animated: true)
-                RootViewController.rootViewController = "fullRegistration"
-            } else {
-                
-                let alertController = UIAlertController(title: nil, message: "Неправильный формат или аккаун уже создан", preferredStyle: .alert)
-                alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-                self.present(alertController, animated: true, completion: nil)
-                
-            }
-
-            guard error == nil, user != nil else {
-                
-                print(error!.localizedDescription)
-                return
-            }
-            
-            let userRef = self.ref.child((user?.user.uid)!)
-            userRef.setValue(["email": user?.user.email])
-        })
-        
+        firebaseAuthManager.createUser(email: email, password: password, view: self, navigationController: navigationController!, ref: ref)
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -99,6 +61,8 @@ class RegistrationVC: UIViewController {
     }
     
     func textFieldsSettings() {
+        
+        addItemCenter()
         
         self.navigationItem.setHidesBackButton(true, animated: true)
 
@@ -144,5 +108,3 @@ extension RegistrationVC: UITextFieldDelegate {
 extension RegistrationVC: ProductViewProtocol {
     
 }
-
-

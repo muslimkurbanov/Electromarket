@@ -8,6 +8,7 @@
 import UIKit
 import Firebase
 import SDWebImage
+import SkeletonView
 
 class SelectTestVC: UIViewController {
     
@@ -25,7 +26,7 @@ class SelectTestVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-            
+         
         addItemCenter()
         
         selectTestTableView.delegate = self
@@ -36,11 +37,14 @@ class SelectTestVC: UIViewController {
         super.viewWillAppear(true)
         
         tabBarControllerSettings()
-
+        
         guard let currentUser = Auth.auth().currentUser else { return }
         user = UserProfile(user: currentUser)
         
-        ref = Database.database().reference(withPath: "users").child(String(user.uid)).child("Tests").child("TestsInformation")
+        ref = Database.database().reference(withPath: "users")
+            .child(String(user.uid))
+            .child("Tests")
+            .child("TestsInformation")
         ref.observe(.value) { [weak self] (snapshot) in
             
             if let keys = snapshot.value as? [String: Any] {
@@ -110,6 +114,7 @@ extension SelectTestVC: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         1
     }
+    
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "Список тестов"
     }
@@ -118,7 +123,14 @@ extension SelectTestVC: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! SelectTestCell
         cell.testName.text = firebaseNames[indexPath.row]
         guard let urlString = URL(string: firebaseImages[indexPath.row]) else { return cell }
-        cell.testImage.sd_setImage(with: urlString, completed: nil)
+        
+        cell.testImage.isSkeletonable = true
+        cell.testImage.showAnimatedSkeleton()
+        cell.testImage.sd_imageTransition = .fade
+        cell.testImage.sd_setImage(with: urlString, completed: {_,_,_,_ in
+            cell.testImage.stopSkeletonAnimation()
+            cell.testImage.hideSkeleton()
+        })
         return cell
     }
     
