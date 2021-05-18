@@ -15,10 +15,13 @@ class StabilizerVideo: UIViewController {
     @IBOutlet private weak var loadingIndicator: UIActivityIndicatorView!
     @IBOutlet weak var goToTestButton: UIButton!
     
+    var player = AVPlayer()
+    
+    
     private var ref: DatabaseReference!
     private var video: String = ""
     private var user: UserProfile!
-
+    
     var childName: String?
     var testName: String?
     
@@ -26,7 +29,7 @@ class StabilizerVideo: UIViewController {
         super.viewDidLoad()
         
         guard let currentUser = Auth.auth().currentUser else { return }
-
+        
         user = UserProfile(user: currentUser)
         
         ref = Database.database().reference(withPath: "users").child(String(user.uid)).child("Tests").child(childName ?? "")
@@ -39,13 +42,15 @@ class StabilizerVideo: UIViewController {
                 guard let urlString = self?.video else { return }
                 guard let url = URL(string: urlString) else { return }
                 
-                let player = AVPlayer(url: url)
+                
                 let playerController = AVPlayerViewController()
-                playerController.player = player
+                self?.player = AVPlayer(url: url)
+                playerController.player = self?.player
+                
                 self?.present(playerController, animated: true) {
                     self?.loadingIndicator.stopAnimating()
                     self?.goToTestButton.isHidden = false
-                    player.play()
+                    self?.player.play()
                 }
                 
             } else {
@@ -60,7 +65,11 @@ class StabilizerVideo: UIViewController {
         super.viewWillAppear(true)
         
     }
- 
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        player.pause()
+    }
+    
     @IBAction func watchAgain(_ sender: Any) {
         guard let urlString = URL(string: video) else {
             let alertController = UIAlertController(title: nil, message: "Ошибка загрузки видео", preferredStyle: .alert)
@@ -76,12 +85,12 @@ class StabilizerVideo: UIViewController {
             player.play()
         }
     }
-
+    
     @IBAction func goToTest(_ sender: Any) {
         let vc = UIStoryboard(name: "Test", bundle: nil).instantiateViewController(identifier: "stabilizerTest") as! StabilizerTest
         vc.childName = childName
         vc.testName = testName
         navigationController?.pushViewController(vc, animated: true)
     }
-
+    
 }

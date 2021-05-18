@@ -42,7 +42,6 @@ class FirebaseAuthManager {
                 let alertController = UIAlertController(title: nil, message: "Неправильный формат или аккаун уже создан", preferredStyle: .alert)
                 alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
                 view.present(alertController, animated: true, completion: nil)
-                
             }
 
             guard error == nil, user != nil else {
@@ -50,35 +49,9 @@ class FirebaseAuthManager {
                 print(error!.localizedDescription)
                 return
             }
-            
+   
             let userRef = ref.child((user?.user.uid)!)
             userRef.setValue(["email": user?.user.email])
         })
     }
-    
-    
-    
-    
-    
-    
-    
-//    func createUser(email: String, password: String, completionBlock: @escaping (_ success: Bool) -> Void) {
-//        Auth.auth().createUser(withEmail: email, password: password) {(authResult, error) in
-//            if let user = authResult?.user {
-//                completionBlock(true)
-//            } else {
-//                completionBlock(false)
-//            }
-//        }
-//    }
-//
-//    func signIn(email: String, pass: String, completionBlock: @escaping (_ success: Bool) -> Void) {
-//        Auth.auth().signIn(withEmail: email, password: pass) { (result, error) in
-//            if let error = error, let _ = AuthErrorCode(rawValue: error._code) {
-//                completionBlock(false)
-//            } else {
-//                completionBlock(true)
-//            }
-//        }
-//    }
 }

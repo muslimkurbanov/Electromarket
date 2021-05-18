@@ -13,7 +13,11 @@ class StabilizerTest: UIViewController {
     @IBOutlet private weak var finishTest: UIButton!
     @IBOutlet private weak var questionLabel: UILabel!
     @IBOutlet private weak var scoreLabel: UILabel!
+    @IBOutlet private weak var finishLabel: UILabel!
+    
     @IBOutlet private var buttons: [UIButton]!
+    
+    @IBOutlet weak var questionScrollView: UIScrollView!
     
     private var testsRef: DatabaseReference!
     private var ref: DatabaseReference!
@@ -27,7 +31,6 @@ class StabilizerTest: UIViewController {
     private var firebaseAnswers = [[String]]()
     
     private var testResults = [Int]()
-    private var testChild: String?
     
     var childName: String?
     var testName: String?
@@ -35,13 +38,15 @@ class StabilizerTest: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        questionScrollView.contentSize = CGSize(width: 376, height: 196)
+        
         guard let currentUser = Auth.auth().currentUser else { return }
-
+        
         user = UserProfile(user: currentUser)
         ref = Database.database().reference(withPath: "users").child(String(user.uid)).child("tests")
         
         ref.observe(.value) { [weak self] (snapshot) in
-
+            
             if let keys = snapshot.value as? [String: Any] {
                 
                 if keys[self?.testName ?? ""] as? [Int] != nil {
@@ -64,7 +69,7 @@ class StabilizerTest: UIViewController {
         testsRef.observe(.value) { [weak self] (snapshot) in
             
             if let keys = snapshot.value as? [String: Any] {
-
+                
                 self?.firebaseQuestions = keys["Questions"] as! [String]
                 self?.firebaseRightAnswers = keys["RightAnswers"] as! [String]
                 self?.firebaseAnswers = keys["Answers"] as! [[String]]
@@ -73,9 +78,9 @@ class StabilizerTest: UIViewController {
                 
                 
                 for (index, button) in self!.buttons.enumerated() {
-                    button.setTitle(self?.firebaseAnswers[index][index], for: .normal)
+                    button.setTitle(self?.firebaseAnswers[self!.index][index], for: .normal)
                 }
-//
+                //
             } else {
                 let alertController = UIAlertController(title: nil, message: "Ошибка загрузки тестов", preferredStyle: .alert)
                 alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
@@ -90,7 +95,7 @@ class StabilizerTest: UIViewController {
         
         let testRef = Database.database().reference(withPath: "users").child(String(user.uid)).child("tests")
         testRef.child(testName!).setValue(testResults)
-                
+        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(identifier: "mainTabBar")
         
@@ -112,30 +117,30 @@ class StabilizerTest: UIViewController {
             return
         }
         
-//        if index == 1 {
+        //        if index == 1 {
         if index == firebaseQuestions.count - 1 {
             for i in buttons {
                 i.isHidden = true
-            scoreLabel.text = "Ваш результат: \(stabilizerScore)"
-            finishTest.isHidden = false
+                scoreLabel.text = "Ваш результат: \(stabilizerScore)"
+                finishTest.isHidden = false
+                questionScrollView.isHidden = true
+                finishLabel.isHidden = false
             }
         } else {
             for (index, button) in buttons.enumerated() {
                 button.setTitle(firebaseAnswers[self.index][index], for: .normal)
-            }
-
+            } 
         }
-//        } else if index == 2 {
-//            for (index, button) in buttons.enumerated() {
-//                button.setTitle(thirdAnswers[index], for: .normal)
-//            }
-//        } else if index == 3 {
-//            for (index, button) in buttons.enumerated() {
-//                button.setTitle(fourthAnswers[index], for: .normal)
-//            }
-//        } else {
+        //        } else if index == 2 {
+        //            for (index, button) in buttons.enumerated() {
+        //                button.setTitle(thirdAnswers[index], for: .normal)
+        //            }
+        //        } else if index == 3 {
+        //            for (index, button) in buttons.enumerated() {
+        //                button.setTitle(fourthAnswers[index], for: .normal)
+        //            }
+        //        } else {
         //}
-            
+        
     }
 }
- 

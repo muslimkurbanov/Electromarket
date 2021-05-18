@@ -7,17 +7,17 @@
 
 import UIKit
 import Firebase
+import DropDown
 
 class ProfileVC: UIViewController {
     
-    @IBOutlet weak var stabilizerScoreLabel: UILabel!
-    
     @IBOutlet weak var testResultsTV: UITableView!
+    
     
     private var ref: DatabaseReference!
     private var newRef: DatabaseReference!
     private var user: UserProfile!
-
+    
     private var stabilizerScore: Int?
     private var testResultArray = [Int]()
     
@@ -114,33 +114,82 @@ class ProfileVC: UIViewController {
 extension ProfileVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        test[firKeys[section]]?.count ?? 1
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
+//        test[firKeys[section]]?.count ?? 1
         firKeys.count
+
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return firKeys[section]
-    }
+//    func numberOfSections(in tableView: UITableView) -> Int {
+//        firKeys.count
+//    }
+    
+//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        return firKeys[section]
+//    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ProfileTVCell
         
         if test.isEmpty {
-            cell.textLabel?.text = "Тест ещё не пройден"
+//            cell.testNumberCell.text = "Tecт ещё не пройден"
+//            cell.textLabel?.text = "Тест ещё не пройден"
+            cell.testNameLabel.text = "Тест ещё не пройден"
+
         } else {
-            guard let tests = test[firKeys[indexPath.section]]?[indexPath.row] else {
-                cell.textLabel?.text = "Тест ещё не пройден"
+            guard let tests = test[firKeys[indexPath.row]] else {
+//                cell.textLabel?.text = "Тест ещё не пройден"
+//                cell.testNumberCell.text = "Тест ещё не пройден"
+                cell.testNameLabel.text = "Тест ещё не пройден"
                 return cell
             }
-            cell.textLabel?.text = "Тест \(indexPath.row + 1): \(tests)"
+            var arr = [String]()
+            var number = 1
+            for i in tests {
+                arr.append("Тест \(number): \(i)")
+                number += 1
+            }
+            
+            cell.subviewsSettings(dataSource: arr)
+            cell.testNameLabel.text = "\(firKeys[indexPath.row]):  \(tests.last ?? 0)"
+//            cell.textLabel?.text = "Тест \(indexPath.row + 1): \(tests)"
+//            cell.testNumberCell.text = "Тест \(indexPath.row + 1):"
+//            cell.testResultLabel.text = "\(tests)"
         }
         return cell
     }
+}
+
+class ProfileTVCell: UITableViewCell {
+    
+    @IBOutlet weak var dropdownView: UIView!
+    
+    @IBOutlet weak var testNameLabel: UILabel!
+    
+    private let menu = DropDown()
+
+    func subviewsSettings(dataSource: [String]) {
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(didTapToItem))
+
+        gesture.numberOfTouchesRequired = 1
+        gesture.numberOfTapsRequired = 1
+        dropdownView.addGestureRecognizer(gesture)
+        
+        menu.anchorView = dropdownView
+        menu.bottomOffset = CGPoint(x: 0, y: (menu.anchorView?.plainView.bounds.height)!)
+        menu.cornerRadius = 8
+        menu.dataSource = dataSource
+        menu.backgroundColor = .systemBackground
+        menu.textColor = .label
+        menu.textFont = UIFont(name: "DINCondensed-Bold", size: 25)!
+    }
+    
+    @objc private func didTapToItem() {
+        menu.show()
+    }
+    
 }

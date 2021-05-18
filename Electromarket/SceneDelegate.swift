@@ -29,22 +29,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         if RootViewController.rootViewController == "" {
             return
-
         } else {
             
             let rootViewController = storyboard.instantiateViewController(identifier: RootViewController.rootViewController ?? "registrationVC")
             navigationController.viewControllers = [rootViewController]
-//
-//            navigationController = UINavigationController(rootViewController: rootViewController)
-//            navigationController.navigationBar.barTintColor = #colorLiteral(red: 1, green: 0.3893484473, blue: 0, alpha: 1)
-//            navigationController.navigationBar.isTranslucent = false
-//            navigationController.navigationBar.tintColor = .white
-//            navigationController.navigationItem.backButtonTitle = "Назад"
-//            navigationController.navigationBar.backItem?.title = "Назад"
-//            navigationController.navigationItem.backBarButtonItem?.title = "Назад"
-//            navigationController.navigationItem.leftBarButtonItem?.title = "Назад"
-//            let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
-//            navigationController.navigationBar.titleTextAttributes = textAttributes
         }
 
         window?.isOpaque = false

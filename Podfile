@@ -14,5 +14,7 @@ pod 'Firebase/Core'
 pod 'Firebase/Auth'
 pod 'Firebase/Database'
 pod 'SkeletonView'
+pod 'DropDown'
+
 
 end

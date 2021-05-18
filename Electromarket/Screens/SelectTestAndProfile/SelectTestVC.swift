@@ -16,7 +16,7 @@ class SelectTestVC: UIViewController {
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
 
     private var ref: DatabaseReference!
-    private var tasks = [Task]()
+//    private var tasks = [Task]()
     private var firebaseNames = [String]()
     private var firebaseImages = [String]()
     private var testChilds = [String]()
@@ -26,7 +26,9 @@ class SelectTestVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-         
+        
+ 
+        
         addItemCenter()
         
         selectTestTableView.delegate = self

@@ -16,7 +16,7 @@ class FullRegistrationViewController: UIViewController {
     
     private var user: UserProfile!
     private var ref: DatabaseReference!
-    private var tasks = [Task]()
+//    private var tasks = [Task]()
     
     override func viewDidLoad() {
         super.viewDidLoad()

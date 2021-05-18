@@ -29,6 +29,19 @@ class RegistrationVC: UIViewController {
         
         ref = Database.database().reference(withPath: "users")
         presenter = RegistrationPresenter(view: self)
+        
+        let один = 1
+        
+        let два = 2
+    
+        let три = функция(первыйПараметр: один, второйПараметр: два)
+        
+        print(три)
+    }
+    
+    func функция(первыйПараметр: Int, второйПараметр: Int) -> Int {
+        print(первыйПараметр + второйПараметр)
+        return первыйПараметр + второйПараметр
     }
     
     @IBAction func goToLoginAcion(_ sender: Any) {
@@ -101,7 +114,15 @@ class RegistrationVC: UIViewController {
 
 extension RegistrationVC: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        view.endEditing(true)
+        if textField == loginTF {
+            textField.resignFirstResponder()
+            passwordTF.becomeFirstResponder()
+        } else if textField == passwordTF {
+            // here you can define what happens
+            view.endEditing(true)
+        }
+        return true
+        
     }
 }
 
