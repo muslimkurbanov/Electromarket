@@ -8,7 +8,7 @@
 import UIKit
 import SkeletonView
 
-class SelectTestCell: UITableViewCell {
+class TestListCell: UITableViewCell {
 
     @IBOutlet weak var testName: UILabel!
     @IBOutlet weak var testImage: UIImageView!

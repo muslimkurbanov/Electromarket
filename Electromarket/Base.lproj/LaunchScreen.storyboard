@@ -15,7 +15,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="test" translatesAutoresizingMaskIntoConstraints="NO" id="Gwy-c2-56m">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tatatata" translatesAutoresizingMaskIntoConstraints="NO" id="Gwy-c2-56m">
                                 <rect key="frame" x="162" y="403" width="90" height="90"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="90" id="1hS-DB-uRZ"/>
@@ -37,6 +37,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="test" width="90" height="90"/>
+        <image name="tatatata" width="180" height="180"/>
     </resources>
 </document>

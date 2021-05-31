@@ -10,26 +10,27 @@ import Firebase
 import SDWebImage
 import SkeletonView
 
-class SelectTestVC: UIViewController {
+final class TestListViewController: UIViewController {
     
+    //MARK: - IBOutlet
     @IBOutlet weak var selectTestTableView: UITableView!
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
 
+    //MARK: - Properties
     private var ref: DatabaseReference!
-//    private var tasks = [Task]()
+    private var user: UserProfile!
+    
     private var firebaseNames = [String]()
     private var firebaseImages = [String]()
     private var testChilds = [String]()
-    private var user: UserProfile!
     
     var testNames = [String]()
     
+    //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
- 
-        
-        addItemCenter()
+        tabBarAddItemCenter()
         
         selectTestTableView.delegate = self
         selectTestTableView.dataSource = self
@@ -59,6 +60,7 @@ class SelectTestVC: UIViewController {
                 self?.loadingIndicator.stopAnimating()
                 self?.selectTestTableView.isHidden = false
                 self?.selectTestTableView.reloadData()
+                
             } else {
                 let alertController = UIAlertController(title: nil, message: "Ошибка загрузки Тестов", preferredStyle: .alert)
                 alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
@@ -67,7 +69,8 @@ class SelectTestVC: UIViewController {
         }
     }
     
-    func tabBarControllerSettings() {
+    //MARK: - Private unctions
+    private func tabBarControllerSettings() {
         
         let helpItem = UIBarButtonItem(image: UIImage(systemName: "questionmark.circle"), style: .plain, target: self, action: #selector(showHelp))
         
@@ -78,36 +81,22 @@ class SelectTestVC: UIViewController {
         self.tabBarController?.navigationItem.hidesBackButton = true
     }
     
-    @objc func showleaderboard() {
+    @objc private func showleaderboard() {
         let storyboard = UIStoryboard(name: "Leaderboard", bundle: nil)
         let vc = storyboard.instantiateViewController(identifier: "leadNavBar")
         present(vc, animated: true, completion: nil)
     }
     
-    @objc func showHelp() {
+    @objc private func showHelp() {
         let alertController = UIAlertController(title: "Инструкция", message: "После нажатия кнопки 'Приступить к тесту' вы перейдете к просмотру видеоролика с материалом по тесту. После просмотра видеоролика нажмите на кнопку 'Начать тест' и приступайте к выполнению теста", preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
         alertController.addAction(action)
         present(alertController, animated: true, completion: nil)
     }
-    
-    func addItemCenter() {
-        let image = #imageLiteral(resourceName: "Name")
-        let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        imageView.contentMode = .scaleAspectFit
-        imageView.image = image
-        
-        let contentView = UIView()
-        self.tabBarController?.navigationItem.titleView = contentView
-        self.tabBarController?.navigationItem.titleView?.addSubview(imageView)
-        imageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        imageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
-    }
 }
 
-extension SelectTestVC: UITableViewDelegate, UITableViewDataSource {
+//MARK: - DataSource
+extension TestListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         firebaseNames.count
@@ -122,7 +111,7 @@ extension SelectTestVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! SelectTestCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TestListCell
         cell.testName.text = firebaseNames[indexPath.row]
         guard let urlString = URL(string: firebaseImages[indexPath.row]) else { return cell }
         
@@ -135,7 +124,10 @@ extension SelectTestVC: UITableViewDelegate, UITableViewDataSource {
         })
         return cell
     }
-    
+}
+
+//MARK: - Delegate
+extension TestListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let sb = UIStoryboard(name: "Test", bundle: nil)
         let vc = sb.instantiateViewController(identifier: "stabilizerVideo") as! StabilizerVideo
@@ -144,13 +136,5 @@ extension SelectTestVC: UITableViewDelegate, UITableViewDataSource {
         
         navigationController?.pushViewController(vc, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
-    }
-}
-
-extension SelectTestVC {
-    func pushToTest(key: String) {
-        let sb = UIStoryboard(name: "Test", bundle: nil)
-        let vc = sb.instantiateViewController(identifier: key)
-        navigationController?.pushViewController(vc, animated: true)
     }
 }

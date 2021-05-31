@@ -9,7 +9,7 @@ import UIKit
 import Firebase
 import DropDown
 
-class ProfileVC: UIViewController {
+class ProfileViewController: UIViewController {
     
     @IBOutlet weak var testResultsTV: UITableView!
     
@@ -21,8 +21,17 @@ class ProfileVC: UIViewController {
     private var stabilizerScore: Int?
     private var testResultArray = [Int]()
     
-    private var firKeys = [String]()
-    private var test = [String: [Int]]()
+    private var firKeys = [String]() {
+        didSet {
+            print(firKeys)
+
+        }
+    }
+    private var test = [String: [Int]]() {
+        didSet {
+            print(test)
+        }
+    }
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
@@ -32,6 +41,7 @@ class ProfileVC: UIViewController {
         
         user = UserProfile(user: currentUser)
         ref = Database.database().reference(withPath: "users").child(String(user.uid))
+        
         newRef = Database.database().reference(withPath: "users").child(String(user.uid)).child("Tests").child("TestsInformation")
         
         newRef.observe(.value) { [weak self] (snapshot) in
@@ -53,9 +63,8 @@ class ProfileVC: UIViewController {
                 if keys["tests"] as? [String: [Int]] != nil {
                     self?.test = keys["tests"] as! [String: [Int]]
                     self?.testResultsTV.reloadData()
-                } else {
-                    return
-                }
+                    
+                } else { return }
                 
             } else {
                 
@@ -83,24 +92,27 @@ class ProfileVC: UIViewController {
     
     @objc func logout() {
         
-        let alertControllet = UIAlertController(title: "Вы действительно хотите выйти из профиля?", message: nil, preferredStyle: .actionSheet)
-        let action = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
-        let actionTwo = UIAlertAction(title: "Выйти", style: .destructive) { (action) in
+        let alertControllet = UIAlertController(title: "Вы действительно хотите выйти из профиля?", message: nil, preferredStyle: .alert)
+        let action = UIAlertAction(title: "Отмена",
+                                   style: .cancel,
+                                   handler: nil)
+        let actionTwo = UIAlertAction(title: "Выйти",
+                                      style: .destructive) { (action) in
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let vc = storyboard.instantiateViewController(identifier: "registrationVC")
             self.navigationController?.pushViewController(vc, animated: true)
+            
             do {
                 try Auth.auth().signOut()
                 
-            } catch {
-                print(error.localizedDescription)
-            }
+            } catch { print(error.localizedDescription) }
             RootViewController.rootViewController = "registrationVC"
         }
         
-        alertControllet.addAction(action)
-        alertControllet.addAction(actionTwo)
+        for action in [action, actionTwo] {
+            alertControllet.addAction(action)
+        }
         present(alertControllet, animated: true, completion: nil)
     }
     
@@ -111,21 +123,11 @@ class ProfileVC: UIViewController {
     }
 }
 
-extension ProfileVC: UITableViewDelegate, UITableViewDataSource {
+extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        test[firKeys[section]]?.count ?? 1
         firKeys.count
-
     }
-    
-//    func numberOfSections(in tableView: UITableView) -> Int {
-//        firKeys.count
-//    }
-    
-//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        return firKeys[section]
-//    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
@@ -133,20 +135,18 @@ extension ProfileVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ProfileTVCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ProfileTableViewCell
         
         if test.isEmpty {
-//            cell.testNumberCell.text = "Tecт ещё не пройден"
-//            cell.textLabel?.text = "Тест ещё не пройден"
+            
             cell.testNameLabel.text = "Тест ещё не пройден"
 
         } else {
             guard let tests = test[firKeys[indexPath.row]] else {
-//                cell.textLabel?.text = "Тест ещё не пройден"
-//                cell.testNumberCell.text = "Тест ещё не пройден"
                 cell.testNameLabel.text = "Тест ещё не пройден"
                 return cell
             }
+            
             var arr = [String]()
             var number = 1
             for i in tests {
@@ -162,34 +162,4 @@ extension ProfileVC: UITableViewDelegate, UITableViewDataSource {
         }
         return cell
     }
-}
-
-class ProfileTVCell: UITableViewCell {
-    
-    @IBOutlet weak var dropdownView: UIView!
-    
-    @IBOutlet weak var testNameLabel: UILabel!
-    
-    private let menu = DropDown()
-
-    func subviewsSettings(dataSource: [String]) {
-        let gesture = UITapGestureRecognizer(target: self, action: #selector(didTapToItem))
-
-        gesture.numberOfTouchesRequired = 1
-        gesture.numberOfTapsRequired = 1
-        dropdownView.addGestureRecognizer(gesture)
-        
-        menu.anchorView = dropdownView
-        menu.bottomOffset = CGPoint(x: 0, y: (menu.anchorView?.plainView.bounds.height)!)
-        menu.cornerRadius = 8
-        menu.dataSource = dataSource
-        menu.backgroundColor = .systemBackground
-        menu.textColor = .label
-        menu.textFont = UIFont(name: "DINCondensed-Bold", size: 25)!
-    }
-    
-    @objc private func didTapToItem() {
-        menu.show()
-    }
-    
 }
