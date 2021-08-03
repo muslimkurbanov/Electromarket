@@ -18,9 +18,6 @@ class ProfileViewController: UIViewController {
     private var newRef: DatabaseReference!
     private var user: UserProfile!
     
-    private var stabilizerScore: Int?
-    private var testResultArray = [Int]()
-    
     private var firKeys = [String]() {
         didSet {
             print(firKeys)
@@ -52,7 +49,21 @@ class ProfileViewController: UIViewController {
             } else {
                 
                 let alertController = UIAlertController(title: nil, message: "Ошибка загрузки результатов", preferredStyle: .alert)
-                alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { _ in
+                    
+                    self?.testResultsTV.isHidden = true
+                    
+                    let errLabel = UILabel()
+                    errLabel.text = "Тесты не пройдены"
+                    errLabel.textColor = .black
+                    errLabel.frame.size = CGSize(width: 400, height: 30)
+                    errLabel.center.x = self!.view.center.x
+                    errLabel.center.y = self!.view.center.y - (self?.tabBarController?.tabBar.frame.height ?? 0)
+                    errLabel.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 30)
+                    errLabel.textAlignment = .center
+                    self?.view.addSubview(errLabel)
+                    
+                }))
                 self?.present(alertController, animated: true, completion: nil)
             }
         }
@@ -107,6 +118,7 @@ class ProfileViewController: UIViewController {
                 try Auth.auth().signOut()
                 
             } catch { print(error.localizedDescription) }
+            
             RootViewController.rootViewController = "registrationVC"
         }
         
@@ -126,7 +138,7 @@ class ProfileViewController: UIViewController {
 extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        firKeys.count
+        firKeys.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

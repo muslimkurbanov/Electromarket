@@ -7,12 +7,13 @@
 
 import UIKit
 import Firebase
+import SHSPhoneComponent
 
 class RegistrationViewController: UIViewController {
 
     @IBOutlet weak var firstNameTF: UITextField!
     @IBOutlet weak var lastNameTF: UITextField!
-    @IBOutlet weak var phoneNumberTF: UITextField!
+    @IBOutlet weak var phoneNumberTF: SHSPhoneTextField!
     
     private var user: UserProfile!
     private var ref: DatabaseReference!
@@ -26,6 +27,25 @@ class RegistrationViewController: UIViewController {
         guard let currentUser = Auth.auth().currentUser else { return }
         user = UserProfile(user: currentUser)
         ref = Database.database().reference(withPath: "users").child(String(user.uid))
+        
+        
+        phoneNumberTF.formatter.setDefaultOutputPattern("+# (###) ###-##-##")
+//        phoneNumberTF.setFormattedText(CurrentProfile.shared.currentProfile?.phone ?? "")
+        phoneNumberTF.textDidChangeBlock = { field in
+            
+            guard let text = field?.text else { return }
+            
+            if text == "+8" {
+                field?.text = "+7"
+            }
+            
+            if text.count == 2 {
+                let i = text.index(text.startIndex, offsetBy: 1)
+                if ["0", "1", "2", "3", "4", "5", "6", "9"].contains(text[i]) {
+                    field?.text = "+7(\(text[i])"
+                }
+            }
+        }
         
         addItemCenter()
     }

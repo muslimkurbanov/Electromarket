@@ -82,6 +82,7 @@ PODS:
   - SDWebImage (5.10.0):
     - SDWebImage/Core (= 5.10.0)
   - SDWebImage/Core (5.10.0)
+  - SHSPhoneComponent (2.32)
   - SkeletonView (1.13.0)
 
 DEPENDENCIES:
@@ -92,6 +93,7 @@ DEPENDENCIES:
   - Firebase/Database
   - IQKeyboardManagerSwift
   - SDWebImage (~> 5.0)
+  - SHSPhoneComponent
   - SkeletonView
 
 SPEC REPOS:
@@ -114,6 +116,7 @@ SPEC REPOS:
     - nanopb
     - PromisesObjC
     - SDWebImage
+    - SHSPhoneComponent
     - SkeletonView
 
 SPEC CHECKSUMS:
@@ -135,8 +138,9 @@ SPEC CHECKSUMS:
   nanopb: 59221d7f958fb711001e6a449489542d92ae113e
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   SDWebImage: 9169792e9eec3e45bba2a0c02f74bf8bd922d1ee
+  SHSPhoneComponent: c491cf87a0d5c3fb11b8f54100d05fd2706cb401
   SkeletonView: 2b14cb767a7da384d17d5d7e1db0d55a6cf9566a
 
-PODFILE CHECKSUM: e31930741f0896167d62b3566992c362a1a2ab76
+PODFILE CHECKSUM: fa64e5e0e4fd51562c165c8365e01619bc3a87aa
 
 COCOAPODS: 1.10.1

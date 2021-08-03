@@ -62,9 +62,24 @@ final class TestListViewController: UIViewController {
                 self?.selectTestTableView.reloadData()
                 
             } else {
+                                
                 let alertController = UIAlertController(title: nil, message: "Ошибка загрузки Тестов", preferredStyle: .alert)
-                alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-                self?.present(alertController, animated: true, completion: nil)
+                alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { _ in
+                    
+                    let errLabel = UILabel()
+                    errLabel.text = "Тестов нет"
+                    errLabel.textColor = .black
+                    errLabel.frame.size = CGSize(width: 200, height: 30)
+                    errLabel.center.x = self!.view.center.x
+                    errLabel.center.y = self!.view.center.y - (self?.tabBarController?.tabBar.frame.height ?? 0)
+                    errLabel.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 30)
+                    errLabel.textAlignment = .center
+                    self?.view.addSubview(errLabel)
+                }))
+                
+                self?.present(alertController, animated: true, completion: {
+                    self?.loadingIndicator.stopAnimating()
+                })
             }
         }
     }

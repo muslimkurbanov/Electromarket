@@ -11,7 +11,6 @@ import DropDown
 class ProfileTableViewCell: UITableViewCell {
     
     @IBOutlet weak var dropdownView: UIView!
-    
     @IBOutlet weak var testNameLabel: UILabel!
     
     private let menu = DropDown()
@@ -25,7 +24,7 @@ class ProfileTableViewCell: UITableViewCell {
         
         menu.anchorView = dropdownView
         menu.bottomOffset = CGPoint(x: 0, y: (menu.anchorView?.plainView.bounds.height)!)
-        menu.cornerRadius = 10
+        menu.viewCornerRadius = 10
         menu.dataSource = dataSource
         menu.backgroundColor = .systemBackground
         menu.textColor = .label

@@ -15,6 +15,7 @@ pod 'Firebase/Auth'
 pod 'Firebase/Database'
 pod 'SkeletonView'
 pod 'DropDown'
+pod 'SHSPhoneComponent'
 
 
 end
