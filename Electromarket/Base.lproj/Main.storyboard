@@ -275,7 +275,7 @@
         <!--Список тестов-->
         <scene sceneID="H65-Yy-vpS">
             <objects>
-                <viewController storyboardIdentifier="SelectQuiz" id="GTn-Hq-wpY" customClass="TestListViewController" customModule="Electromarket" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SelectQuiz" id="GTn-Hq-wpY" customClass="TestListVC" customModule="Electromarket" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aoK-at-0lA">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -444,7 +444,7 @@
                 <tabBarController storyboardIdentifier="mainTabBar" automaticallyAdjustsScrollViewInsets="NO" id="kan-YH-n6r" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="LX8-w5-Ma8">
-                        <barButtonItem key="backBarButtonItem" title="Назад" id="eNE-Sy-A5A"/>
+                        <barButtonItem key="backBarButtonItem" title="Список тестов" id="ypT-Gq-A7V"/>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="1tw-80-lfJ">

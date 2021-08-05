@@ -8,23 +8,20 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Stabilizer Video-->
+        <!--Test VideoVC-->
         <scene sceneID="avV-E2-flw">
             <objects>
-                <viewController storyboardIdentifier="stabilizerVideo" id="xKt-Ul-rCB" customClass="StabilizerVideo" customModule="Electromarket" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="testVideo" id="xKt-Ul-rCB" customClass="TestVideoVC" customModule="Electromarket" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kNl-6U-cqR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ELb-YG-xah">
-                                <rect key="frame" x="167.5" y="291.5" width="40" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="40" id="dzF-y3-Ngz"/>
-                                    <constraint firstAttribute="height" constant="40" id="hiz-us-dtM"/>
-                                </constraints>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ELb-YG-xah" userLabel="Смотреть снова">
+                                <rect key="frame" x="93.5" y="260" width="188" height="42"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="25"/>
                                 <color key="tintColor" systemColor="labelColor"/>
-                                <state key="normal" backgroundImage="retry">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Смотреть снова">
+                                    <color key="titleColor" systemColor="labelColor"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -70,11 +67,11 @@
                         <viewLayoutGuide key="safeArea" id="0C6-Nk-QFZ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="5CG-fG-eYv" firstAttribute="centerX" secondItem="ELb-YG-xah" secondAttribute="centerX" id="6Rr-6v-LL3"/>
+                            <constraint firstItem="5CG-fG-eYv" firstAttribute="centerX" secondItem="kNl-6U-cqR" secondAttribute="centerX" id="EiX-yM-cLE"/>
                             <constraint firstItem="FP7-GI-9bh" firstAttribute="centerX" secondItem="ELb-YG-xah" secondAttribute="centerX" id="PB0-mW-iSB"/>
                             <constraint firstItem="ELb-YG-xah" firstAttribute="centerX" secondItem="kNl-6U-cqR" secondAttribute="centerX" id="Rqg-Kt-e4e"/>
                             <constraint firstItem="LJL-u8-QQc" firstAttribute="centerY" secondItem="kNl-6U-cqR" secondAttribute="centerY" id="V8y-BI-14a"/>
-                            <constraint firstItem="ELb-YG-xah" firstAttribute="centerY" secondItem="kNl-6U-cqR" secondAttribute="centerY" id="WeC-Qu-Sta"/>
+                            <constraint firstItem="ELb-YG-xah" firstAttribute="top" secondItem="FP7-GI-9bh" secondAttribute="bottom" constant="130" id="VZt-VA-D8m"/>
                             <constraint firstItem="FP7-GI-9bh" firstAttribute="leading" secondItem="0C6-Nk-QFZ" secondAttribute="leading" constant="16" id="X2B-eo-Rb8"/>
                             <constraint firstItem="0C6-Nk-QFZ" firstAttribute="trailing" secondItem="FP7-GI-9bh" secondAttribute="trailing" constant="16" id="iD2-49-40J"/>
                             <constraint firstItem="LJL-u8-QQc" firstAttribute="centerX" secondItem="kNl-6U-cqR" secondAttribute="centerX" id="v5d-Ta-Ad9"/>
@@ -83,7 +80,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="TpW-KB-J7X">
-                        <barButtonItem key="backBarButtonItem" title="Назад" id="azf-uQ-NoT"/>
+                        <barButtonItem key="backBarButtonItem" title="Видео" id="5gu-Q1-nqw"/>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
@@ -95,10 +92,10 @@
             </objects>
             <point key="canvasLocation" x="423.19999999999999" y="-90.404797601199405"/>
         </scene>
-        <!--Stabilizer Test-->
+        <!--TestVC-->
         <scene sceneID="cro-G8-gWH">
             <objects>
-                <viewController storyboardIdentifier="stabilizerTest" id="Baj-1c-hsA" customClass="StabilizerTest" customModule="Electromarket" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="testViewController" id="Baj-1c-hsA" customClass="TestVC" customModule="Electromarket" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7uS-Ws-ryi">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -280,7 +277,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="retry" width="1890" height="1417"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -11,7 +11,7 @@ import DropDown
 
 class ProfileViewController: UIViewController {
     
-    @IBOutlet weak var testResultsTV: UITableView!
+    @IBOutlet private weak var testResultsTV: UITableView!
     
     
     private var ref: DatabaseReference!
@@ -34,6 +34,27 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        testResultsTV.isHidden = true
+        
+        self.testResultsTV.delegate = self
+        self.testResultsTV.dataSource = self
+        
+        loadData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        let logoutItem = UIBarButtonItem(title: "Выйти", style: .plain, target: self, action: #selector(logout))
+        
+        let showLeaderboardItem = UIBarButtonItem(image: UIImage(systemName: "person.2"), style: .plain, target: self, action: #selector(showleaderboard))
+        
+        self.tabBarController?.navigationItem.rightBarButtonItem = logoutItem
+        self.tabBarController?.navigationItem.leftBarButtonItem = showLeaderboardItem
+    }
+    
+    @objc private func loadData() {
+        
         guard let currentUser = Auth.auth().currentUser else { return }
         
         user = UserProfile(user: currentUser)
@@ -45,7 +66,10 @@ class ProfileViewController: UIViewController {
             if let keys = snapshot.value as? [String: Any] {
                 
                 self?.firKeys = keys["TestsResultChild"] as! [String]
+                
+                self?.testResultsTV.isHidden = false
                 self?.testResultsTV.reloadData()
+                
             } else {
                 
                 let alertController = UIAlertController(title: nil, message: "Ошибка загрузки результатов", preferredStyle: .alert)
@@ -61,7 +85,23 @@ class ProfileViewController: UIViewController {
                     errLabel.center.y = self!.view.center.y - (self?.tabBarController?.tabBar.frame.height ?? 0)
                     errLabel.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 30)
                     errLabel.textAlignment = .center
+                    
                     self?.view.addSubview(errLabel)
+
+                    
+                    let retryButton = UIButton()
+                    retryButton.setTitle("Повторить попытку", for: .normal)
+                    retryButton.frame.size = CGSize(width: 300, height: 50)
+                    retryButton.layer.cornerRadius = 20
+                    retryButton.center.x = self?.view.center.x ?? 0
+                    retryButton.center.y = errLabel.center.y + 50
+                    
+                    retryButton.backgroundColor = .none
+                    retryButton.setTitleColor(.label, for: .normal)
+                    
+                    retryButton.addTarget(self, action: #selector(self?.loadData), for: .touchUpInside)
+                    
+                    self?.view.addSubview(retryButton)
                     
                 }))
                 self?.present(alertController, animated: true, completion: nil)
@@ -73,6 +113,7 @@ class ProfileViewController: UIViewController {
                 
                 if keys["tests"] as? [String: [Int]] != nil {
                     self?.test = keys["tests"] as! [String: [Int]]
+                    
                     self?.testResultsTV.reloadData()
                     
                 } else { return }
@@ -85,20 +126,6 @@ class ProfileViewController: UIViewController {
                 self?.present(alertController, animated: true, completion: nil)
             }
         }
-        
-        self.testResultsTV.delegate = self
-        self.testResultsTV.dataSource = self
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        
-        let logoutItem = UIBarButtonItem(title: "Выйти", style: .plain, target: self, action: #selector(logout))
-        
-        let showLeaderboardItem = UIBarButtonItem(image: UIImage(systemName: "person.2"), style: .plain, target: self, action: #selector(showleaderboard))
-        
-        self.tabBarController?.navigationItem.rightBarButtonItem = logoutItem
-        self.tabBarController?.navigationItem.leftBarButtonItem = showLeaderboardItem
     }
     
     @objc func logout() {
@@ -168,9 +195,6 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             
             cell.subviewsSettings(dataSource: arr)
             cell.testNameLabel.text = "\(firKeys[indexPath.row]):  \(tests.last ?? 0)"
-//            cell.textLabel?.text = "Тест \(indexPath.row + 1): \(tests)"
-//            cell.testNumberCell.text = "Тест \(indexPath.row + 1):"
-//            cell.testResultLabel.text = "\(tests)"
         }
         return cell
     }

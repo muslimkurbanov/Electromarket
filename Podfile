@@ -10,7 +10,6 @@ target 'Electromarket' do
 pod 'Alamofire', '~> 5.2'
 pod 'SDWebImage', '~> 5.0'
 pod 'IQKeyboardManagerSwift'
-pod 'Firebase/Core'
 pod 'Firebase/Auth'
 pod 'Firebase/Database'
 pod 'SkeletonView'

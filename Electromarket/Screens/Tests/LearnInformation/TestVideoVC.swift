@@ -1,5 +1,5 @@
 //
-//  StabilizerVideo.swift
+//  TestVideo.swift
 //  Electromarket
 //
 //  Created by Муслим Курбанов on 11.02.2021.
@@ -10,7 +10,7 @@ import WebKit
 import AVKit
 import Firebase
 
-class StabilizerVideo: UIViewController {
+class TestVideoVC: UIViewController {
     
     @IBOutlet private weak var loadingIndicator: UIActivityIndicatorView!
     @IBOutlet weak var goToTestButton: UIButton!
@@ -27,6 +27,9 @@ class StabilizerVideo: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        UINavigationBar.appearance().barTintColor = .white
+        
         
         guard let currentUser = Auth.auth().currentUser else { return }
         
@@ -71,6 +74,7 @@ class StabilizerVideo: UIViewController {
     }
     
     @IBAction func watchAgain(_ sender: Any) {
+        
         guard let urlString = URL(string: video) else {
             let alertController = UIAlertController(title: nil, message: "Ошибка загрузки видео", preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
@@ -87,7 +91,7 @@ class StabilizerVideo: UIViewController {
     }
     
     @IBAction func goToTest(_ sender: Any) {
-        let vc = UIStoryboard(name: "Test", bundle: nil).instantiateViewController(identifier: "stabilizerTest") as! StabilizerTest
+        let vc = UIStoryboard(name: "Test", bundle: nil).instantiateViewController(identifier: "testViewController") as! TestVC
         vc.childName = childName
         vc.testName = testName
         navigationController?.pushViewController(vc, animated: true)

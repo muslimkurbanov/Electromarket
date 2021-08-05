@@ -28,9 +28,8 @@ class RegistrationViewController: UIViewController {
         user = UserProfile(user: currentUser)
         ref = Database.database().reference(withPath: "users").child(String(user.uid))
         
-        
         phoneNumberTF.formatter.setDefaultOutputPattern("+# (###) ###-##-##")
-//        phoneNumberTF.setFormattedText(CurrentProfile.shared.currentProfile?.phone ?? "")
+
         phoneNumberTF.textDidChangeBlock = { field in
             
             guard let text = field?.text else { return }
@@ -47,13 +46,17 @@ class RegistrationViewController: UIViewController {
             }
         }
         
-        addItemCenter()
+        addTitleViewCenter(image: #imageLiteral(resourceName: "Name"))
     }
 
     @IBAction func registrationAction(_ sender: Any) {
         
         if (firstNameTF.text != "") && lastNameTF.text != "" && (phoneNumberTF.text != "") {
             
+            guard phoneNumberTF.text?.count == 18 else {
+                showAlert(title: "Введите корректный номер телефона", message: nil)
+                return
+            }
             ref.setValue(["Имя": firstNameTF.text,
                           "Фамилия": lastNameTF.text,
                           "Номер телефона": phoneNumberTF.text

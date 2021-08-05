@@ -50,7 +50,7 @@ class LoginViewController: UIViewController {
     
     func textFieldsSettings() {
         
-        addItemCenter()
+        addTitleViewCenter(image: #imageLiteral(resourceName: "Name"))
         
         self.navigationItem.setHidesBackButton(true, animated: true)
 

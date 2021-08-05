@@ -10,7 +10,7 @@ import Firebase
 import SDWebImage
 import SkeletonView
 
-final class TestListViewController: UIViewController {
+final class TestListVC: UIViewController {
     
     //MARK: - IBOutlet
     @IBOutlet weak var selectTestTableView: UITableView!
@@ -30,16 +30,11 @@ final class TestListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tabBarAddItemCenter()
+        tabBarTitleViewCenter()
         
         selectTestTableView.delegate = self
         selectTestTableView.dataSource = self
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
         
-        tabBarControllerSettings()
         
         guard let currentUser = Auth.auth().currentUser else { return }
         user = UserProfile(user: currentUser)
@@ -84,6 +79,12 @@ final class TestListViewController: UIViewController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        tabBarControllerSettings()
+    }
+    
     //MARK: - Private unctions
     private func tabBarControllerSettings() {
         
@@ -111,7 +112,7 @@ final class TestListViewController: UIViewController {
 }
 
 //MARK: - DataSource
-extension TestListViewController: UITableViewDataSource {
+extension TestListVC: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         firebaseNames.count
@@ -142,10 +143,10 @@ extension TestListViewController: UITableViewDataSource {
 }
 
 //MARK: - Delegate
-extension TestListViewController: UITableViewDelegate {
+extension TestListVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let sb = UIStoryboard(name: "Test", bundle: nil)
-        let vc = sb.instantiateViewController(identifier: "stabilizerVideo") as! StabilizerVideo
+        let vc = sb.instantiateViewController(identifier: "testVideo") as! TestVideoVC
         vc.childName = testChilds[indexPath.row]
         vc.testName = testNames[indexPath.row]
         

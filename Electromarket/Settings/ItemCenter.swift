@@ -9,8 +9,8 @@ import UIKit
 
 extension UIViewController {
     
-    func addItemCenter() {
-        let image = #imageLiteral(resourceName: "Name")
+    func addTitleViewCenter(image: UIImage) {
+        let image = image
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.heightAnchor.constraint(equalToConstant: 50).isActive = true
@@ -24,7 +24,7 @@ extension UIViewController {
         imageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
     }
     
-    func tabBarAddItemCenter() {
+    func tabBarTitleViewCenter() {
         let image = #imageLiteral(resourceName: "Name")
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false

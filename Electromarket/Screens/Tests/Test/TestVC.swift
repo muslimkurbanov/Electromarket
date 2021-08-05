@@ -8,29 +8,28 @@
 import UIKit
 import Firebase
 
-class StabilizerTest: UIViewController {
+class TestVC: UIViewController {
     
     @IBOutlet private weak var finishTest: UIButton!
     @IBOutlet private weak var questionLabel: UILabel!
     @IBOutlet private weak var scoreLabel: UILabel!
     @IBOutlet private weak var finishLabel: UILabel!
+    @IBOutlet private weak var questionScrollView: UIScrollView!
     
     @IBOutlet private var buttons: [UIButton]!
-    
-    @IBOutlet weak var questionScrollView: UIScrollView!
     
     private var testsRef: DatabaseReference!
     private var ref: DatabaseReference!
     private var user: UserProfile!
-    
-    private var index = 0
-    private var stabilizerScore = 0
     
     private var firebaseQuestions = [String]()
     private var firebaseRightAnswers = [String]()
     private var firebaseAnswers = [[String]]()
     
     private var testResults = [Int]()
+    
+    private var index = 0
+    private var stabilizerScore = 0
     
     var childName: String?
     var testName: String?
