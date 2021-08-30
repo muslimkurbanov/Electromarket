@@ -9,7 +9,7 @@
         <!--Navigation Controller-->
         <scene sceneID="Ahh-Dx-gZj">
             <objects>
-                <navigationController storyboardIdentifier="selectTestNavBar" id="cuG-BA-ari" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="mainNavigationController" id="cuG-BA-ari" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="98l-kM-qQq">
                         <rect key="frame" x="0.0" y="44" width="390" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -19,7 +19,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V72-Ax-i4r" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1018" y="-26"/>
+            <point key="canvasLocation" x="60" y="-9"/>
         </scene>
     </scenes>
 </document>

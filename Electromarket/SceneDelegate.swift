@@ -9,7 +9,6 @@ import UIKit
 import IQKeyboardManagerSwift
 import Firebase
 
-
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
@@ -25,7 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         IQKeyboardManager.shared.enable = true
         
-        let navigationController = storyboard.instantiateViewController(withIdentifier: "selectTestNavBar") as! UINavigationController
+        let navigationController = storyboard.instantiateViewController(withIdentifier: "mainNavigationController") as! UINavigationController
         
         if RootStoryboard.rootStoryboard == nil {
             navigationController.viewControllers = [UIStoryboard(name: "LoginScreen", bundle: nil).instantiateInitialViewController() ?? UIViewController()]
