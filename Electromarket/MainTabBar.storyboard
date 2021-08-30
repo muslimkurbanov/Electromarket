@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="asl-C4-aBf">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Tab Bar Controller-->
+        <scene sceneID="iE9-sU-Awy">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fGy-ED-c7C" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tabBarController storyboardIdentifier="mainTabBar" automaticallyAdjustsScrollViewInsets="NO" id="asl-C4-aBf" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="BoM-Xi-eFU">
+                        <barButtonItem key="backBarButtonItem" title="Список тестов" id="uYB-UR-0hm"/>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ztf-FY-uSo">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" systemColor="labelColor"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="vfx-xA-IDw" kind="relationship" relationship="viewControllers" id="ICc-z9-NMs"/>
+                        <segue destination="ehb-aq-I8g" kind="relationship" relationship="viewControllers" id="nHo-re-JNa"/>
+                    </connections>
+                </tabBarController>
+            </objects>
+            <point key="canvasLocation" x="612" y="-214"/>
+        </scene>
+        <!--TestListScreen-->
+        <scene sceneID="rE2-rk-uJh">
+            <objects>
+                <viewControllerPlaceholder storyboardName="TestListScreen" id="vfx-xA-IDw" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="2zB-nG-Fiy"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Atw-IS-X9V" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="372" y="204"/>
+        </scene>
+        <!--ProfileScreen-->
+        <scene sceneID="QHL-0h-QPZ">
+            <objects>
+                <viewControllerPlaceholder storyboardName="ProfileScreen" id="ehb-aq-I8g" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="8Wj-r4-rkS"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rrP-aB-NdI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="853" y="204"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

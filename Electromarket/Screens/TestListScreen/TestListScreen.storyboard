@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6En-mN-p2G">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Список тестов-->
+        <scene sceneID="sYg-w4-z3H">
+            <objects>
+                <viewController storyboardIdentifier="SelectQuiz" id="6En-mN-p2G" customClass="TestListScreenVC" customModule="Electromarket" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Hbu-Xw-P7q">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" id="1kS-Ht-hru">
+                                <rect key="frame" x="147" y="344" width="118" height="142"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
+                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="79" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7SL-qq-5KA">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="79" id="3Sd-t3-jHX" customClass="TestListCell" customModule="Electromarket" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="24.5" width="414" height="79"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3Sd-t3-jHX" id="dlA-4A-c31">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="79"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QBQ-fJ-fxj">
+                                                    <rect key="frame" x="16" y="19" width="80" height="41"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LrY-db-1S0">
+                                                    <rect key="frame" x="112" y="15" width="286" height="49"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="286" id="Js2-iJ-o5F"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="25"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="LrY-db-1S0" firstAttribute="leading" secondItem="QBQ-fJ-fxj" secondAttribute="trailing" constant="16" id="2Rf-Wf-bNt"/>
+                                                <constraint firstAttribute="bottom" secondItem="QBQ-fJ-fxj" secondAttribute="bottom" constant="19" id="9V7-8S-ump"/>
+                                                <constraint firstAttribute="trailing" secondItem="LrY-db-1S0" secondAttribute="trailing" constant="16" id="PeX-6f-wLu"/>
+                                                <constraint firstItem="QBQ-fJ-fxj" firstAttribute="leading" secondItem="dlA-4A-c31" secondAttribute="leading" constant="16" id="Qay-vf-to7"/>
+                                                <constraint firstItem="LrY-db-1S0" firstAttribute="top" secondItem="dlA-4A-c31" secondAttribute="top" constant="15" id="akj-IM-dIk"/>
+                                                <constraint firstAttribute="bottom" secondItem="LrY-db-1S0" secondAttribute="bottom" constant="15" id="cOX-Zx-Anc"/>
+                                                <constraint firstItem="QBQ-fJ-fxj" firstAttribute="top" secondItem="dlA-4A-c31" secondAttribute="top" constant="19" id="sds-TJ-MWr"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="testImage" destination="QBQ-fJ-fxj" id="ibq-Nh-UvW"/>
+                                            <outlet property="testName" destination="LrY-db-1S0" id="msw-yZ-N6I"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="iRD-DM-H5E"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="7SL-qq-5KA" firstAttribute="leading" secondItem="iRD-DM-H5E" secondAttribute="leading" id="C12-Gt-OJg"/>
+                            <constraint firstItem="7SL-qq-5KA" firstAttribute="bottom" secondItem="iRD-DM-H5E" secondAttribute="bottom" id="SPg-FB-Mgg"/>
+                            <constraint firstItem="7SL-qq-5KA" firstAttribute="trailing" secondItem="iRD-DM-H5E" secondAttribute="trailing" id="Vb8-la-hgX"/>
+                            <constraint firstItem="7SL-qq-5KA" firstAttribute="top" secondItem="iRD-DM-H5E" secondAttribute="top" id="osO-Ae-6LD"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Список тестов" image="square.and.pencil" catalog="system" id="49L-jI-AQS"/>
+                    <navigationItem key="navigationItem" id="6ru-nv-0Xy">
+                        <barButtonItem key="backBarButtonItem" title="Назад" id="hQl-Cg-I0w"/>
+                        <barButtonItem key="rightBarButtonItem" image="questionmark.circle" catalog="system" id="0aC-bq-thr">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
+                    </navigationItem>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <connections>
+                        <outlet property="loadingIndicator" destination="1kS-Ht-hru" id="WgQ-b3-cOp"/>
+                        <outlet property="selectTestTableView" destination="7SL-qq-5KA" id="YZ9-ND-3yv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vlw-hM-Mpa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1133" y="448"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="questionmark.circle" catalog="system" width="128" height="121"/>
+        <image name="square.and.pencil" catalog="system" width="128" height="115"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

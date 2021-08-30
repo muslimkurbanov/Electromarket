@@ -7,20 +7,20 @@
 
 import Foundation
 
-final class RootViewController {
+final class RootStoryboard {
     
     private enum SettingsKeys: String {
-        case rootViewController
+        case rootStoryboard
     }
     
-    static var rootViewController: String! {
+    static var rootStoryboard: String! {
         get {
-            return UserDefaults.standard.object(forKey: SettingsKeys.rootViewController.rawValue) as? String
+            return UserDefaults.standard.object(forKey: SettingsKeys.rootStoryboard.rawValue) as? String
         } set {
             let defaults = UserDefaults.standard
-            let key = SettingsKeys.rootViewController.rawValue
-            if let rootVC = newValue {
-                defaults.set(rootVC, forKey: key)
+            let key = SettingsKeys.rootStoryboard.rawValue
+            if let rootSB = newValue {
+                defaults.set(rootSB, forKey: key)
             } else {
                 defaults.removeObject(forKey: key)
             }

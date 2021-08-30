@@ -10,7 +10,7 @@ import Firebase
 import SDWebImage
 import SkeletonView
 
-final class TestListVC: UIViewController {
+final class TestListScreenVC: UIViewController {
     
     //MARK: - IBOutlet
     @IBOutlet weak var selectTestTableView: UITableView!
@@ -103,7 +103,7 @@ final class TestListVC: UIViewController {
 }
 
 //MARK: - DataSource
-extension TestListVC: UITableViewDataSource {
+extension TestListScreenVC: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         firebaseNames.count
@@ -134,7 +134,7 @@ extension TestListVC: UITableViewDataSource {
 }
 
 //MARK: - Delegate
-extension TestListVC: UITableViewDelegate {
+extension TestListScreenVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let sb = UIStoryboard(name: "LearnInformationScreen", bundle: nil)
         let vc = sb.instantiateViewController(identifier: "testVideo") as! TestVideoVC

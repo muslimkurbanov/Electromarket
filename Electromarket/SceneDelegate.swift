@@ -25,14 +25,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         IQKeyboardManager.shared.enable = true
         
-        var navigationController = storyboard.instantiateViewController(withIdentifier: "selectTestNavBar") as! UINavigationController
+        let navigationController = storyboard.instantiateViewController(withIdentifier: "selectTestNavBar") as! UINavigationController
         
-        if RootViewController.rootViewController == "" {
-            return
+        if RootStoryboard.rootStoryboard == nil {
+            navigationController.viewControllers = [UIStoryboard(name: "LoginScreen", bundle: nil).instantiateInitialViewController() ?? UIViewController()]
         } else {
-            
-            let rootViewController = storyboard.instantiateViewController(identifier: RootViewController.rootViewController ?? "registrationVC")
-            navigationController.viewControllers = [rootViewController]
+                        
+            let rootViewController = UIStoryboard(name: RootStoryboard.rootStoryboard, bundle: nil).instantiateInitialViewController()
+            navigationController.viewControllers = [rootViewController!]
         }
 
         window?.isOpaque = false

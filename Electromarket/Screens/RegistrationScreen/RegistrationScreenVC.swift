@@ -76,10 +76,10 @@ final class RegistrationScreenVC: UIViewController {
                           "Номер телефона": phoneNumberTF.text
             ])
             
-            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "mainTabBar")
-            self.navigationController?.pushViewController(vc, animated: true)
+            let vc = UIStoryboard(name: "MainTabBar", bundle: nil).instantiateInitialViewController()
+            self.navigationController?.pushViewController(vc ?? UIViewController(), animated: true)
             
-            RootViewController.rootViewController = "mainTabBar"
+            RootStoryboard.rootStoryboard = "MainTabBar"
             
         } else {
             showAlert(title: "Заполните все поля", message: nil)

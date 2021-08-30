@@ -21,9 +21,9 @@ final class FirebaseAuthManager {
             }
             
             if user != nil {
-                let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "mainTabBar")
-                navigationController.pushViewController(vc, animated: true)
-                RootViewController.rootViewController = "mainTabBar"
+                let vc = UIStoryboard(name: "MainTabBar", bundle: nil).instantiateInitialViewController()
+                navigationController.pushViewController(vc ?? UIViewController(), animated: true)
+                RootStoryboard.rootStoryboard = "MainTabBar"
             }
         })
     }
@@ -34,9 +34,10 @@ final class FirebaseAuthManager {
             
             if user != nil {
                 
-                let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "fullRegistration")
-                navigationController.pushViewController(vc, animated: true)
-                RootViewController.rootViewController = "fullRegistration"
+                let vc = UIStoryboard(name: "RegistrationScreen", bundle: nil).instantiateInitialViewController()
+                navigationController.pushViewController(vc ?? UIViewController(), animated: true)
+                
+                RootStoryboard.rootStoryboard = "RegistrationScreen"
             } else {
                 
                 let alertController = UIAlertController(title: nil, message: "Неправильный формат или аккаун уже создан", preferredStyle: .alert)

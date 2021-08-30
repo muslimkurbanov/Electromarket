@@ -9,7 +9,7 @@ import UIKit
 import Firebase
 import DropDown
 
-final class ProfileViewController: UIViewController {
+final class ProfileScreenVC: UIViewController {
     
     //MARK: - IBOutlets
     
@@ -144,16 +144,15 @@ final class ProfileViewController: UIViewController {
         let actionTwo = UIAlertAction(title: "Выйти",
                                       style: .destructive) { (action) in
             
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let vc = storyboard.instantiateViewController(identifier: "registrationVC")
-            self.navigationController?.pushViewController(vc, animated: true)
+            let vc = UIStoryboard(name: "LoginScreen", bundle: nil).instantiateInitialViewController()
+            self.navigationController?.pushViewController(vc ?? UIViewController(), animated: true)
             
             do {
                 try Auth.auth().signOut()
                 
             } catch { print(error.localizedDescription) }
             
-            RootViewController.rootViewController = "registrationVC"
+            RootStoryboard.rootStoryboard = "LoginScreen"
         }
         
         for action in [action, actionTwo] {
@@ -163,7 +162,7 @@ final class ProfileViewController: UIViewController {
     }
 }
 
-extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
+extension ProfileScreenVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         firKeys.count
