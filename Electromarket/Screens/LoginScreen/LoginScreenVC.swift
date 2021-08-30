@@ -8,47 +8,33 @@
 import UIKit
 import Firebase
 
-class LoginViewController: UIViewController {
+final class LoginScreenVC: UIViewController {
     
-    @IBOutlet weak var loginTF: UITextField!
-    @IBOutlet weak var passwordTF: UITextField!
+    //MARK: - IBOutlets
+    
+    @IBOutlet private weak var loginTF: UITextField!
+    @IBOutlet private weak var passwordTF: UITextField!
+    
+    //MARK: - Properties
     
     private let mainStroyboard = UIStoryboard(name: "Main", bundle: nil)
     
-    private var ref: DatabaseReference!
-        
     private var firebaseAuthManager = FirebaseAuthManager()
+    private var ref: DatabaseReference!
+    
+    //MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        textFieldsSettings()
-        
         ref = Database.database().reference(withPath: "users")
+        
+        textFieldsSettings()
     }
     
-    @IBAction func goToLoginAcion(_ sender: Any) {
-        
-        guard let email = loginTF.text, let password = passwordTF.text, email != "", password != "" else {
-            showAlert(title: nil, message: "Введите почту и пароль")
-            return
-        }
-        
-        firebaseAuthManager.signIn(email: email, password: password, navigationController: navigationController!, view: self)
-    }
+    //MARK: - Private funcs
     
-    
-    @IBAction func registration(_ sender: Any) {
-    
-        guard let email = loginTF.text, let password = passwordTF.text, email != "", password != "" else {
-            showAlert(title: nil, message: "Введите почту и пароль")
-            return
-        }
-        
-        firebaseAuthManager.createUser(email: email, password: password, view: self, navigationController: navigationController!, ref: ref)
-    }
-    
-    func textFieldsSettings() {
+    private func textFieldsSettings() {
         
         addTitleViewCenter(image: #imageLiteral(resourceName: "Name"))
         
@@ -67,12 +53,35 @@ class LoginViewController: UIViewController {
         view.addGestureRecognizer(tap)
     }
     
-    @objc func dismissKeyboard() {
+    @objc private func dismissKeyboard() {
         view.endEditing(true)
+    }
+    
+    //MARK: - IBActions
+    
+    @IBAction private func goToLoginAcion(_ sender: Any) {
+        
+        guard let email = loginTF.text, let password = passwordTF.text, email != "", password != "" else {
+            showAlert(title: nil, message: "Введите почту и пароль")
+            return
+        }
+        
+        firebaseAuthManager.signIn(email: email, password: password, navigationController: navigationController!, view: self)
+    }
+    
+    @IBAction private func registration(_ sender: Any) {
+    
+        guard let email = loginTF.text, let password = passwordTF.text, email != "", password != "" else {
+            showAlert(title: nil, message: "Введите почту и пароль")
+            return
+        }
+        
+        firebaseAuthManager.createUser(email: email, password: password, view: self, navigationController: navigationController!, ref: ref)
     }
 }
 
-extension LoginViewController: UITextFieldDelegate {
+extension LoginScreenVC: UITextFieldDelegate {
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == loginTF {
             textField.resignFirstResponder()

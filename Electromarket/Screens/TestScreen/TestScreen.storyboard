@@ -8,94 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Test VideoVC-->
-        <scene sceneID="avV-E2-flw">
-            <objects>
-                <viewController storyboardIdentifier="testVideo" id="xKt-Ul-rCB" customClass="TestVideoVC" customModule="Electromarket" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="kNl-6U-cqR">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ELb-YG-xah" userLabel="Смотреть снова">
-                                <rect key="frame" x="93.5" y="260" width="188" height="42"/>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="25"/>
-                                <color key="tintColor" systemColor="labelColor"/>
-                                <state key="normal" title="Смотреть снова">
-                                    <color key="titleColor" systemColor="labelColor"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="7"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="watchAgain:" destination="xKt-Ul-rCB" eventType="touchUpInside" id="hA2-C8-hHs"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="После просмотра видео приступайте к выполнению теста" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FP7-GI-9bh">
-                                <rect key="frame" x="16" y="70" width="343" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="343" id="eJ4-SM-MFP"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="30"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="LJL-u8-QQc">
-                                <rect key="frame" x="169" y="293" width="37" height="37"/>
-                            </activityIndicatorView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5CG-fG-eYv">
-                                <rect key="frame" x="82.5" y="445" width="210" height="62"/>
-                                <color key="backgroundColor" red="0.61176470589999998" green="0.76470588240000004" blue="0.090196078430000007" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="62" id="7ki-h7-qMy"/>
-                                    <constraint firstAttribute="width" constant="210" id="E8U-aT-hx7"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="NotoSansMyanmar-Regular" family="Noto Sans Myanmar" pointSize="23"/>
-                                <state key="normal" title="Начать тест">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="8"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="goToTest:" destination="xKt-Ul-rCB" eventType="touchUpInside" id="5uH-fq-S6d"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="0C6-Nk-QFZ"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="5CG-fG-eYv" firstAttribute="centerX" secondItem="kNl-6U-cqR" secondAttribute="centerX" id="EiX-yM-cLE"/>
-                            <constraint firstItem="FP7-GI-9bh" firstAttribute="centerX" secondItem="ELb-YG-xah" secondAttribute="centerX" id="PB0-mW-iSB"/>
-                            <constraint firstItem="ELb-YG-xah" firstAttribute="centerX" secondItem="kNl-6U-cqR" secondAttribute="centerX" id="Rqg-Kt-e4e"/>
-                            <constraint firstItem="LJL-u8-QQc" firstAttribute="centerY" secondItem="kNl-6U-cqR" secondAttribute="centerY" id="V8y-BI-14a"/>
-                            <constraint firstItem="ELb-YG-xah" firstAttribute="top" secondItem="FP7-GI-9bh" secondAttribute="bottom" constant="130" id="VZt-VA-D8m"/>
-                            <constraint firstItem="FP7-GI-9bh" firstAttribute="leading" secondItem="0C6-Nk-QFZ" secondAttribute="leading" constant="16" id="X2B-eo-Rb8"/>
-                            <constraint firstItem="0C6-Nk-QFZ" firstAttribute="trailing" secondItem="FP7-GI-9bh" secondAttribute="trailing" constant="16" id="iD2-49-40J"/>
-                            <constraint firstItem="LJL-u8-QQc" firstAttribute="centerX" secondItem="kNl-6U-cqR" secondAttribute="centerX" id="v5d-Ta-Ad9"/>
-                            <constraint firstItem="0C6-Nk-QFZ" firstAttribute="bottom" secondItem="5CG-fG-eYv" secondAttribute="bottom" constant="116" id="vM6-nQ-o1V"/>
-                            <constraint firstItem="FP7-GI-9bh" firstAttribute="top" secondItem="0C6-Nk-QFZ" secondAttribute="top" constant="70" id="x4g-pd-qQt"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="TpW-KB-J7X">
-                        <barButtonItem key="backBarButtonItem" title="Видео" id="5gu-Q1-nqw"/>
-                    </navigationItem>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-                    <connections>
-                        <outlet property="goToTestButton" destination="ELb-YG-xah" id="a4t-BN-we3"/>
-                        <outlet property="loadingIndicator" destination="LJL-u8-QQc" id="eTd-gj-jL8"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dQ8-u7-2HO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="423.19999999999999" y="-90.404797601199405"/>
-        </scene>
-        <!--TestVC-->
+        <!--Test ScreenVC-->
         <scene sceneID="cro-G8-gWH">
             <objects>
-                <viewController storyboardIdentifier="testViewController" id="Baj-1c-hsA" customClass="TestVC" customModule="Electromarket" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="testViewController" id="Baj-1c-hsA" customClass="TestScreenVC" customModule="Electromarket" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7uS-Ws-ryi">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -273,13 +189,10 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dKz-zM-RV2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1165.5999999999999" y="-90.404797601199405"/>
+            <point key="canvasLocation" x="18" y="-34"/>
         </scene>
     </scenes>
     <resources>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

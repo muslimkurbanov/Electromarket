@@ -9,15 +9,21 @@ import UIKit
 import Firebase
 import SHSPhoneComponent
 
-class RegistrationViewController: UIViewController {
+final class RegistrationScreenVC: UIViewController {
 
-    @IBOutlet weak var firstNameTF: UITextField!
-    @IBOutlet weak var lastNameTF: UITextField!
-    @IBOutlet weak var phoneNumberTF: SHSPhoneTextField!
+    //MARK: - IBOutlets
+    
+    @IBOutlet private weak var firstNameTF: UITextField!
+    @IBOutlet private weak var lastNameTF: UITextField!
+    @IBOutlet private weak var phoneNumberTF: SHSPhoneTextField!
+    
+    //MARK: - Properties
     
     private var user: UserProfile!
     private var ref: DatabaseReference!
 //    private var tasks = [Task]()
+    
+    //MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +33,14 @@ class RegistrationViewController: UIViewController {
         guard let currentUser = Auth.auth().currentUser else { return }
         user = UserProfile(user: currentUser)
         ref = Database.database().reference(withPath: "users").child(String(user.uid))
+        
+        addTitleViewCenter(image: #imageLiteral(resourceName: "Name"))
+        textFieldSettings()
+    }
+    
+    //MARK: - Private funcs
+    
+    private func textFieldSettings() {
         
         phoneNumberTF.formatter.setDefaultOutputPattern("+# (###) ###-##-##")
 
@@ -45,11 +59,11 @@ class RegistrationViewController: UIViewController {
                 }
             }
         }
-        
-        addTitleViewCenter(image: #imageLiteral(resourceName: "Name"))
     }
 
-    @IBAction func registrationAction(_ sender: Any) {
+    //MARK: - IBActions
+    
+    @IBAction private func registrationAction(_ sender: Any) {
         
         if (firstNameTF.text != "") && lastNameTF.text != "" && (phoneNumberTF.text != "") {
             

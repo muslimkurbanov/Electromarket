@@ -90,17 +90,8 @@ final class TestListVC: UIViewController {
         
         let helpItem = UIBarButtonItem(image: UIImage(systemName: "questionmark.circle"), style: .plain, target: self, action: #selector(showHelp))
         
-        let leaderboardItem = UIBarButtonItem(image: UIImage(systemName: "person.2"), style: .plain, target: self, action: #selector(showleaderboard))
-        
         self.tabBarController?.navigationItem.rightBarButtonItem = helpItem
-        self.tabBarController?.navigationItem.leftBarButtonItem = leaderboardItem
         self.tabBarController?.navigationItem.hidesBackButton = true
-    }
-    
-    @objc private func showleaderboard() {
-        let storyboard = UIStoryboard(name: "Leaderboard", bundle: nil)
-        let vc = storyboard.instantiateViewController(identifier: "leadNavBar")
-        present(vc, animated: true, completion: nil)
     }
     
     @objc private func showHelp() {
@@ -145,7 +136,7 @@ extension TestListVC: UITableViewDataSource {
 //MARK: - Delegate
 extension TestListVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let sb = UIStoryboard(name: "Test", bundle: nil)
+        let sb = UIStoryboard(name: "LearnInformationScreen", bundle: nil)
         let vc = sb.instantiateViewController(identifier: "testVideo") as! TestVideoVC
         vc.childName = testChilds[indexPath.row]
         vc.testName = testNames[indexPath.row]

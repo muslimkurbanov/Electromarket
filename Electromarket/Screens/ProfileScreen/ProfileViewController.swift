@@ -9,10 +9,13 @@ import UIKit
 import Firebase
 import DropDown
 
-class ProfileViewController: UIViewController {
+final class ProfileViewController: UIViewController {
+    
+    //MARK: - IBOutlets
     
     @IBOutlet private weak var testResultsTV: UITableView!
     
+    //MARK: - Properties
     
     private var ref: DatabaseReference!
     private var newRef: DatabaseReference!
@@ -21,9 +24,9 @@ class ProfileViewController: UIViewController {
     private var firKeys = [String]() {
         didSet {
             print(firKeys)
-
         }
     }
+    
     private var test = [String: [Int]]() {
         didSet {
             print(test)
@@ -31,6 +34,7 @@ class ProfileViewController: UIViewController {
     }
     
     //MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -47,10 +51,37 @@ class ProfileViewController: UIViewController {
         
         let logoutItem = UIBarButtonItem(title: "Выйти", style: .plain, target: self, action: #selector(logout))
         
-        let showLeaderboardItem = UIBarButtonItem(image: UIImage(systemName: "person.2"), style: .plain, target: self, action: #selector(showleaderboard))
-        
         self.tabBarController?.navigationItem.rightBarButtonItem = logoutItem
-        self.tabBarController?.navigationItem.leftBarButtonItem = showLeaderboardItem
+    }
+    
+    //MARK: - Private funcs
+    
+    private func createErrorLayout() {
+        
+        let errLabel = UILabel()
+        errLabel.text = "Тесты не пройдены"
+        errLabel.textColor = .black
+        errLabel.frame.size = CGSize(width: 400, height: 30)
+        errLabel.center.x = view.center.x
+        errLabel.center.y = view.center.y - (tabBarController?.tabBar.frame.height ?? 0)
+        errLabel.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 30)
+        errLabel.textAlignment = .center
+        
+        view.addSubview(errLabel)
+        
+        let retryButton = UIButton()
+        retryButton.setTitle("Обновить", for: .normal)
+        retryButton.frame.size = CGSize(width: 300, height: 50)
+        retryButton.layer.cornerRadius = 20
+        retryButton.center.x = view.center.x
+        retryButton.center.y = errLabel.center.y + 50
+        
+        retryButton.backgroundColor = .none
+        retryButton.setTitleColor(.label, for: .normal)
+        
+        retryButton.addTarget(self, action: #selector(loadData), for: .touchUpInside)
+        
+        view.addSubview(retryButton)
     }
     
     @objc private func loadData() {
@@ -77,33 +108,9 @@ class ProfileViewController: UIViewController {
                     
                     self?.testResultsTV.isHidden = true
                     
-                    let errLabel = UILabel()
-                    errLabel.text = "Тесты не пройдены"
-                    errLabel.textColor = .black
-                    errLabel.frame.size = CGSize(width: 400, height: 30)
-                    errLabel.center.x = self!.view.center.x
-                    errLabel.center.y = self!.view.center.y - (self?.tabBarController?.tabBar.frame.height ?? 0)
-                    errLabel.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 30)
-                    errLabel.textAlignment = .center
-                    
-                    self?.view.addSubview(errLabel)
-
-                    
-                    let retryButton = UIButton()
-                    retryButton.setTitle("Повторить попытку", for: .normal)
-                    retryButton.frame.size = CGSize(width: 300, height: 50)
-                    retryButton.layer.cornerRadius = 20
-                    retryButton.center.x = self?.view.center.x ?? 0
-                    retryButton.center.y = errLabel.center.y + 50
-                    
-                    retryButton.backgroundColor = .none
-                    retryButton.setTitleColor(.label, for: .normal)
-                    
-                    retryButton.addTarget(self, action: #selector(self?.loadData), for: .touchUpInside)
-                    
-                    self?.view.addSubview(retryButton)
-                    
+                    self?.createErrorLayout()
                 }))
+                
                 self?.present(alertController, animated: true, completion: nil)
             }
         }
@@ -128,7 +135,7 @@ class ProfileViewController: UIViewController {
         }
     }
     
-    @objc func logout() {
+    @objc private func logout() {
         
         let alertControllet = UIAlertController(title: "Вы действительно хотите выйти из профиля?", message: nil, preferredStyle: .alert)
         let action = UIAlertAction(title: "Отмена",
@@ -154,18 +161,12 @@ class ProfileViewController: UIViewController {
         }
         present(alertControllet, animated: true, completion: nil)
     }
-    
-    @objc func showleaderboard() {
-        let storyboard = UIStoryboard(name: "Leaderboard", bundle: nil)
-        let vc = storyboard.instantiateViewController(identifier: "leadNavBar")
-        present(vc, animated: true, completion: nil)
-    }
 }
 
 extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        firKeys.count ?? 0
+        firKeys.count
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -188,12 +189,13 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             
             var arr = [String]()
             var number = 1
+            
             for i in tests {
                 arr.append("Тест \(number): \(i)")
                 number += 1
             }
             
-            cell.subviewsSettings(dataSource: arr)
+            cell.configurate(dataSource: arr)
             cell.testNameLabel.text = "\(firKeys[indexPath.row]):  \(tests.last ?? 0)"
         }
         return cell

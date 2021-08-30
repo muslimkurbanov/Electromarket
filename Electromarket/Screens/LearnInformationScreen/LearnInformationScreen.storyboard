@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Test VideoVC-->
+        <scene sceneID="5fD-IB-eAQ">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KP6-TA-UIC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewController storyboardIdentifier="testVideo" id="hqb-d5-ObU" customClass="TestVideoVC" customModule="Electromarket" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fDv-MK-691">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rXf-E6-adF" userLabel="Смотреть снова">
+                                <rect key="frame" x="93.5" y="260" width="188" height="42"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="25"/>
+                                <color key="tintColor" systemColor="labelColor"/>
+                                <state key="normal" title="Смотреть снова">
+                                    <color key="titleColor" systemColor="labelColor"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="7"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="watchAgain:" destination="hqb-d5-ObU" eventType="touchUpInside" id="XVZ-X7-GMn"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="После просмотра видео приступайте к выполнению теста" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hej-Dk-pkt">
+                                <rect key="frame" x="16" y="70" width="343" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="343" id="f01-Nd-tlb"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="30"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="M7a-8E-EYZ">
+                                <rect key="frame" x="169" y="293" width="37" height="37"/>
+                            </activityIndicatorView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rWE-Lf-FmT">
+                                <rect key="frame" x="82.5" y="445" width="210" height="62"/>
+                                <color key="backgroundColor" red="0.61176470589999998" green="0.76470588240000004" blue="0.090196078430000007" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="62" id="KWR-5f-La1"/>
+                                    <constraint firstAttribute="width" constant="210" id="nUZ-eP-t6c"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="NotoSansMyanmar-Regular" family="Noto Sans Myanmar" pointSize="23"/>
+                                <state key="normal" title="Начать тест">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="goToTest:" destination="hqb-d5-ObU" eventType="touchUpInside" id="0jX-4F-Ply"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="qhf-6I-a16"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="M7a-8E-EYZ" firstAttribute="centerX" secondItem="fDv-MK-691" secondAttribute="centerX" id="LP5-kQ-x8y"/>
+                            <constraint firstItem="qhf-6I-a16" firstAttribute="bottom" secondItem="rWE-Lf-FmT" secondAttribute="bottom" constant="116" id="M0R-Vq-hY4"/>
+                            <constraint firstItem="Hej-Dk-pkt" firstAttribute="centerX" secondItem="rXf-E6-adF" secondAttribute="centerX" id="NU4-qp-ogh"/>
+                            <constraint firstItem="Hej-Dk-pkt" firstAttribute="leading" secondItem="qhf-6I-a16" secondAttribute="leading" constant="16" id="S1I-J0-7pN"/>
+                            <constraint firstItem="Hej-Dk-pkt" firstAttribute="top" secondItem="qhf-6I-a16" secondAttribute="top" constant="70" id="bZO-Bw-khm"/>
+                            <constraint firstItem="rXf-E6-adF" firstAttribute="top" secondItem="Hej-Dk-pkt" secondAttribute="bottom" constant="130" id="fzX-Sh-Jvd"/>
+                            <constraint firstItem="qhf-6I-a16" firstAttribute="trailing" secondItem="Hej-Dk-pkt" secondAttribute="trailing" constant="16" id="oM1-0r-L4D"/>
+                            <constraint firstItem="M7a-8E-EYZ" firstAttribute="centerY" secondItem="fDv-MK-691" secondAttribute="centerY" id="ruw-59-bDq"/>
+                            <constraint firstItem="rWE-Lf-FmT" firstAttribute="centerX" secondItem="fDv-MK-691" secondAttribute="centerX" id="tz6-ay-RB1"/>
+                            <constraint firstItem="rXf-E6-adF" firstAttribute="centerX" secondItem="fDv-MK-691" secondAttribute="centerX" id="zoS-F8-TDh"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="zoi-jf-UCm">
+                        <barButtonItem key="backBarButtonItem" title="Видео" id="2D1-0d-4gz"/>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <connections>
+                        <outlet property="goToTestButton" destination="rXf-E6-adF" id="X3o-er-IGS"/>
+                        <outlet property="loadingIndicator" destination="M7a-8E-EYZ" id="GMG-SO-uid"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="151" y="36"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

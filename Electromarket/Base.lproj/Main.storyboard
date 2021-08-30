@@ -11,7 +11,7 @@
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="registrationVC" id="BYZ-38-t0r" userLabel="Login View Controller" customClass="LoginViewController" customModule="Electromarket" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="registrationVC" id="BYZ-38-t0r" userLabel="Login View Controller" customClass="LoginScreenVC" customModule="Electromarket" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="756"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -135,10 +135,10 @@
             </objects>
             <point key="canvasLocation" x="1905" y="805"/>
         </scene>
-        <!--Registration View Controller-->
+        <!--Registration ScreenVC-->
         <scene sceneID="lzb-l4-kb3">
             <objects>
-                <viewController storyboardIdentifier="fullRegistration" id="6d0-iX-tGF" customClass="RegistrationViewController" customModule="Electromarket" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="fullRegistration" id="6d0-iX-tGF" customClass="RegistrationScreenVC" customModule="Electromarket" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="U15-Dx-KVx">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="756"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -281,7 +281,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" id="y7O-0b-raX">
-                                <rect key="frame" x="140" y="324" width="111" height="134"/>
+                                <rect key="frame" x="139" y="324" width="111" height="134"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
                             <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="79" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="k9T-kg-Ej2">
@@ -461,62 +461,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k6U-94-B1F" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3337" y="36"/>
-        </scene>
-        <!--Инструкция-->
-        <scene sceneID="nbD-E3-Dnn">
-            <objects>
-                <viewController id="bZh-BL-cG0" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="KEZ-jZ-6UZ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7jz-oY-ucZ">
-                                <rect key="frame" x="16" y="108" width="343" height="100"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="JYg-r6-aOn"/>
-                                    <constraint firstAttribute="width" constant="343" id="l6I-Om-b0s"/>
-                                </constraints>
-                                <string key="text">После нажатия кнопки "Приступить к тесту" вы перейдете к просмотру видеоролика с материалом по тесту. После просмотра видеоролика нажмите на кнопку "Начать тест" и приступайте к выполнению теста</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="z2V-QZ-CL8"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="z2V-QZ-CL8" firstAttribute="trailing" secondItem="7jz-oY-ucZ" secondAttribute="trailing" constant="16" id="Kir-yX-0Nd"/>
-                            <constraint firstItem="7jz-oY-ucZ" firstAttribute="top" secondItem="z2V-QZ-CL8" secondAttribute="top" constant="20" id="QA3-YN-EAV"/>
-                            <constraint firstItem="7jz-oY-ucZ" firstAttribute="leading" secondItem="z2V-QZ-CL8" secondAttribute="leading" constant="16" id="oEr-3i-Pjj"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="Инструкция" id="Xga-Dm-rlX"/>
-                    <size key="freeformSize" width="375" height="200"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ydL-gt-QUH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4022" y="596"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="07G-C0-sB4">
-            <objects>
-                <navigationController storyboardIdentifier="stable" automaticallyAdjustsScrollViewInsets="NO" id="aHr-Am-ahm" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="OKy-wk-GHg">
-                        <rect key="frame" x="0.0" y="44" width="390" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <textAttributes key="titleTextAttributes">
-                            <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="35"/>
-                        </textAttributes>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="bZh-BL-cG0" kind="relationship" relationship="rootViewController" id="5Wo-4p-WFN"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="TmP-3x-j3x" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4022" y="36"/>
         </scene>
     </scenes>
     <resources>

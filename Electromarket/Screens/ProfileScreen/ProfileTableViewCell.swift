@@ -8,14 +8,21 @@
 import UIKit
 import DropDown
 
-class ProfileTableViewCell: UITableViewCell {
+final class ProfileTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var dropdownView: UIView!
+    //MARK: - IBOutlets
+    
+    @IBOutlet private weak var dropdownView: UIView!
+    
     @IBOutlet weak var testNameLabel: UILabel!
+    
+    //MARK: - Properties
     
     private let menu = DropDown()
 
-    func subviewsSettings(dataSource: [String]) {
+    //MARK: - Private func
+    
+    func configurate(dataSource: [String]) {
         let gesture = UITapGestureRecognizer(target: self, action: #selector(didTapToItem))
 
         gesture.numberOfTouchesRequired = 1

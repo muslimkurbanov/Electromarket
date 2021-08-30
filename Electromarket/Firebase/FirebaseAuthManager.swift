@@ -8,7 +8,7 @@
 import UIKit
 import Firebase
 
-class FirebaseAuthManager {
+final class FirebaseAuthManager {
     
     func signIn(email: String, password: String, navigationController: UINavigationController, view: UIViewController) {
         

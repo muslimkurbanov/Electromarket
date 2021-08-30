@@ -10,13 +10,16 @@ import WebKit
 import AVKit
 import Firebase
 
-class TestVideoVC: UIViewController {
+final class TestVideoVC: UIViewController {
+    
+    //MARK: - IBOutlets
     
     @IBOutlet private weak var loadingIndicator: UIActivityIndicatorView!
-    @IBOutlet weak var goToTestButton: UIButton!
+    @IBOutlet private weak var goToTestButton: UIButton!
+    
+    //MARK: - Properties
     
     var player = AVPlayer()
-    
     
     private var ref: DatabaseReference!
     private var video: String = ""
@@ -25,11 +28,10 @@ class TestVideoVC: UIViewController {
     var childName: String?
     var testName: String?
     
+    //MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        UINavigationBar.appearance().barTintColor = .white
-        
         
         guard let currentUser = Auth.auth().currentUser else { return }
         
@@ -64,16 +66,14 @@ class TestVideoVC: UIViewController {
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        
-    }
-    
     override func viewDidDisappear(_ animated: Bool) {
+        
         player.pause()
     }
     
-    @IBAction func watchAgain(_ sender: Any) {
+    //MARK: - IBActions
+    
+    @IBAction private func watchAgain(_ sender: Any) {
         
         guard let urlString = URL(string: video) else {
             let alertController = UIAlertController(title: nil, message: "Ошибка загрузки видео", preferredStyle: .alert)
@@ -90,11 +90,11 @@ class TestVideoVC: UIViewController {
         }
     }
     
-    @IBAction func goToTest(_ sender: Any) {
-        let vc = UIStoryboard(name: "Test", bundle: nil).instantiateViewController(identifier: "testViewController") as! TestVC
+    @IBAction private func goToTest(_ sender: Any) {
+        
+        let vc = UIStoryboard(name: "TestScreen", bundle: nil).instantiateViewController(identifier: "testViewController") as! TestScreenVC
         vc.childName = childName
         vc.testName = testName
         navigationController?.pushViewController(vc, animated: true)
     }
-    
 }

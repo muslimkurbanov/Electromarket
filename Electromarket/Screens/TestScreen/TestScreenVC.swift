@@ -8,7 +8,9 @@
 import UIKit
 import Firebase
 
-class TestVC: UIViewController {
+final class TestScreenVC: UIViewController {
+    
+    //MARK: - IBOutlets
     
     @IBOutlet private weak var finishTest: UIButton!
     @IBOutlet private weak var questionLabel: UILabel!
@@ -17,6 +19,8 @@ class TestVC: UIViewController {
     @IBOutlet private weak var questionScrollView: UIScrollView!
     
     @IBOutlet private var buttons: [UIButton]!
+    
+    //MARK: - Properties
     
     private var testsRef: DatabaseReference!
     private var ref: DatabaseReference!
@@ -33,6 +37,8 @@ class TestVC: UIViewController {
     
     var childName: String?
     var testName: String?
+    
+    //MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,7 +85,7 @@ class TestVC: UIViewController {
                 for (index, button) in self!.buttons.enumerated() {
                     button.setTitle(self?.firebaseAnswers[self!.index][index], for: .normal)
                 }
-                //
+                
             } else {
                 let alertController = UIAlertController(title: nil, message: "Ошибка загрузки тестов", preferredStyle: .alert)
                 alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
@@ -88,7 +94,9 @@ class TestVC: UIViewController {
         }
     }
     
-    @IBAction func finishTestAction(_ sender: Any) {
+    //MARK: - IBActions
+    
+    @IBAction private func finishTestAction(_ sender: Any) {
         
         testResults.append(stabilizerScore)
         
@@ -101,8 +109,8 @@ class TestVC: UIViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    
-    @IBAction func buttons(_ sender: UIButton) {
+    @IBAction private func buttons(_ sender: UIButton) {
+        
         if sender.title(for: .normal) == firebaseRightAnswers[index] {
             index += 1
             stabilizerScore += 1
@@ -116,7 +124,6 @@ class TestVC: UIViewController {
             return
         }
         
-        //        if index == 1 {
         if index == firebaseQuestions.count - 1 {
             for i in buttons {
                 i.isHidden = true
@@ -130,16 +137,5 @@ class TestVC: UIViewController {
                 button.setTitle(firebaseAnswers[self.index][index], for: .normal)
             } 
         }
-        //        } else if index == 2 {
-        //            for (index, button) in buttons.enumerated() {
-        //                button.setTitle(thirdAnswers[index], for: .normal)
-        //            }
-        //        } else if index == 3 {
-        //            for (index, button) in buttons.enumerated() {
-        //                button.setTitle(fourthAnswers[index], for: .normal)
-        //            }
-        //        } else {
-        //}
-        
     }
 }
