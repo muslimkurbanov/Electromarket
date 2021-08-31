@@ -17,13 +17,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7w6-gP-BVB">
-                                <rect key="frame" x="63" y="443" width="288" height="71"/>
+                                <rect key="frame" x="63" y="492" width="288" height="71"/>
                                 <color key="backgroundColor" red="0.6125733256" green="0.76334154610000005" blue="0.091776661570000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="288" id="ARY-1H-kId"/>
+                                    <constraint firstAttribute="width" constant="288" id="71Z-QU-ROZ"/>
                                     <constraint firstAttribute="height" constant="71" id="x0d-0f-Dsi"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="NotoSansMyanmar-Regular" family="Noto Sans Myanmar" pointSize="27"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="26"/>
                                 <state key="normal" title="Зарегистрироваться">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -46,7 +46,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="plR-Tx-Np4">
-                                <rect key="frame" x="46" y="329" width="322" height="54"/>
+                                <rect key="frame" x="46" y="358" width="322" height="54"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Номер телефона" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="djA-4d-Q3P" customClass="SHSPhoneTextField">
                                         <rect key="frame" x="14" y="1" width="294" height="52"/>
@@ -74,7 +74,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VLe-0h-cK4">
-                                <rect key="frame" x="46" y="235" width="322" height="54"/>
+                                <rect key="frame" x="46" y="264" width="322" height="54"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Фамилия" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="h9Z-ad-kKe">
                                         <rect key="frame" x="14" y="1" width="294" height="52"/>
@@ -97,7 +97,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DaU-6V-QM6">
-                                <rect key="frame" x="46" y="141" width="322" height="54"/>
+                                <rect key="frame" x="46" y="170" width="322" height="54"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Имя" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IdU-3B-X2c">
                                         <rect key="frame" x="14" y="1" width="294" height="52"/>
@@ -124,10 +124,9 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="JWf-SK-aot" firstAttribute="centerX" secondItem="dke-y1-Hjy" secondAttribute="centerX" id="62s-fg-Qa1"/>
-                            <constraint firstItem="b2c-oI-zjk" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="7w6-gP-BVB" secondAttribute="bottom" constant="124" id="89i-xM-eyP"/>
                             <constraint firstItem="b2c-oI-zjk" firstAttribute="trailing" secondItem="plR-Tx-Np4" secondAttribute="trailing" constant="46" id="CsN-1c-XCf"/>
                             <constraint firstItem="JWf-SK-aot" firstAttribute="top" secondItem="b2c-oI-zjk" secondAttribute="top" constant="40" id="Cuq-mV-ej2"/>
-                            <constraint firstItem="DaU-6V-QM6" firstAttribute="top" secondItem="JWf-SK-aot" secondAttribute="bottom" constant="1" id="Ejn-HN-Lnt"/>
+                            <constraint firstItem="DaU-6V-QM6" firstAttribute="top" secondItem="JWf-SK-aot" secondAttribute="bottom" constant="30" id="Ejn-HN-Lnt"/>
                             <constraint firstItem="plR-Tx-Np4" firstAttribute="leading" secondItem="b2c-oI-zjk" secondAttribute="leading" constant="46" id="G8P-63-IaM"/>
                             <constraint firstItem="VLe-0h-cK4" firstAttribute="top" secondItem="DaU-6V-QM6" secondAttribute="bottom" constant="40" id="GNG-AK-JfU"/>
                             <constraint firstItem="b2c-oI-zjk" firstAttribute="trailing" secondItem="VLe-0h-cK4" secondAttribute="trailing" constant="46" id="KSV-r8-J82"/>
@@ -135,7 +134,7 @@
                             <constraint firstItem="DaU-6V-QM6" firstAttribute="leading" secondItem="b2c-oI-zjk" secondAttribute="leading" constant="46" id="Kvu-OU-URS"/>
                             <constraint firstItem="plR-Tx-Np4" firstAttribute="top" secondItem="VLe-0h-cK4" secondAttribute="bottom" constant="40" id="MXU-3M-6hg"/>
                             <constraint firstItem="b2c-oI-zjk" firstAttribute="trailing" secondItem="DaU-6V-QM6" secondAttribute="trailing" constant="46" id="MmO-l7-K6z"/>
-                            <constraint firstItem="7w6-gP-BVB" firstAttribute="top" secondItem="plR-Tx-Np4" secondAttribute="bottom" constant="60" id="cPA-jc-xlw"/>
+                            <constraint firstItem="7w6-gP-BVB" firstAttribute="top" secondItem="plR-Tx-Np4" secondAttribute="bottom" constant="80" id="cPA-jc-xlw"/>
                             <constraint firstItem="7w6-gP-BVB" firstAttribute="centerX" secondItem="dke-y1-Hjy" secondAttribute="centerX" id="crD-La-aDP"/>
                         </constraints>
                     </view>
@@ -144,6 +143,8 @@
                         <outlet property="firstNameTF" destination="IdU-3B-X2c" id="g5Q-bI-C1d"/>
                         <outlet property="lastNameTF" destination="h9Z-ad-kKe" id="Gb1-o2-To4"/>
                         <outlet property="phoneNumberTF" destination="djA-4d-Q3P" id="pII-ta-OHn"/>
+                        <outlet property="registrationButtonTopConstraint" destination="cPA-jc-xlw" id="5Bb-gt-3Y4"/>
+                        <outlet property="registrationLabelTopConstraint" destination="Cuq-mV-ej2" id="nko-wg-bIq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iXS-0S-9HV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -17,8 +17,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A8Y-WG-teX">
-                                <rect key="frame" x="146.5" y="558" width="121" height="56"/>
-                                <fontDescription key="fontDescription" name="NotoSansMyanmar-Regular" family="Noto Sans Myanmar" pointSize="20"/>
+                                <rect key="frame" x="145" y="562" width="124" height="36"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                 <state key="normal" title="Регистрация">
                                     <color key="titleColor" red="1" green="0.38823530080000002" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
@@ -32,12 +32,13 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SrG-1s-6a0">
-                                <rect key="frame" x="99" y="467" width="216" height="71"/>
+                                <rect key="frame" x="99" y="467" width="216" height="70"/>
                                 <color key="backgroundColor" red="0.61176470589999998" green="0.76470588240000004" blue="0.090196078430000007" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="K7I-aT-Xed"/>
                                     <constraint firstAttribute="width" constant="216" id="jTx-bf-nuV"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="NotoSansMyanmar-Regular" family="Noto Sans Myanmar" pointSize="27"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="27"/>
                                 <state key="normal" title="Войти">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -115,7 +116,7 @@
                             <constraint firstItem="SrG-1s-6a0" firstAttribute="top" secondItem="5mq-1A-usH" secondAttribute="bottom" constant="70" id="77e-iZ-M5b"/>
                             <constraint firstItem="1vk-4L-2vp" firstAttribute="top" secondItem="mQ6-Rh-95T" secondAttribute="top" constant="50" id="BvX-XD-kKn"/>
                             <constraint firstItem="1vk-4L-2vp" firstAttribute="centerX" secondItem="SEJ-pe-zPl" secondAttribute="centerX" id="Gkz-TH-lRl"/>
-                            <constraint firstItem="A8Y-WG-teX" firstAttribute="top" secondItem="SrG-1s-6a0" secondAttribute="bottom" constant="20" id="Jyc-Vh-srd"/>
+                            <constraint firstItem="A8Y-WG-teX" firstAttribute="top" secondItem="SrG-1s-6a0" secondAttribute="bottom" constant="25" id="Jyc-Vh-srd"/>
                             <constraint firstItem="5mq-1A-usH" firstAttribute="leading" secondItem="mQ6-Rh-95T" secondAttribute="leading" constant="46" id="K50-sT-eCl"/>
                             <constraint firstItem="B3r-Lv-LTA" firstAttribute="top" secondItem="1vk-4L-2vp" secondAttribute="bottom" constant="40" id="MUE-WM-ASc"/>
                             <constraint firstItem="mQ6-Rh-95T" firstAttribute="trailing" secondItem="B3r-Lv-LTA" secondAttribute="trailing" constant="46" id="Uud-oQ-NeZ"/>

@@ -17,6 +17,11 @@ final class RegistrationScreenVC: UIViewController {
     @IBOutlet private weak var lastNameTF: UITextField!
     @IBOutlet private weak var phoneNumberTF: SHSPhoneTextField!
     
+    //MARK: - Constraints
+    
+    @IBOutlet private weak var registrationLabelTopConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var registrationButtonTopConstraint: NSLayoutConstraint!
+    
     //MARK: - Properties
     
     private var user: UserProfile!
@@ -35,6 +40,7 @@ final class RegistrationScreenVC: UIViewController {
         
         addTitleViewCenter(image: #imageLiteral(resourceName: "Name"))
         textFieldSettings()
+        constraintsSettings()
     }
     
     //MARK: - Private funcs
@@ -59,12 +65,24 @@ final class RegistrationScreenVC: UIViewController {
             }
         }
     }
+    
+    private func constraintsSettings() {
+        
+        if view.frame.height <= 667.0 {
+            registrationLabelTopConstraint.constant = 10
+            registrationButtonTopConstraint.constant = 60
+        }
+        
+        if view.frame.height <= 568.0 {
+            registrationButtonTopConstraint.constant = 10
+        }
+    }
 
     //MARK: - IBActions
     
     @IBAction private func registrationAction(_ sender: Any) {
         
-        if (firstNameTF.text != "") && lastNameTF.text != "" && (phoneNumberTF.text != "") {
+        if firstNameTF.text != "" && lastNameTF.text != "" && phoneNumberTF.text != "" {
             
             guard phoneNumberTF.text?.count == 18 else {
                 showAlert(title: "Введите корректный номер телефона", message: nil)
