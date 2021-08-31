@@ -23,6 +23,7 @@ final class ProfileTableViewCell: UITableViewCell {
     //MARK: - Private func
     
     func configurate(dataSource: [String]) {
+        
         let gesture = UITapGestureRecognizer(target: self, action: #selector(didTapToItem))
 
         gesture.numberOfTouchesRequired = 1
@@ -35,6 +36,7 @@ final class ProfileTableViewCell: UITableViewCell {
         menu.dataSource = dataSource
         menu.backgroundColor = .systemBackground
         menu.textColor = .label
+        menu.selectionBackgroundColor = .clear
         menu.textFont = UIFont(name: "DINCondensed-Bold", size: 25)!
     }
     

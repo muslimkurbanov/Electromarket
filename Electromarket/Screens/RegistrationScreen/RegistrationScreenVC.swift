@@ -21,7 +21,6 @@ final class RegistrationScreenVC: UIViewController {
     
     private var user: UserProfile!
     private var ref: DatabaseReference!
-//    private var tasks = [Task]()
     
     //MARK: - Lifecycle
     

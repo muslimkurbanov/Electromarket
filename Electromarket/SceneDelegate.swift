@@ -14,10 +14,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
     let storyboard = UIStoryboard(name: "Main", bundle: nil)
 
-    var testsRef: DatabaseReference!
-    var ref: DatabaseReference!
-    var user: UserProfile!
-
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
@@ -33,11 +29,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let rootViewController = UIStoryboard(name: RootStoryboard.rootStoryboard, bundle: nil).instantiateInitialViewController()
             navigationController.viewControllers = [rootViewController!]
         }
-
-        window?.isOpaque = false
-        window?.backgroundColor = .clear
         
-        window?.layer.cornerRadius = 10
+//        window?.isOpaque = false
+//        window?.backgroundColor = .clear
+        
+//        window?.layer.cornerRadius = 10
         window = UIWindow(windowScene: windowScene)
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()

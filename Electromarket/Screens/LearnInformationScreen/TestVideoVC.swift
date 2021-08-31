@@ -19,7 +19,7 @@ final class TestVideoVC: UIViewController {
     
     //MARK: - Properties
     
-    var player = AVPlayer()
+    private var player = AVPlayer()
     
     private var ref: DatabaseReference!
     private var video: String = ""
@@ -93,8 +93,10 @@ final class TestVideoVC: UIViewController {
     @IBAction private func goToTest(_ sender: Any) {
         
         let vc = UIStoryboard(name: "TestScreen", bundle: nil).instantiateViewController(identifier: "testViewController") as! TestScreenVC
+        
         vc.childName = childName
         vc.testName = testName
+        
         navigationController?.pushViewController(vc, animated: true)
     }
 }

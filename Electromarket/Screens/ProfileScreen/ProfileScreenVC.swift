@@ -21,17 +21,8 @@ final class ProfileScreenVC: UIViewController {
     private var newRef: DatabaseReference!
     private var user: UserProfile!
     
-    private var firKeys = [String]() {
-        didSet {
-            print(firKeys)
-        }
-    }
-    
-    private var test = [String: [Int]]() {
-        didSet {
-            print(test)
-        }
-    }
+    private var firKeys = [String]()
+    private var test = [String: [Int]]()
     
     //MARK: - Lifecycle
     
@@ -162,14 +153,21 @@ final class ProfileScreenVC: UIViewController {
     }
 }
 
-extension ProfileScreenVC: UITableViewDelegate, UITableViewDataSource {
+//MARK: - UITableViewDelegate
+
+extension ProfileScreenVC: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+//MARK: - UITableViewDataSource
+
+extension ProfileScreenVC: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         firKeys.count
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

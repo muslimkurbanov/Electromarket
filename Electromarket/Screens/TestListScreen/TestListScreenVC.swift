@@ -13,10 +13,12 @@ import SkeletonView
 final class TestListScreenVC: UIViewController {
     
     //MARK: - IBOutlet
-    @IBOutlet weak var selectTestTableView: UITableView!
-    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
+    
+    @IBOutlet private weak var selectTestTableView: UITableView!
+    @IBOutlet private weak var loadingIndicator: UIActivityIndicatorView!
 
     //MARK: - Properties
+    
     private var ref: DatabaseReference!
     private var user: UserProfile!
     
@@ -24,13 +26,14 @@ final class TestListScreenVC: UIViewController {
     private var firebaseImages = [String]()
     private var testChilds = [String]()
     
-    var testNames = [String]()
+    private var testNames = [String]()
     
     //MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tabBarTitleViewCenter()
+        tabBarTitleViewCenter(image: #imageLiteral(resourceName: "Name"))
         
         selectTestTableView.delegate = self
         selectTestTableView.dataSource = self
@@ -61,15 +64,7 @@ final class TestListScreenVC: UIViewController {
                 let alertController = UIAlertController(title: nil, message: "Ошибка загрузки Тестов", preferredStyle: .alert)
                 alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { _ in
                     
-                    let errLabel = UILabel()
-                    errLabel.text = "Тестов нет"
-                    errLabel.textColor = .black
-                    errLabel.frame.size = CGSize(width: 200, height: 30)
-                    errLabel.center.x = self!.view.center.x
-                    errLabel.center.y = self!.view.center.y - (self?.tabBarController?.tabBar.frame.height ?? 0)
-                    errLabel.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 30)
-                    errLabel.textAlignment = .center
-                    self?.view.addSubview(errLabel)
+                    self?.createErrorLabel()
                 }))
                 
                 self?.present(alertController, animated: true, completion: {
@@ -85,7 +80,21 @@ final class TestListScreenVC: UIViewController {
         tabBarControllerSettings()
     }
     
-    //MARK: - Private unctions
+    //MARK: - Private funcs
+    
+    private func createErrorLabel() {
+        
+        let errLabel = UILabel()
+        errLabel.text = "Тестов нет"
+        errLabel.textColor = .black
+        errLabel.frame.size = CGSize(width: 200, height: 30)
+        errLabel.center.x = view.center.x
+        errLabel.center.y = view.center.y - (tabBarController?.tabBar.frame.height ?? 0)
+        errLabel.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 30)
+        errLabel.textAlignment = .center
+        view.addSubview(errLabel)
+    }
+    
     private func tabBarControllerSettings() {
         
         let helpItem = UIBarButtonItem(image: UIImage(systemName: "questionmark.circle"), style: .plain, target: self, action: #selector(showHelp))
@@ -95,14 +104,15 @@ final class TestListScreenVC: UIViewController {
     }
     
     @objc private func showHelp() {
-        let alertController = UIAlertController(title: "Инструкция", message: "После нажатия кнопки 'Приступить к тесту' вы перейдете к просмотру видеоролика с материалом по тесту. После просмотра видеоролика нажмите на кнопку 'Начать тест' и приступайте к выполнению теста", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Инструкция", message: "Когда вы выберете тест вы перейдете к просмотру видеоролика с материалом по тесту. После просмотра видеоролика нажмите на кнопку 'Начать тест' и приступайте к выполнению теста. По окончанию теста результаты будут опубликованы и размещены на экране профиля.", preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
         alertController.addAction(action)
         present(alertController, animated: true, completion: nil)
     }
 }
 
-//MARK: - DataSource
+//MARK: - UITableViewDataSource
+
 extension TestListScreenVC: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -133,11 +143,14 @@ extension TestListScreenVC: UITableViewDataSource {
     }
 }
 
-//MARK: - Delegate
+//MARK: - UITableViewDelegate
+
 extension TestListScreenVC: UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let sb = UIStoryboard(name: "LearnInformationScreen", bundle: nil)
-        let vc = sb.instantiateViewController(identifier: "testVideo") as! TestVideoVC
+        
+        let vc = UIStoryboard(name: "LearnInformationScreen", bundle: nil).instantiateInitialViewController() as! TestVideoVC
+        
         vc.childName = testChilds[indexPath.row]
         vc.testName = testNames[indexPath.row]
         

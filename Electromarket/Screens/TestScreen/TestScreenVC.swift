@@ -103,10 +103,9 @@ final class TestScreenVC: UIViewController {
         let testRef = Database.database().reference(withPath: "users").child(String(user.uid)).child("tests")
         testRef.child(testName!).setValue(testResults)
         
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(identifier: "mainTabBar")
+        let vc = UIStoryboard(name: "MainTabBar", bundle: nil).instantiateInitialViewController()
         
-        navigationController?.pushViewController(vc, animated: true)
+        navigationController?.pushViewController(vc ?? UIViewController(), animated: true)
     }
     
     @IBAction private func buttons(_ sender: UIButton) {

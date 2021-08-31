@@ -29,7 +29,7 @@
                     </connections>
                 </tabBarController>
             </objects>
-            <point key="canvasLocation" x="612" y="-214"/>
+            <point key="canvasLocation" x="183" y="-162"/>
         </scene>
         <!--TestListScreen-->
         <scene sceneID="rE2-rk-uJh">
@@ -39,7 +39,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Atw-IS-X9V" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="372" y="204"/>
+            <point key="canvasLocation" x="-96" y="256"/>
         </scene>
         <!--ProfileScreen-->
         <scene sceneID="QHL-0h-QPZ">
@@ -49,7 +49,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rrP-aB-NdI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="853" y="204"/>
+            <point key="canvasLocation" x="478" y="257"/>
         </scene>
     </scenes>
     <resources>

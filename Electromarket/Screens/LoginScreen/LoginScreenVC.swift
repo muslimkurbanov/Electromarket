@@ -16,9 +16,7 @@ final class LoginScreenVC: UIViewController {
     @IBOutlet private weak var passwordTF: UITextField!
     
     //MARK: - Properties
-    
-    private let mainStroyboard = UIStoryboard(name: "Main", bundle: nil)
-    
+        
     private var firebaseAuthManager = FirebaseAuthManager()
     private var ref: DatabaseReference!
     
@@ -80,6 +78,8 @@ final class LoginScreenVC: UIViewController {
     }
 }
 
+//MARK: - UITextFieldDelegate
+
 extension LoginScreenVC: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -90,6 +90,5 @@ extension LoginScreenVC: UITextFieldDelegate {
             view.endEditing(true)
         }
         return true
-        
     }
 }
