@@ -15,6 +15,11 @@ final class LoginScreenVC: UIViewController {
     @IBOutlet private weak var loginTF: UITextField!
     @IBOutlet private weak var passwordTF: UITextField!
     
+    //Constraints
+    @IBOutlet private weak var loginTFTopConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var loginButtonTopConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var welcomeLabelTopConstraint: NSLayoutConstraint!
+    
     //MARK: - Properties
         
     private var firebaseAuthManager = FirebaseAuthManager()
@@ -28,6 +33,7 @@ final class LoginScreenVC: UIViewController {
         ref = Database.database().reference(withPath: "users")
         
         textFieldsSettings()
+        constraintsSettings()
     }
     
     //MARK: - Private funcs
@@ -49,6 +55,18 @@ final class LoginScreenVC: UIViewController {
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
+    }
+    
+    private func constraintsSettings() {
+        
+        if view.frame.height <= 667.0 {
+            loginTFTopConstraint.constant = 0
+            loginButtonTopConstraint.constant = 50
+        }
+        
+        if view.frame.height <= 568.0 {
+            welcomeLabelTopConstraint.constant = 0
+        }
     }
     
     @objc private func dismissKeyboard() {
