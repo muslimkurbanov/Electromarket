@@ -31,8 +31,8 @@ final class ProfileScreenVC: UIViewController {
         
         testResultsTV.isHidden = true
         
-        self.testResultsTV.delegate = self
-        self.testResultsTV.dataSource = self
+        testResultsTV.delegate = self
+        testResultsTV.dataSource = self
         
         loadData()
     }
@@ -162,6 +162,7 @@ extension ProfileScreenVC: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
+
 //MARK: - UITableViewDataSource
 
 extension ProfileScreenVC: UITableViewDataSource {

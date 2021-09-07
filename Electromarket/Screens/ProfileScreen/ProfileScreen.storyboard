@@ -31,7 +31,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="60.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mPL-6r-BUk">
-                                                            <rect key="frame" x="8" y="0.0" width="406" height="60.5"/>
+                                                            <rect key="frame" x="20" y="0.0" width="394" height="60.5"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="60" id="FF6-I2-E8k"/>
                                                             </constraints>
@@ -55,7 +55,7 @@
                                                         <constraint firstAttribute="trailing" secondItem="OCF-Vw-OUV" secondAttribute="trailing" constant="20" id="NCH-Ix-Dip"/>
                                                         <constraint firstItem="OCF-Vw-OUV" firstAttribute="top" secondItem="J45-i7-JcJ" secondAttribute="top" id="gbV-1Y-Cn8"/>
                                                         <constraint firstAttribute="bottom" secondItem="mPL-6r-BUk" secondAttribute="bottom" id="ptN-Ib-JnR"/>
-                                                        <constraint firstItem="mPL-6r-BUk" firstAttribute="leading" secondItem="J45-i7-JcJ" secondAttribute="leading" constant="8" id="uKE-zk-rgT"/>
+                                                        <constraint firstItem="mPL-6r-BUk" firstAttribute="leading" secondItem="J45-i7-JcJ" secondAttribute="leading" constant="20" id="uKE-zk-rgT"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>

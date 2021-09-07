@@ -7,8 +7,6 @@
 
 import UIKit
 import Firebase
-import SDWebImage
-import SkeletonView
 
 final class TestListScreenVC: UIViewController {
     
@@ -25,7 +23,6 @@ final class TestListScreenVC: UIViewController {
     private var firebaseNames = [String]()
     private var firebaseImages = [String]()
     private var testChilds = [String]()
-    
     private var testNames = [String]()
     
     //MARK: - Lifecycle
@@ -128,17 +125,12 @@ extension TestListScreenVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TestListCell
-        cell.testName.text = firebaseNames[indexPath.row]
-        guard let urlString = URL(string: firebaseImages[indexPath.row]) else { return cell }
         
-        cell.testImage.isSkeletonable = true
-        cell.testImage.showAnimatedSkeleton()
-        cell.testImage.sd_imageTransition = .fade
-        cell.testImage.sd_setImage(with: urlString, completed: {_,_,_,_ in
-            cell.testImage.stopSkeletonAnimation()
-            cell.testImage.hideSkeleton()
-        })
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TestListCell
+        
+        cell.configurate(name: firebaseNames[indexPath.row],
+                         image: firebaseImages[indexPath.row])
+        
         return cell
     }
 }

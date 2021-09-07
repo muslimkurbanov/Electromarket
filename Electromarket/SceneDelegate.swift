@@ -30,10 +30,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             navigationController.viewControllers = [rootViewController!]
         }
         
-//        window?.isOpaque = false
-//        window?.backgroundColor = .clear
-        
-//        window?.layer.cornerRadius = 10
         window = UIWindow(windowScene: windowScene)
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
