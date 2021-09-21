@@ -94,7 +94,7 @@ final class RegistrationScreenVC: UIViewController {
             ])
             
             let vc = UIStoryboard(name: "MainTabBar", bundle: nil).instantiateInitialViewController()
-            self.navigationController?.pushViewController(vc ?? UIViewController(), animated: true)
+            navigationController?.pushViewController(vc ?? UIViewController(), animated: true)
             
             RootStoryboard.rootStoryboard = "MainTabBar"
             

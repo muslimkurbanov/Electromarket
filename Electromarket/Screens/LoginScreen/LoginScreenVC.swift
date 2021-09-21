@@ -43,7 +43,7 @@ final class LoginScreenVC: UIViewController {
         
         addTitleViewCenter(image: #imageLiteral(resourceName: "Name"))
         
-        self.navigationItem.setHidesBackButton(true, animated: true)
+        navigationItem.setHidesBackButton(true, animated: true)
 
         loginTF.keyboardType = .emailAddress
         loginTF.autocorrectionType = .no

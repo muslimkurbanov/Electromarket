@@ -78,7 +78,7 @@ final class TestVideoVC: UIViewController {
         guard let urlString = URL(string: video) else {
             let alertController = UIAlertController(title: nil, message: "Ошибка загрузки видео", preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-            self.present(alertController, animated: true, completion: nil)
+            present(alertController, animated: true, completion: nil)
             return
         }
         
@@ -92,11 +92,16 @@ final class TestVideoVC: UIViewController {
     
     @IBAction private func goToTest(_ sender: Any) {
         
-        let vc = UIStoryboard(name: "TestScreen", bundle: nil).instantiateViewController(identifier: "testViewController") as! TestScreenVC
+//        let vc = UIStoryboard(name: "TestScreen", bundle: nil).instantiateViewController(identifier: "testViewController") as! TestScreenVC
+//        
+//        vc.childName = childName
+//        vc.testName = testName
         
-        vc.childName = childName
-        vc.testName = testName
         
-        navigationController?.pushViewController(vc, animated: true)
+//        navigationController?.pushViewController(vc, animated: true)
+        
+        let testVC = UIStoryboard(name: "WriteAnswerScreen", bundle: nil).instantiateInitialViewController()
+        guard let viewController = testVC else { return }
+        navigationController?.pushViewController(viewController, animated: true)
     }
 }

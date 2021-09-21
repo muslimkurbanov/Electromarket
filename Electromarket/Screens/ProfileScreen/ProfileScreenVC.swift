@@ -133,10 +133,11 @@ final class ProfileScreenVC: UIViewController {
                                    style: .cancel,
                                    handler: nil)
         let actionTwo = UIAlertAction(title: "Выйти",
-                                      style: .destructive) { (action) in
+                                      style: .destructive) { [weak self] (action) in
             
             let vc = UIStoryboard(name: "LoginScreen", bundle: nil).instantiateInitialViewController()
-            self.navigationController?.pushViewController(vc ?? UIViewController(), animated: true)
+            
+            self?.navigationController?.pushViewController(vc ?? UIViewController(), animated: true)
             
             do {
                 try Auth.auth().signOut()
@@ -149,6 +150,7 @@ final class ProfileScreenVC: UIViewController {
         for action in [action, actionTwo] {
             alertControllet.addAction(action)
         }
+        
         present(alertControllet, animated: true, completion: nil)
     }
 }

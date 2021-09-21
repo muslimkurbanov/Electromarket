@@ -11,7 +11,6 @@
         <!--Test VideoVC-->
         <scene sceneID="5fD-IB-eAQ">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="KP6-TA-UIC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="testVideo" id="hqb-d5-ObU" customClass="TestVideoVC" customModule="Electromarket" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fDv-MK-691">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
@@ -51,7 +50,7 @@
                                     <constraint firstAttribute="height" constant="62" id="KWR-5f-La1"/>
                                     <constraint firstAttribute="width" constant="210" id="nUZ-eP-t6c"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="NotoSansMyanmar-Regular" family="Noto Sans Myanmar" pointSize="23"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
                                 <state key="normal" title="Начать тест">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -89,6 +88,7 @@
                         <outlet property="loadingIndicator" destination="M7a-8E-EYZ" id="GMG-SO-uid"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KP6-TA-UIC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="151" y="36"/>
         </scene>
