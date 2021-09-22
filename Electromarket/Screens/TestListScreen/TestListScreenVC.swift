@@ -6,7 +6,9 @@
 //
 
 import UIKit
-import Firebase
+import FirebaseDatabase
+import FirebaseFirestore
+import FirebaseAuth
 
 final class TestListScreenVC: UIViewController {
     
@@ -19,6 +21,7 @@ final class TestListScreenVC: UIViewController {
     
     private var ref: DatabaseReference!
     private var user: UserProfile!
+    private var database = Firestore.firestore()
     
     private var firebaseNames = [String]()
     private var firebaseImages = [String]()
@@ -35,9 +38,18 @@ final class TestListScreenVC: UIViewController {
         selectTestTableView.delegate = self
         selectTestTableView.dataSource = self
         
-        
         guard let currentUser = Auth.auth().currentUser else { return }
         user = UserProfile(user: currentUser)
+        
+        let docRef = database.collection("users").document(String(user.uid))
+        
+        docRef.getDocument { snapshot, error in
+            guard let data = snapshot?.data(), error == nil else { return }
+            
+            let text = data["Имя"] as? String
+            
+            print("jjjj", text)
+        }
         
         ref = Database.database().reference(withPath: "users")
             .child(String(user.uid))
