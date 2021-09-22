@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import FirebaseDatabase
 import FirebaseFirestore
 import FirebaseAuth
 
@@ -19,14 +18,13 @@ final class TestListScreenVC: UIViewController {
 
     //MARK: - Properties
     
-    private var ref: DatabaseReference!
+//    private var ref: DatabaseReference!
     private var user: UserProfile!
     private var database = Firestore.firestore()
     
-    private var firebaseNames = [String]()
-    private var firebaseImages = [String]()
-    private var testChilds = [String]()
     private var testNames = [String]()
+    private var testImages = [String]()
+    private var testResultNames = [String]()
     
     //MARK: - Lifecycle
     
@@ -41,35 +39,14 @@ final class TestListScreenVC: UIViewController {
         guard let currentUser = Auth.auth().currentUser else { return }
         user = UserProfile(user: currentUser)
         
-        let docRef = database.collection("users").document(String(user.uid))
+        let docRef = database.collection("users")
+            .document(String(user.uid))
+            .collection("Тесты")
+            .document("Информация по тестам")
         
-        docRef.getDocument { snapshot, error in
-            guard let data = snapshot?.data(), error == nil else { return }
-            
-            let text = data["Имя"] as? String
-            
-            print("jjjj", text)
-        }
-        
-        ref = Database.database().reference(withPath: "users")
-            .child(String(user.uid))
-            .child("Tests")
-            .child("TestsInformation")
-        ref.observe(.value) { [weak self] (snapshot) in
-            
-            if let keys = snapshot.value as? [String: Any] {
+        docRef.getDocument { [weak self] snapshot, error in
+            guard let data = snapshot?.data(), error == nil else {
                 
-                self?.firebaseImages = keys["TestsImage"] as! [String]
-                self?.firebaseNames = keys["TestsName"] as! [String]
-                self?.testChilds = keys["TestChilds"] as! [String]
-                self?.testNames = keys["TestsResultChild"] as! [String]
-                
-                self?.loadingIndicator.stopAnimating()
-                self?.selectTestTableView.isHidden = false
-                self?.selectTestTableView.reloadData()
-                
-            } else {
-                                
                 let alertController = UIAlertController(title: nil, message: "Ошибка загрузки Тестов", preferredStyle: .alert)
                 alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { _ in
                     
@@ -79,8 +56,38 @@ final class TestListScreenVC: UIViewController {
                 self?.present(alertController, animated: true, completion: {
                     self?.loadingIndicator.stopAnimating()
                 })
+                
+                return
             }
+            
+            self?.testImages = data["Картинки тестов"] as? [String] ?? []
+            self?.testNames = data["Названия тестов"] as? [String] ?? []
+            self?.testResultNames = data["Названия результатов тестов"]  as? [String] ?? []
+            
+            self?.loadingIndicator.stopAnimating()
+            self?.selectTestTableView.isHidden = false
+            self?.selectTestTableView.reloadData()
         }
+        
+//        ref = Database.database().reference(withPath: "users")
+//            .child(String(user.uid))
+//            .child("Tests")
+//            .child("TestsInformation")
+//        ref.observe(.value) { [weak self] (snapshot) in
+//
+//            if let keys = snapshot.value as? [String: Any] {
+//
+//                self?.testImages = keys["TestsImage"] as! [String]
+//                self?.testNames = keys["TestsName"] as! [String]
+//                self?.testResultNames = keys["TestsResultChild"] as! [String]
+//
+//
+//
+//            } else {
+//
+//
+//            }
+//        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -125,7 +132,7 @@ final class TestListScreenVC: UIViewController {
 extension TestListScreenVC: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        firebaseNames.count
+        testNames.count
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -140,8 +147,8 @@ extension TestListScreenVC: UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TestListCell
         
-        cell.configurate(name: firebaseNames[indexPath.row],
-                         image: firebaseImages[indexPath.row])
+        cell.configurate(name: testNames[indexPath.row],
+                         image: testImages[indexPath.row])
         
         return cell
     }
@@ -155,8 +162,8 @@ extension TestListScreenVC: UITableViewDelegate {
         
         let vc = UIStoryboard(name: "LearnInformationScreen", bundle: nil).instantiateInitialViewController() as! TestVideoVC
         
-        vc.childName = testChilds[indexPath.row]
         vc.testName = testNames[indexPath.row]
+        vc.testResultName = testResultNames[indexPath.row]
         
         navigationController?.pushViewController(vc, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)

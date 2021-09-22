@@ -8,7 +8,8 @@
 import UIKit
 import WebKit
 import AVKit
-import Firebase
+import FirebaseAuth
+import FirebaseFirestore
 
 final class TestVideoVC: UIViewController {
     
@@ -21,12 +22,13 @@ final class TestVideoVC: UIViewController {
     
     private var player = AVPlayer()
     
-    private var ref: DatabaseReference!
+//    private var ref: DatabaseReference!
     private var video: String = ""
     private var user: UserProfile!
+    private var database = Firestore.firestore()
     
-    var childName: String?
     var testName: String?
+    var testResultName: String?
     
     //MARK: - Lifecycle
     
@@ -37,33 +39,53 @@ final class TestVideoVC: UIViewController {
         
         user = UserProfile(user: currentUser)
         
-        ref = Database.database().reference(withPath: "users").child(String(user.uid)).child("Tests").child(childName ?? "")
+        let docRef = database.collection("users")
+            .document(String(user.uid))
+            .collection("Тесты")
+            .document(testName ?? "")
         
-        ref.observe(.value) { [weak self] (snapshot) in
-            
-            if let video = snapshot.value as? [String: Any] {
-                self?.video = video["TestsVideo"] as! String
+        docRef.getDocument { [weak self] snapshot, error in
+            guard let data = snapshot?.data(), error == nil else {
                 
-                guard let urlString = self?.video else { return }
-                guard let url = URL(string: urlString) else { return }
-                
-                
-                let playerController = AVPlayerViewController()
-                self?.player = AVPlayer(url: url)
-                playerController.player = self?.player
-                
-                self?.present(playerController, animated: true) {
-                    self?.loadingIndicator.stopAnimating()
-                    self?.goToTestButton.isHidden = false
-                    self?.player.play()
-                }
-                
-            } else {
                 let alertController = UIAlertController(title: nil, message: "Ошибка загрузки видео", preferredStyle: .alert)
                 alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
                 self?.present(alertController, animated: true, completion: nil)
+                
+                return
             }
+            
+            self?.video = data["Видео теста"] as? String ?? ""
+            
+            guard let urlString = self?.video else { return }
+            guard let url = URL(string: urlString) else { return }
+            
+            let playerController = AVPlayerViewController()
+            self?.player = AVPlayer(url: url)
+            playerController.player = self?.player
+            
+            self?.present(playerController, animated: true) {
+                self?.loadingIndicator.stopAnimating()
+                self?.goToTestButton.isHidden = false
+                self?.player.play()
+            }
+
         }
+        
+//        ref = Database.database().reference(withPath: "users").child(String(user.uid)).child("Tests").child(testName ?? "")
+//
+//        ref.observe(.value) { [weak self] (snapshot) in
+//
+//            if let video = snapshot.value as? [String: Any] {
+//                self?.video = video["TestsVideo"] as! String
+//
+//
+//
+//
+//
+//            } else {
+//
+//            }
+//        }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -92,16 +114,18 @@ final class TestVideoVC: UIViewController {
     
     @IBAction private func goToTest(_ sender: Any) {
         
-//        let vc = UIStoryboard(name: "TestScreen", bundle: nil).instantiateViewController(identifier: "testViewController") as! TestScreenVC
-//        
-//        vc.childName = childName
-//        vc.testName = testName
+        let viewController = UIStoryboard(name: "TestScreen", bundle: nil).instantiateInitialViewController() as? TestScreenVC
         
+        viewController?.testName = testName
+        viewController?.testResultName = testResultName
         
+//
 //        navigationController?.pushViewController(vc, animated: true)
+//
+//        let testVC = UIStoryboard(name: "WriteAnswerScreen", bundle: nil).instantiateInitialViewController()
+//        guard let viewController = testVC else { return }
+        guard let vc = viewController else { return }
         
-        let testVC = UIStoryboard(name: "WriteAnswerScreen", bundle: nil).instantiateInitialViewController()
-        guard let viewController = testVC else { return }
-        navigationController?.pushViewController(viewController, animated: true)
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
