@@ -6,11 +6,14 @@
 //
 
 import UIKit
-import Firebase
+import FirebaseAuth
+import FirebaseFirestore
 
 final class FirebaseAuthManager {
     
-    func signIn(email: String, password: String, navigationController: UINavigationController, view: UIViewController) {
+    private var database = Firestore.firestore()
+    
+    func signIn(email: String, password: String, navigationController: UINavigationController, view: LoginScreenVC) {
         
         Auth.auth().signIn(withEmail: email, password: password, completion: { (user, error) in
             
@@ -28,13 +31,12 @@ final class FirebaseAuthManager {
             let vc = UIStoryboard(name: "MainTabBar", bundle: nil).instantiateInitialViewController()
             navigationController.pushViewController(vc ?? UIViewController(), animated: true)
             RootStoryboard.rootStoryboard = "MainTabBar"
-            
         })
     }
     
-    func createUser(email: String, password: String, view: UIViewController, navigationController: UINavigationController, ref: DatabaseReference) {
+    func createUser(email: String, password: String, view: UIViewController, navigationController: UINavigationController) {
         
-        Auth.auth().createUser(withEmail: email, password: password, completion: { (user, error) in
+        Auth.auth().createUser(withEmail: email, password: password, completion: { [weak self] (user, error) in
 
             guard error == nil, user != nil else {
                 
@@ -51,9 +53,13 @@ final class FirebaseAuthManager {
             navigationController.pushViewController(vc ?? UIViewController(), animated: true)
             
             RootStoryboard.rootStoryboard = "RegistrationScreen"
-   
-            let userRef = ref.child((user?.user.uid)!)
-            userRef.setValue(["email": user?.user.email])
+            
+            let userRef = self?.database.collection("users")
+                .document(user?.user.uid ?? "")
+            userRef?.setData(["email": user?.user.email ?? ""])
+            
+//            let userRef = ref.child((user?.user.uid)!)
+//            userRef.setValue(["email": user?.user.email])
         })
     }
 }

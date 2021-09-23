@@ -14,6 +14,7 @@ final class LoginScreenVC: UIViewController {
     
     @IBOutlet private weak var loginTF: UITextField!
     @IBOutlet private weak var passwordTF: UITextField!
+    @IBOutlet private weak var loadingActivityIndicatior: UIActivityIndicatorView!
     
     //Constraints
     
@@ -24,15 +25,12 @@ final class LoginScreenVC: UIViewController {
     //MARK: - Properties
         
     private var firebaseAuthManager = FirebaseAuthManager()
-    private var ref: DatabaseReference!
     
     //MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        ref = Database.database().reference(withPath: "users")
-        
+                
         textFieldsSettings()
         constraintsSettings()
     }
@@ -76,14 +74,15 @@ final class LoginScreenVC: UIViewController {
     
     //MARK: - IBActions
     
-    @IBAction private func goToLoginAcion(_ sender: Any) {
+    @IBAction private func goToLoginAcion(_ sender: UIButton) {
         
         guard let email = loginTF.text, let password = passwordTF.text, email != "", password != "" else {
+            
             showAlert(title: nil, message: "Введите почту и пароль")
             return
         }
         
-        firebaseAuthManager.signIn(email: email, password: password, navigationController: navigationController!, view: self)
+        firebaseAuthManager.signIn(email: email, password: password, navigationController: navigationController ?? UINavigationController(), view: self)
     }
     
     @IBAction private func registration(_ sender: Any) {
@@ -93,7 +92,7 @@ final class LoginScreenVC: UIViewController {
             return
         }
         
-        firebaseAuthManager.createUser(email: email, password: password, view: self, navigationController: navigationController!, ref: ref)
+        firebaseAuthManager.createUser(email: email, password: password, view: self, navigationController: navigationController ?? UINavigationController())
     }
 }
 

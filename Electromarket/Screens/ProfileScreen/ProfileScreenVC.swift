@@ -6,7 +6,8 @@
 //
 
 import UIKit
-import Firebase
+import FirebaseAuth
+import FirebaseFirestore
 import DropDown
 
 final class ProfileScreenVC: UIViewController {
@@ -17,11 +18,12 @@ final class ProfileScreenVC: UIViewController {
     
     //MARK: - Properties
     
-    private var ref: DatabaseReference!
-    private var newRef: DatabaseReference!
+//    private var ref: DatabaseReference!
+//    private var newRef: DatabaseReference!
     private var user: UserProfile!
+    private var database = Firestore.firestore()
     
-    private var firKeys = [String]()
+    private var testResultNames = [String]()
     private var test = [String: [Int]]()
     
     //MARK: - Lifecycle
@@ -80,19 +82,18 @@ final class ProfileScreenVC: UIViewController {
         guard let currentUser = Auth.auth().currentUser else { return }
         
         user = UserProfile(user: currentUser)
-        ref = Database.database().reference(withPath: "users").child(String(user.uid))
         
-        newRef = Database.database().reference(withPath: "users").child(String(user.uid)).child("Tests").child("TestsInformation")
+        let testsRef = database.collection("users")
+            .document(String(user.uid))
         
-        newRef.observe(.value) { [weak self] (snapshot) in
-            if let keys = snapshot.value as? [String: Any] {
-                
-                self?.firKeys = keys["TestsResultChild"] as! [String]
-                
-                self?.testResultsTV.isHidden = false
-                self?.testResultsTV.reloadData()
-                
-            } else {
+        let testResultNameRef = database.collection("users")
+            .document(String(user.uid))
+            .collection("Тесты")
+            .document("Информация по тестам")
+        
+        testResultNameRef.getDocument { [weak self] snapshot, error in
+            
+            guard let data = snapshot?.data(), error == nil else {
                 
                 let alertController = UIAlertController(title: nil, message: "Ошибка загрузки результатов", preferredStyle: .alert)
                 alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { _ in
@@ -103,27 +104,78 @@ final class ProfileScreenVC: UIViewController {
                 }))
                 
                 self?.present(alertController, animated: true, completion: nil)
+                
+                return
             }
+            
+            self?.testResultNames = data["Названия результатов тестов"] as? [String] ?? []
+            
+            print("cccc",self?.testResultNames)
+            
+            self?.testResultsTV.isHidden = false
+            self?.testResultsTV.reloadData()
         }
         
-        ref.observe(.value) { [weak self] (snapshot) in
-            if let keys = snapshot.value as? [String: Any] {
-                
-                if keys["tests"] as? [String: [Int]] != nil {
-                    self?.test = keys["tests"] as! [String: [Int]]
-                    
-                    self?.testResultsTV.reloadData()
-                    
-                } else { return }
-                
-            } else {
+        testsRef.getDocument { [weak self] snapshot, error in
+            
+            guard let data = snapshot?.data(), error == nil else {
                 
                 let alertController = UIAlertController(title: nil, message: "Ошибка загрузки результатов", preferredStyle: .alert)
                 alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (action) in
                 }))
                 self?.present(alertController, animated: true, completion: nil)
+                
+                return
             }
+            
+            if data["Результаты по тестам"] as? [String: [Int]] != nil {
+                
+                self?.test = data["Результаты по тестам"] as? [String: [Int]] ?? [:]
+                
+                print("cccc", self?.test)
+                self?.testResultsTV.reloadData()
+                
+            } else { return }
         }
+        
+//        ref.observe(.value) { [weak self] (snapshot) in
+//            if let keys = snapshot.value as? [String: Any] {
+//
+//                if keys["tests"] as? [String: [Int]] != nil {
+//                    self?.test = keys["tests"] as! [String: [Int]]
+//
+//                    self?.testResultsTV.reloadData()
+//
+//                } else { return }
+//
+//            } else {
+//
+//                let alertController = UIAlertController(title: nil, message: "Ошибка загрузки результатов", preferredStyle: .alert)
+//                alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (action) in
+//                }))
+//                self?.present(alertController, animated: true, completion: nil)
+//            }
+//        }
+
+
+//        ref = Database.database().reference(withPath: "users").child(String(user.uid))
+//
+//        newRef = Database.database().reference(withPath: "users").child(String(user.uid)).child("Tests").child("Информация по тестам")
+//
+//        newRef.observe(.value) { [weak self] (snapshot) in
+//            if let keys = snapshot.value as? [String: Any] {
+//
+//                self?.firKeys = keys["Названия результатов тестов"] as! [String]
+//
+//                self?.testResultsTV.isHidden = false
+//                self?.testResultsTV.reloadData()
+//
+//            } else {
+//
+//
+//            }
+//        }
+        
     }
     
     @objc private func logout() {
@@ -170,7 +222,7 @@ extension ProfileScreenVC: UITableViewDelegate {
 extension ProfileScreenVC: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        firKeys.count
+        testResultNames.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -182,7 +234,7 @@ extension ProfileScreenVC: UITableViewDataSource {
             cell.testNameLabel.text = "Тест ещё не пройден"
 
         } else {
-            guard let tests = test[firKeys[indexPath.row]] else {
+            guard let tests = test[testResultNames[indexPath.row]] else {
                 cell.testNameLabel.text = "Тест ещё не пройден"
                 return cell
             }
@@ -196,7 +248,7 @@ extension ProfileScreenVC: UITableViewDataSource {
             }
             
             cell.configurate(dataSource: arr)
-            cell.testNameLabel.text = "\(firKeys[indexPath.row]):  \(tests.last ?? 0)"
+            cell.testNameLabel.text = "\(testResultNames[indexPath.row]):  \(tests.last ?? 0)"
         }
         return cell
     }
