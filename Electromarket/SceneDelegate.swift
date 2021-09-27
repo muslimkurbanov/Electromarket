@@ -20,14 +20,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         IQKeyboardManager.shared.enable = true
         
-        let navigationController = storyboard.instantiateViewController(withIdentifier: "mainNavigationController") as! UINavigationController
+        let navigationController = storyboard.instantiateViewController(withIdentifier: "mainNavigationController") as? UINavigationController
         
         if RootStoryboard.rootStoryboard == nil {
-            navigationController.viewControllers = [UIStoryboard(name: "LoginScreen", bundle: nil).instantiateInitialViewController() ?? UIViewController()]
+            navigationController?.viewControllers = [UIStoryboard(name: "LoginScreen", bundle: nil).instantiateInitialViewController() ?? UIViewController()]
         } else {
                         
             let rootViewController = UIStoryboard(name: RootStoryboard.rootStoryboard, bundle: nil).instantiateInitialViewController()
-            navigationController.viewControllers = [rootViewController!]
+            navigationController?.viewControllers = [rootViewController!]
         }
         
         window = UIWindow(windowScene: windowScene)

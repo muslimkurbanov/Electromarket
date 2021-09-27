@@ -31,13 +31,13 @@ final class ProfileTableViewCell: UITableViewCell {
         dropdownView.addGestureRecognizer(gesture)
         
         menu.anchorView = dropdownView
-        menu.bottomOffset = CGPoint(x: 0, y: (menu.anchorView?.plainView.bounds.height)!)
+        menu.bottomOffset = CGPoint(x: 0, y: (menu.anchorView?.plainView.bounds.height) ?? 0)
         menu.viewCornerRadius = 10
         menu.dataSource = dataSource
         menu.backgroundColor = .systemBackground
         menu.textColor = .label
         menu.selectionBackgroundColor = .clear
-        menu.textFont = UIFont(name: "DINCondensed-Bold", size: 25)!
+        menu.textFont = UIFont(name: "DINCondensed-Bold", size: 25) ?? UIFont()
     }
     
     @objc private func didTapToItem() {

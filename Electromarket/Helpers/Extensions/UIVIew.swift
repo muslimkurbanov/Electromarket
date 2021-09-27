@@ -30,10 +30,28 @@ extension UIView {
     
     @IBInspectable var borderColor: UIColor? {
         get {
-            return UIColor(cgColor: layer.borderColor!)
+            return UIColor(cgColor: layer.borderColor ?? CGColor(gray: 0, alpha: 0))
         }
         set {
             layer.borderColor = newValue?.cgColor
+        }
+    }
+    
+    func hideWithAnimate() {
+        
+        UIView.animate(withDuration: 0.5) {
+            
+            self.alpha = 0
+            self.isHidden = true
+        }
+    }
+    
+    func showWithAnimate() {
+        
+        UIView.animate(withDuration: 0.5) {
+            
+            self.alpha = 1
+            self.isHidden = false
         }
     }
 }

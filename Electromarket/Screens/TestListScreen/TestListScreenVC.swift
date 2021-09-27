@@ -18,7 +18,6 @@ final class TestListScreenVC: UIViewController {
 
     //MARK: - Properties
     
-//    private var ref: DatabaseReference!
     private var user: UserProfile!
     private var database = Firestore.firestore()
     
@@ -68,26 +67,6 @@ final class TestListScreenVC: UIViewController {
             self?.selectTestTableView.isHidden = false
             self?.selectTestTableView.reloadData()
         }
-        
-//        ref = Database.database().reference(withPath: "users")
-//            .child(String(user.uid))
-//            .child("Tests")
-//            .child("TestsInformation")
-//        ref.observe(.value) { [weak self] (snapshot) in
-//
-//            if let keys = snapshot.value as? [String: Any] {
-//
-//                self?.testImages = keys["TestsImage"] as! [String]
-//                self?.testNames = keys["TestsName"] as! [String]
-//                self?.testResultNames = keys["TestsResultChild"] as! [String]
-//
-//
-//
-//            } else {
-//
-//
-//            }
-//        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -108,7 +87,13 @@ final class TestListScreenVC: UIViewController {
         errLabel.center.y = view.center.y - (tabBarController?.tabBar.frame.height ?? 0)
         errLabel.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 30)
         errLabel.textAlignment = .center
+        errLabel.alpha = 0
+        
         view.addSubview(errLabel)
+        
+        UIView.animate(withDuration: 0.5) {
+            errLabel.alpha = 1
+        }
     }
     
     private func tabBarControllerSettings() {
@@ -145,12 +130,12 @@ extension TestListScreenVC: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TestListCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? TestListCell
         
-        cell.configurate(name: testNames[indexPath.row],
+        cell?.configurate(name: testNames[indexPath.row],
                          image: testImages[indexPath.row])
         
-        return cell
+        return cell ?? UITableViewCell()
     }
 }
 
@@ -160,12 +145,12 @@ extension TestListScreenVC: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let vc = UIStoryboard(name: "LearnInformationScreen", bundle: nil).instantiateInitialViewController() as! TestVideoVC
+        let vc = UIStoryboard(name: "LearnInformationScreen", bundle: nil).instantiateInitialViewController() as? TestVideoVC
         
-        vc.testName = testNames[indexPath.row]
-        vc.testResultName = testResultNames[indexPath.row]
+        vc?.testName = testNames[indexPath.row]
+        vc?.testResultName = testResultNames[indexPath.row]
         
-        navigationController?.pushViewController(vc, animated: true)
+        navigationController?.pushViewController(vc ?? UIViewController(), animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }

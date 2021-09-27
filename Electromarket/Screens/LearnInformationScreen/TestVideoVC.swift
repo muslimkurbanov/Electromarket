@@ -22,7 +22,6 @@ final class TestVideoVC: UIViewController {
     
     private var player = AVPlayer()
     
-//    private var ref: DatabaseReference!
     private var video: String = ""
     private var user: UserProfile!
     private var database = Firestore.firestore()
@@ -70,22 +69,6 @@ final class TestVideoVC: UIViewController {
             }
 
         }
-        
-//        ref = Database.database().reference(withPath: "users").child(String(user.uid)).child("Tests").child(testName ?? "")
-//
-//        ref.observe(.value) { [weak self] (snapshot) in
-//
-//            if let video = snapshot.value as? [String: Any] {
-//                self?.video = video["TestsVideo"] as! String
-//
-//
-//
-//
-//
-//            } else {
-//
-//            }
-//        }
     }
     
     override func viewDidDisappear(_ animated: Bool) {

@@ -37,7 +37,6 @@ final class RegistrationScreenVC: UIViewController {
         
         guard let currentUser = Auth.auth().currentUser else { return }
         user = UserProfile(user: currentUser)
-//        ref = Database.database().reference(withPath: "users").child(String(user.uid))
         
         addTitleViewCenter(image: #imageLiteral(resourceName: "Name"))
         textFieldSettings()
@@ -97,11 +96,6 @@ final class RegistrationScreenVC: UIViewController {
                               "Фамилия": lastNameTF.text ?? "",
                               "Номер телефона": phoneNumberTF.text ?? ""
             ])
-            
-//            ref.setValue(["Имя": firstNameTF.text,
-//                          "Фамилия": lastNameTF.text,
-//                          "Номер телефона": phoneNumberTF.text
-//            ])
             
             let vc = UIStoryboard(name: "MainTabBar", bundle: nil).instantiateInitialViewController()
             navigationController?.pushViewController(vc ?? UIViewController(), animated: true)

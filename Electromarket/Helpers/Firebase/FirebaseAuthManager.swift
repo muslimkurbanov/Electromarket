@@ -57,9 +57,6 @@ final class FirebaseAuthManager {
             let userRef = self?.database.collection("users")
                 .document(user?.user.uid ?? "")
             userRef?.setData(["email": user?.user.email ?? ""])
-            
-//            let userRef = ref.child((user?.user.uid)!)
-//            userRef.setValue(["email": user?.user.email])
         })
     }
 }

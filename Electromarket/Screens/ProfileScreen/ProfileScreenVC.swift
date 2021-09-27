@@ -18,8 +18,6 @@ final class ProfileScreenVC: UIViewController {
     
     //MARK: - Properties
     
-//    private var ref: DatabaseReference!
-//    private var newRef: DatabaseReference!
     private var user: UserProfile!
     private var database = Firestore.firestore()
     
@@ -59,8 +57,13 @@ final class ProfileScreenVC: UIViewController {
         errLabel.center.y = view.center.y - (tabBarController?.tabBar.frame.height ?? 0)
         errLabel.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 30)
         errLabel.textAlignment = .center
+        errLabel.alpha = 0
         
         view.addSubview(errLabel)
+        
+        UIView.animate(withDuration: 0.5) {
+            errLabel.alpha = 1
+        }
         
         let retryButton = UIButton()
         retryButton.setTitle("Обновить", for: .normal)
@@ -71,10 +74,14 @@ final class ProfileScreenVC: UIViewController {
         
         retryButton.backgroundColor = .none
         retryButton.setTitleColor(.label, for: .normal)
-        
+        retryButton.alpha = 0
         retryButton.addTarget(self, action: #selector(loadData), for: .touchUpInside)
         
         view.addSubview(retryButton)
+        
+        UIView.animate(withDuration: 0.5) {
+            retryButton.alpha = 1
+        }
     }
     
     @objc private func loadData() {
@@ -93,24 +100,9 @@ final class ProfileScreenVC: UIViewController {
         
         testResultNameRef.getDocument { [weak self] snapshot, error in
             
-            guard let data = snapshot?.data(), error == nil else {
-                
-                let alertController = UIAlertController(title: nil, message: "Ошибка загрузки результатов", preferredStyle: .alert)
-                alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { _ in
-                    
-                    self?.testResultsTV.isHidden = true
-                    
-                    self?.createErrorLayout()
-                }))
-                
-                self?.present(alertController, animated: true, completion: nil)
-                
-                return
-            }
+            guard let data = snapshot?.data(), error == nil else { return }
             
             self?.testResultNames = data["Названия результатов тестов"] as? [String] ?? []
-            
-            print("cccc",self?.testResultNames)
             
             self?.testResultsTV.isHidden = false
             self?.testResultsTV.reloadData()
@@ -122,7 +114,10 @@ final class ProfileScreenVC: UIViewController {
                 
                 let alertController = UIAlertController(title: nil, message: "Ошибка загрузки результатов", preferredStyle: .alert)
                 alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (action) in
+                    
+                    self?.createErrorLayout()
                 }))
+                
                 self?.present(alertController, animated: true, completion: nil)
                 
                 return
@@ -131,51 +126,10 @@ final class ProfileScreenVC: UIViewController {
             if data["Результаты по тестам"] as? [String: [Int]] != nil {
                 
                 self?.test = data["Результаты по тестам"] as? [String: [Int]] ?? [:]
-                
-                print("cccc", self?.test)
                 self?.testResultsTV.reloadData()
                 
             } else { return }
         }
-        
-//        ref.observe(.value) { [weak self] (snapshot) in
-//            if let keys = snapshot.value as? [String: Any] {
-//
-//                if keys["tests"] as? [String: [Int]] != nil {
-//                    self?.test = keys["tests"] as! [String: [Int]]
-//
-//                    self?.testResultsTV.reloadData()
-//
-//                } else { return }
-//
-//            } else {
-//
-//                let alertController = UIAlertController(title: nil, message: "Ошибка загрузки результатов", preferredStyle: .alert)
-//                alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (action) in
-//                }))
-//                self?.present(alertController, animated: true, completion: nil)
-//            }
-//        }
-
-
-//        ref = Database.database().reference(withPath: "users").child(String(user.uid))
-//
-//        newRef = Database.database().reference(withPath: "users").child(String(user.uid)).child("Tests").child("Информация по тестам")
-//
-//        newRef.observe(.value) { [weak self] (snapshot) in
-//            if let keys = snapshot.value as? [String: Any] {
-//
-//                self?.firKeys = keys["Названия результатов тестов"] as! [String]
-//
-//                self?.testResultsTV.isHidden = false
-//                self?.testResultsTV.reloadData()
-//
-//            } else {
-//
-//
-//            }
-//        }
-        
     }
     
     @objc private func logout() {
@@ -227,16 +181,17 @@ extension ProfileScreenVC: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ProfileTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? ProfileTableViewCell
         
         if test.isEmpty {
             
-            cell.testNameLabel.text = "Тест ещё не пройден"
+            cell?.testNameLabel.text = "Тест ещё не пройден"
 
         } else {
+            
             guard let tests = test[testResultNames[indexPath.row]] else {
-                cell.testNameLabel.text = "Тест ещё не пройден"
-                return cell
+                cell?.testNameLabel.text = "Тест ещё не пройден"
+                return cell ?? UITableViewCell()
             }
             
             var arr = [String]()
@@ -247,9 +202,9 @@ extension ProfileScreenVC: UITableViewDataSource {
                 number += 1
             }
             
-            cell.configurate(dataSource: arr)
-            cell.testNameLabel.text = "\(testResultNames[indexPath.row]):  \(tests.last ?? 0)"
+            cell?.configurate(dataSource: arr)
+            cell?.testNameLabel.text = "\(testResultNames[indexPath.row]):  \(tests.last ?? 0)"
         }
-        return cell
+        return cell ?? UITableViewCell()
     }
 }
