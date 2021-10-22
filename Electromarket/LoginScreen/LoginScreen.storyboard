@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="yhz-3A-s2Z">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Login View Controller-->
+        <scene sceneID="M3E-eR-sot">
+            <objects>
+                <viewController storyboardIdentifier="registrationVC" id="yhz-3A-s2Z" userLabel="Login View Controller" customClass="LoginScreenVC" customModule="Electromarket" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="SEJ-pe-zPl">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A8Y-WG-teX">
+                                <rect key="frame" x="145" y="552" width="124" height="36"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                <state key="normal" title="Регистрация">
+                                    <color key="titleColor" red="1" green="0.38823530080000002" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="7"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="registration:" destination="yhz-3A-s2Z" eventType="touchUpInside" id="ntz-ap-ABX"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SrG-1s-6a0">
+                                <rect key="frame" x="99" y="467" width="216" height="60"/>
+                                <color key="backgroundColor" red="0.61176470589999998" green="0.76470588240000004" blue="0.090196078430000007" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="K7I-aT-Xed"/>
+                                    <constraint firstAttribute="width" constant="216" id="jTx-bf-nuV"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="27"/>
+                                <state key="normal" title="Войти">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="7"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="goToLoginAcion:" destination="yhz-3A-s2Z" eventType="touchUpInside" id="zR4-6I-FOO"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Добро пожаловать" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1vk-4L-2vp">
+                                <rect key="frame" x="71.5" y="94" width="271" height="115"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="115" id="9Sg-K5-LR7"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="45"/>
+                                <color key="textColor" red="0.34509803919999998" green="0.35686274509999999" blue="0.43529411759999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5mq-1A-usH">
+                                <rect key="frame" x="46" y="343" width="322" height="54"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Введите пароль" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Eft-IU-idj">
+                                        <rect key="frame" x="14" y="1" width="294" height="52"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.040000000000000001" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="Eft-IU-idj" secondAttribute="bottom" constant="1" id="507-QC-9UG"/>
+                                    <constraint firstAttribute="height" constant="54" id="WNH-UJ-Phg"/>
+                                    <constraint firstItem="Eft-IU-idj" firstAttribute="leading" secondItem="5mq-1A-usH" secondAttribute="leading" constant="14" id="Wat-up-Ysn"/>
+                                    <constraint firstAttribute="trailing" secondItem="Eft-IU-idj" secondAttribute="trailing" constant="14" id="WmC-Db-owY"/>
+                                    <constraint firstItem="Eft-IU-idj" firstAttribute="top" secondItem="5mq-1A-usH" secondAttribute="top" constant="1" id="mqa-g7-gW9"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B3r-Lv-LTA">
+                                <rect key="frame" x="46" y="249" width="322" height="54"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Введите почту" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fMG-iX-nm9">
+                                        <rect key="frame" x="14" y="1" width="294" height="52"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.040000000000000001" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstItem="fMG-iX-nm9" firstAttribute="top" secondItem="B3r-Lv-LTA" secondAttribute="top" constant="1" id="DbD-D7-b6R"/>
+                                    <constraint firstItem="fMG-iX-nm9" firstAttribute="leading" secondItem="B3r-Lv-LTA" secondAttribute="leading" constant="14" id="Egy-gJ-R6d"/>
+                                    <constraint firstAttribute="bottom" secondItem="fMG-iX-nm9" secondAttribute="bottom" constant="1" id="Kdo-s4-htr"/>
+                                    <constraint firstAttribute="trailing" secondItem="fMG-iX-nm9" secondAttribute="trailing" constant="14" id="TI7-NB-r06"/>
+                                    <constraint firstAttribute="height" constant="54" id="nFJ-X4-lD2"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="mQ6-Rh-95T"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="A8Y-WG-teX" firstAttribute="centerX" secondItem="SEJ-pe-zPl" secondAttribute="centerX" id="0YA-js-VBr"/>
+                            <constraint firstItem="B3r-Lv-LTA" firstAttribute="leading" secondItem="mQ6-Rh-95T" secondAttribute="leading" constant="46" id="1nh-I7-OZU"/>
+                            <constraint firstItem="5mq-1A-usH" firstAttribute="top" secondItem="B3r-Lv-LTA" secondAttribute="bottom" constant="40" id="4rr-gI-86k"/>
+                            <constraint firstItem="SrG-1s-6a0" firstAttribute="top" secondItem="5mq-1A-usH" secondAttribute="bottom" constant="70" id="77e-iZ-M5b"/>
+                            <constraint firstItem="1vk-4L-2vp" firstAttribute="top" secondItem="mQ6-Rh-95T" secondAttribute="top" constant="50" id="BvX-XD-kKn"/>
+                            <constraint firstItem="1vk-4L-2vp" firstAttribute="centerX" secondItem="SEJ-pe-zPl" secondAttribute="centerX" id="Gkz-TH-lRl"/>
+                            <constraint firstItem="A8Y-WG-teX" firstAttribute="top" secondItem="SrG-1s-6a0" secondAttribute="bottom" constant="25" id="Jyc-Vh-srd"/>
+                            <constraint firstItem="5mq-1A-usH" firstAttribute="leading" secondItem="mQ6-Rh-95T" secondAttribute="leading" constant="46" id="K50-sT-eCl"/>
+                            <constraint firstItem="B3r-Lv-LTA" firstAttribute="top" secondItem="1vk-4L-2vp" secondAttribute="bottom" constant="40" id="MUE-WM-ASc"/>
+                            <constraint firstItem="mQ6-Rh-95T" firstAttribute="trailing" secondItem="B3r-Lv-LTA" secondAttribute="trailing" constant="46" id="Uud-oQ-NeZ"/>
+                            <constraint firstItem="mQ6-Rh-95T" firstAttribute="trailing" secondItem="5mq-1A-usH" secondAttribute="trailing" constant="46" id="caK-5I-RhE"/>
+                            <constraint firstItem="SrG-1s-6a0" firstAttribute="centerX" secondItem="SEJ-pe-zPl" secondAttribute="centerX" id="zKI-2f-Sir"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title=" " id="L6d-s8-h77"/>
+                    <connections>
+                        <outlet property="loginButtonTopConstraint" destination="77e-iZ-M5b" id="hte-8M-dwr"/>
+                        <outlet property="loginTF" destination="fMG-iX-nm9" id="Y0w-br-yoh"/>
+                        <outlet property="loginTFTopConstraint" destination="MUE-WM-ASc" id="u7m-of-WbI"/>
+                        <outlet property="passwordTF" destination="Eft-IU-idj" id="vww-tZ-UXR"/>
+                        <outlet property="welcomeLabelTopConstraint" destination="BvX-XD-kKn" id="YIX-R0-XQO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xpz-2P-9Gl" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-184.05797101449278" y="40.848214285714285"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

@@ -154,7 +154,6 @@
 		848B7A4E2600A3F9005DE9D1 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				848B7A532600A486005DE9D1 /* LoginScreen */,
 				84F8D1DE26650B4F00CEBF36 /* RegistrationScreen */,
 				84F8D1DA266509FA00CEBF36 /* TestListScreen */,
 				84F8D1DB26650A0900CEBF36 /* ProfileScreen */,
@@ -220,6 +219,7 @@
 				848629E626DCE2A600EC7BF1 /* Helpers */,
 				84AF0F8F25B1E483007DE6CC /* Assets.xcassets */,
 				84AF0F9125B1E483007DE6CC /* LaunchScreen.storyboard */,
+				848B7A532600A486005DE9D1 /* LoginScreen */,
 				84AF0F9425B1E483007DE6CC /* Info.plist */,
 				848B7A4B26008FCA005DE9D1 /* GoogleService-Info.plist */,
 			);

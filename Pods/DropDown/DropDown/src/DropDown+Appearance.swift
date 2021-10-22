@@ -17,7 +17,7 @@ extension DropDown {
 		appearance.backgroundColor = DPDConstant.UI.BackgroundColor
 		appearance.selectionBackgroundColor = DPDConstant.UI.SelectionBackgroundColor
 		appearance.separatorColor = DPDConstant.UI.SeparatorColor
-        appearance.viewCornerRadius = DPDConstant.UI.CornerRadius
+		appearance.viewCornerRadius = DPDConstant.UI.CornerRadius
 		appearance.shadowColor = DPDConstant.UI.Shadow.Color
 		appearance.shadowOffset = DPDConstant.UI.Shadow.Offset
 		appearance.shadowOpacity = DPDConstant.UI.Shadow.Opacity
